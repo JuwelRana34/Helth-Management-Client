@@ -19,6 +19,7 @@ const Routes = () => {
             path : '/*',
             element : <div>Page not found</div>
         }
+       
     ])
     return <RouterProvider router={route} />
 };
