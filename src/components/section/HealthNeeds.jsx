@@ -22,7 +22,7 @@ const HealthNeeds = () => {
                 </div>
                 <div className="flex flex-col">
                     <img src="/public/section/image2.jpeg" alt="" />
-                    <div className="bg-purple-300 p-5 rounded-3xl">
+                    <div className="bg-blue-300 p-5 rounded-3xl">
                         {/* <p> {<SmilePlus />}</p> */}
                         <p>25k+</p>
                         <p>Happy Patients</p>

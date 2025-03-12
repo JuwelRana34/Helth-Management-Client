@@ -1,5 +1,6 @@
 import React from 'react';
 import HealthNeeds from '../components/section/HealthNeeds';
+import WellnessOfferings from '../components/section/WellnessOfferings';
 import AboutUs from './home/AboutUs';
 import Doctors from './home/Doctors';
 import Hero from './home/Hero';
@@ -13,6 +14,7 @@ const Home = () => {
             <HomeCard />
             <Doctors />
             <HealthNeeds />
+            <WellnessOfferings />
         </div>
     );
 };
