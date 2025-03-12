@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Navbar = () => {
+const Hero = () => {
     return (
         <div>
-            navbar here rfg
+            slider
         </div>
     );
 };
 
-export default Navbar;
+export default Hero;
