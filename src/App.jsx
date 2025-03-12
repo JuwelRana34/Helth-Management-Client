@@ -1,6 +1,8 @@
-import "./App.css";
+
+import './App.css'
 
 function App() {
+
   return (
     <>
       <h1>welcome to our website</h1>
@@ -9,7 +11,7 @@ function App() {
       <h3>new something</h3>
 
     </>
-  );
+  )
 }
 
-export default App;
+export default App
