@@ -5,11 +5,13 @@ import AboutUs from './home/AboutUs';
 import Doctors from './home/Doctors';
 import Hero from './home/Hero';
 import HomeCard from './home/HomeCard';
+import IconCard from './home/IconCard';
 
 const Home = () => {
     return (
         <div>
             <Hero />
+            <IconCard/>
             <AboutUs />
             <HomeCard />
             <Doctors />
