@@ -11,13 +11,13 @@ const Navbar = () => {
             {/* Nav Top */}
             <div className='flex justify-between px-5 bg-[#39B5A4]'>
                 <div className='flex'>
-                    <h1 className='py-2'>We understand that each patient is unique</h1>
+                    <h1 className='py-2 text-base'>We understand that each patient is unique</h1>
                     <button className='btn btn-link'>Learn More</button>
                 </div>
                 <div className='flex gap-4'>
-                    <h1 className='flex gap-1 justify-center items-center'><FaPhone />880 0000 00000</h1>
-                    <h1 className='flex gap-1 justify-center items-center'><CiLocationOn />Find Location</h1>
-                    <h1 className='flex gap-1 justify-center items-center'>Pay Your Bill</h1>
+                    <h1 className='flex gap-1 justify-center items-center text-base'><FaPhone />880 0000 00000</h1>
+                    <h1 className='flex gap-1 justify-center items-center text-base'><CiLocationOn />Find Location</h1>
+                    <h1 className='flex gap-1 justify-center items-center text-base'>Pay Your Bill</h1>
                 </div>
             </div>
 
