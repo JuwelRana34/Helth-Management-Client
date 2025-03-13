@@ -28,7 +28,7 @@ function Aboutus_section1() {
             <div className="absolute -bottom-16 left-24">
               <img src={squre3} alt="svg img" />
             </div>
-            <div className="absolute -bottom-10 right-0 z-[6] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
+            <div className="absolute md:animate-move-right -bottom-10 right-0 z-[6] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
               <div className="flex justify-center items-center gap-5">
                 <div>
                   <img
