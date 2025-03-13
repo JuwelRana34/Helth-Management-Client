@@ -1,12 +1,14 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 import { Outlet } from 'react-router';
+import Footer from '../components/Footer';
 
 const Layout = () => {
     return (
-        <div>
+        <div className='font-roboto'>
             <Navbar />
             <Outlet/>
+            <Footer/>
         </div>
     );
 };
