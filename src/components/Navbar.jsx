@@ -4,30 +4,20 @@ import { FaPhone, FaBars } from "react-icons/fa6";
 import { CiLocationOn } from "react-icons/ci";
 
 const Navbar = () => {
-  return (
-    <>
-      {/* Top Bar */}
-      <div className="flex flex-col md:flex-row items-center justify-between bg-[#39B5A4] text-white px-6 py-3">
-        <div className="text-sm md:text-base flex items-center gap-2">
-          <h1>We understand that each patient is unique</h1>
-          <button className="text-white font-semibold underline hover:text-gray-200 transition">
-            Learn More
-          </button>
-        </div>
-        <div className="flex items-center gap-6 mt-2 md:mt-0">
-          <h1 className="flex items-center gap-2 text-sm">
-            <FaPhone className="text-lg" />
-            880 0000 00000
-          </h1>
-          <h1 className="flex items-center gap-2 text-sm cursor-pointer hover:underline">
-            <CiLocationOn className="text-lg" />
-            Find Location
-          </h1>
-          <h1 className="text-sm cursor-pointer hover:underline">
-            Pay Your Bill
-          </h1>
-        </div>
-      </div>
+    return (
+        <>
+            {/* Nav Top */}
+            <div className='flex justify-between px-5 bg-[#39B5A4]'>
+                <div className='flex'>
+                    <h1 className='py-2'>We understand that each patient is unique</h1>
+                    <button className='btn btn-link'>Learn More</button>
+                </div>
+                <div className='flex gap-4'>
+                    <h1 className='flex gap-1 justify-center items-center'><FaPhone />880 0000 00000</h1>
+                    <h1 className='flex gap-1 justify-center items-center'><CiLocationOn />Find Location</h1>
+                    <h1 className='flex gap-1 justify-center items-center'>Pay Your Bill</h1>
+                </div>
+            </div>
 
       {/* Main Navbar */}
       <nav className="bg-white shadow-md">
