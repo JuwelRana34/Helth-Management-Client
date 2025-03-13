@@ -95,10 +95,10 @@ const HomeCard = () => {
         </div>
 
         {/* View More Button */}
-        <div className="text-center mt-8">
-          <button className="flex items-center bg-primary text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-600 transition">
+        <div className="flex justify-center mt-8  ">
+          <button className="flex items-center bg-primary text-white font-semibold px-4 py-3 rounded-full hover:bg-blue-600 transition">
             View More Services
-            <img className="w-6 ml-2" src="https://cdn-icons-gif.flaticon.com/7740/7740503.gif" alt="Arrow" />
+            <img className="w-8 ml-4 rounded-full" src="https://cdn-icons-gif.flaticon.com/7740/7740503.gif" alt="Arrow" />
           </button>
         </div>
       </div>
