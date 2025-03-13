@@ -12,10 +12,13 @@ export default {
         primary: '#1C5CBB',
         secondary: '#39B5A4',
     },
+    fontFamily : {
+      lato: ['Lato', 'sans-serif'],
+      roboto: ["Roboto", "sans-serif"],
     },
   },
   plugins: [
   daisyui
   ],
 }
-
+}
