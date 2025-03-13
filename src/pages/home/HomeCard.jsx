@@ -2,20 +2,20 @@ import React from "react";
 
 const HomeCard = () => {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 py-4 font-lato">
       <div className=" container  mx-auto mt-3 p-2 speachY">
         {/* header  */}
 
-        <div className=" speachY pt-5 px-2 md:w-1/2 mx-auto text-center">
-          <span className="bg-primary text-white rounded-full py-2 px-3 font-semibold">
+        <div className=" speachY  px-2 md:w-1/2 mx-auto text-center">
+          <span className="bg-primary shadow-md shadow-blue-100 text-white rounded-full py-2 px-3 font-semibold">
             Our Services
           </span>
-          <h1>Being Your Health Journey With Key Wellness Services</h1>
+          <h1 className="heading">Being Your Health Journey With Key Wellness Services</h1>
         </div>
 
         {/* cards */}
-        <div className=" mt-3 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          <div className="border bg-white shadow p-3 rounded-md">
+        <div className=" mt-3 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 text-[#21275C]">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10  p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -38,7 +38,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -59,7 +59,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -80,7 +80,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -101,7 +101,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -122,7 +122,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -143,7 +143,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -164,7 +164,7 @@ const HomeCard = () => {
             </div>
           </div>
 
-          <div className="border bg-white shadow p-3 rounded-md">
+          <div className="border bg-white shadow hover:shadow-lg hover:bg-emerald-500/10 p-3 rounded-md">
             {/* card heading  */}
             <div>
               <img
@@ -187,7 +187,7 @@ const HomeCard = () => {
         </div>
 
         {/* to view more buttn  */}
-        <button className="Flex mx-auto Btn ">
+        <button className="Flex capitalize mx-auto Btn ">
           {" "}
           view more services
           <img
