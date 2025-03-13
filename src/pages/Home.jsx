@@ -7,6 +7,8 @@ import Hero from './home/Hero';
 import HomeCard from './home/HomeCard';
 import IconCard from './home/IconCard';
 import MarqueeSection from './home/MarqueeSection';
+import PhotoGallery from './home/PhotoGallery';
+import FeedbackSlider from './home/FeedbackSlider';
 
 const Home = () => {
     return (
@@ -19,7 +21,9 @@ const Home = () => {
             <HomeCard />
             <Doctors />
             <HealthNeeds />
-            <WellnessOfferings />
+            <PhotoGallery />
+            <WellnessOfferings />            
+            <FeedbackSlider />
         </div>
     );
 };
