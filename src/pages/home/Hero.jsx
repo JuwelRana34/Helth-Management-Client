@@ -38,9 +38,10 @@ const Hero = () => {
         setCurrentSlider(
           currentSlider === sliders.length - 1 ? 0 : currentSlider + 1
         ),
-      5000
+      3000
     );
     return () => clearInterval(intervalId);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSlider]);
 
   return (
@@ -62,7 +63,7 @@ const Hero = () => {
       {/* slider container */}
       <div className="flex justify-center items-center gap-3 p-2">
         {/* sliders */}
-        {sliders.map((slide, inx) => (
+        {/* {sliders.map((slide, inx) => (
           <img
             onClick={() => setCurrentSlider(inx)}
             key={inx}
@@ -72,7 +73,7 @@ const Hero = () => {
             } rounded-md md:rounded-lg box-content cursor-pointer`}
             alt={slide.title}
           />
-        ))}
+        ))} */}
       </div>
     </>
   );
