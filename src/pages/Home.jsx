@@ -1,5 +1,6 @@
 import React from 'react';
 import HealthNeeds from '../components/section/HealthNeeds';
+import ServiceSection from '../components/section/ServiceSection';
 import WellnessOfferings from '../components/section/WellnessOfferings';
 import AboutUs from './home/AboutUs';
 import Doctors from './home/Doctors';
@@ -15,15 +16,11 @@ const Home = () => {
         <div>
             <Hero />
             <IconCard/>
-            {/* todo marquee */}
-            <MarqueeSection/>
             <AboutUs />
             <HomeCard />
             <Doctors />
             <HealthNeeds />
-            <PhotoGallery />
-            <WellnessOfferings />            
-            <FeedbackSlider />
+            <WellnessOfferings />
         </div>
     );
 };
