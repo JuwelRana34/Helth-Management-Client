@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import photo from "../assets/aboutus/about1.jpg";
-import squre from "../assets/aboutus/about-shape1.png";
-import squre2 from "../assets/aboutus/about-shape2.png";
-import squre3 from "../assets/aboutus/about-shape3.png";
-import videoThumbnail from "../assets/aboutus/wrap-video.jpg";
-import line from "../assets/aboutus/line.png";
+import photo from "../../../src/assets/aboutus/about1.jpg";
+import squre from "../../../src/assets/aboutus/about-shape1.png";
+import squre2 from "../../../src/assets/aboutus/about-shape2.png";
+import squre3 from "../../../src/assets/aboutus/about-shape3.png";
+import videoThumbnail from "../../../src/assets/aboutus/wrap-video.jpg";
+import line from "../../../src/assets/aboutus/line.png";
 
 function Aboutus_section1() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ function Aboutus_section1() {
           <div className="aboutUs-img relative p-2">
             <img
               src={photo}
-              className="mt-10 shadow-lg relative rounded-xl z-[500] md:w-72 mx-auto md:h-auto"
+              className="mt-10 shadow-lg relative rounded-xl z-[5] md:w-72 mx-auto md:h-auto"
               alt="Healthcare Logo"
             />
             <div className="absolute z-0 top-0 left-10">
@@ -28,8 +28,8 @@ function Aboutus_section1() {
             <div className="absolute -bottom-16 left-24">
               <img src={squre3} alt="svg img" />
             </div>
-            <div className="absolute overflow-hidden md:animate-move-right -bottom-10 right-0 z-[600] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
-              <div className="flex  justify-center items-center gap-5">
+            <div className="absolute -bottom-10 right-0 z-[6] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
+              <div className="flex justify-center items-center gap-5">
                 <div>
                   <img
                     className="w-16 rounded-full bg-[#eebcff] p-2"
@@ -45,8 +45,8 @@ function Aboutus_section1() {
                 </div>
               </div>
             </div>
-            <div className="absolute top-0 right-0 z-[999] bg-white p-3 rounded-3xl border shadow-lg">
-              <div className="relative  cursor-pointer" onClick={() => setIsOpen(true)}>
+            <div className="absolute top-0 right-0 z-[9] bg-white p-3 rounded-3xl border shadow-lg">
+              <div className="relative cursor-pointer" onClick={() => setIsOpen(true)}>
                 <img
                   className="rounded-2xl w-32 md:w-48 mb-2"
                   src={videoThumbnail}
