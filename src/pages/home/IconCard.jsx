@@ -3,7 +3,7 @@ import { FaHeartbeat, FaStethoscope, FaShieldAlt } from 'react-icons/fa';
 
 const Card = ({ icon, title, description }) => {
   return (
-    <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl">
+    <div className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl w-3/4 mx-auto">
       <div className="flex items-center justify-start p-6  text-primary">
         <div className="text-7xl">{icon}</div>
       </div>
