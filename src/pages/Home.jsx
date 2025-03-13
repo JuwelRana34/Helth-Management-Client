@@ -21,6 +21,7 @@ const Home = () => {
             <Doctors />
             <HealthNeeds />
             <WellnessOfferings />
+            <ServiceSection/>
         </div>
     );
 };
