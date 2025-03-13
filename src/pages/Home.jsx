@@ -6,12 +6,15 @@ import Doctors from './home/Doctors';
 import Hero from './home/Hero';
 import HomeCard from './home/HomeCard';
 import IconCard from './home/IconCard';
+import MarqueeSection from './home/MarqueeSection';
 
 const Home = () => {
     return (
         <div>
             <Hero />
             <IconCard/>
+            {/* todo marquee */}
+            <MarqueeSection/>
             <AboutUs />
             <HomeCard />
             <Doctors />
