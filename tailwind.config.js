@@ -14,7 +14,7 @@ export default {
       keyframes: {
         moveRight: {
           "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(20px)" }, // Adjust as needed
+          "100%": { transform: "translateX(20px)" },
         },
       }, 
       colors: {

@@ -11,7 +11,7 @@ function Aboutus_section1() {
 
   return (
     <div>
-      <div className="grid bg-slate-50 grid-cols-12 mt-5 justify-center container mx-auto">
+      <div className="grid  grid-cols-12 mt-5 justify-center container mx-auto">
         <div className="col-span-12 lg:col-span-6 w-full md:pr-10">
           <div className="aboutUs-img relative p-2">
             <img
@@ -28,7 +28,7 @@ function Aboutus_section1() {
             <div className="absolute -bottom-16 left-24">
               <img src={squre3} alt="svg img" />
             </div>
-            <div className="absolute -bottom-10 right-0 z-[6] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
+            <div className="absolute md:animate-move-right -bottom-10 right-0 z-[6] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
               <div className="flex justify-center items-center gap-5">
                 <div>
                   <img
@@ -52,11 +52,14 @@ function Aboutus_section1() {
                   src={videoThumbnail}
                   alt="video thumbnail"
                 />
-                <img
-                  className="absolute w-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                
+                  <img 
+                  className="absolute  w-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                   src="https://cdn-icons-png.flaticon.com/128/4208/4208490.png"
                   alt="play button"
                 />
+               
+                
               </div>
               <img className="w-20" src={line} alt="line" />
             </div>
@@ -64,7 +67,7 @@ function Aboutus_section1() {
         </div>
         <div className="col-span-12 mt-16 lg:mt-0 lg:col-span-6 w-full">
           <div className="mt-3 space-y-5 p-2">
-            <span className="bg-primary text-white rounded-full p-3"> About Us </span>
+            <span className="bg-primary/20 text-primary rounded-full p-3"> About Us </span>
             <h1 className="font-bold text-3xl text-[#20265b] md:text-5xl">
               Unveiling Mavis: The Heartbeat of Healthcare
             </h1>
@@ -92,7 +95,7 @@ function Aboutus_section1() {
             <p className="text-[#20265b]">
               Our dedicated team of medical professionals is here to guide you on your health journey.
             </p>
-            <button className="text-white bg-primary p-2 px-3 rounded-full">More About Us</button>
+            <button className="text-white bg-primary p-2 px-4 rounded-md">More About Us</button>
           </div>
         </div>
       </div>

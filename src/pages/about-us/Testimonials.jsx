@@ -4,7 +4,7 @@ const testimonials = [
   {
     name: "Isabella K.",
     role: "Patient",
-    review: "A serene visit amidst anxiety. Finding a good dentist is challenging. Thankfully, I found Mavis.",
+    review: "A serene visit amidst anxiety. Finding a good dentist is challenging. Thankfully, I found MediCare.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/women/44.jpg",
     bgColor: "bg-orange-100",
@@ -12,7 +12,7 @@ const testimonials = [
   {
     name: "John D.",
     role: "Heart Patient",
-    review: "I’ve been bringing my kids to Mavis for years, and they always have a great experience.",
+    review: "I’ve been bringing my kids to MediCare for years, and they always have a great experience.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/men/45.jpg",
     bgColor: "bg-blue-100",
@@ -28,7 +28,7 @@ const testimonials = [
   {
     name: "Mark T.",
     role: "Patient",
-    review: "I can’t thank the team at Mavis enough for their outstanding care and attention.",
+    review: "I can’t thank the team at MediCare enough for their outstanding care and attention.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/men/47.jpg",
     bgColor: "bg-indigo-100",
@@ -44,7 +44,7 @@ const testimonials = [
   {
     name: "Emma S.",
     role: "Doctor",
-    review: "Finding a great dentist is hard, but Mavis made it easy!",
+    review: "Finding a great dentist is hard, but MediCare made it easy!",
     rating: 5,
     img: "https://randomuser.me/api/portraits/women/49.jpg",
     bgColor: "bg-pink-100",
@@ -62,7 +62,7 @@ const TestimonialSection = () => {
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
-            className={`p-6 rounded-xl shadow-lg ${testimonial.bgColor}  relative  transition transform hover:-translate-y-2`}
+            className={`p-6 rounded-xl shadow-lg ${testimonial.bgColor}  relative transition transform hover:-translate-y-2`}
           >
             {/* User Info */}
             <div className="flex items-center space-x-4">
