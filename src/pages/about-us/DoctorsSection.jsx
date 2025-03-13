@@ -13,8 +13,9 @@ const DoctorsSection = () => {
         {
             name: "Dr. Aisha Rahman",
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOZNAA0l6H1rYwGvL1M2O_oLwtcoHbfeQfg&s",
-            department: "Cardiology",
+            department: "Cardiology", 
         },
+        
         {
             name: "Dr. David Smith",
             img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOZNAA0l6H1rYwGvL1M2O_oLwtcoHbfeQfg&s",
