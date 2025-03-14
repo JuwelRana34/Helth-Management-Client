@@ -28,13 +28,13 @@ const serviceData = [
 
 
 const otherServiceData = [
-    {id: 1, title: "Specialty Care", description: "Expert medical services for specialized health needs.", icon: ""},
-    {id: 2, title: "Mental Health", description: "Supporting emotional and psychological well-being.", icon: ""},
-    {id: 3, title: "Senior Care", description: "Personalized healthcare for aging with dignity.", icon: ""},
-    {id: 4, title: "Women's Health", description: "Dedicated to women's preventive care and lifelong wellness.", icon: ""},
-    {id: 5, title: "Urgent Care", description: "Ensuring timely treatment for better health outcomes.", icon: ""},
-    {id: 6, title: "Telehealth Services", description: "Convenient access to healthcare from anywhere.", icon: ""},
-    {id: 7, title: "Diagnostic Services", description: "Advanced diagnostics for accurate health assessments.", icon: ""},
+    {id: 1, title: "Specialty Care", description: "Expert medical services for specialized health needs.", icon: "/icon/icon3.png"},
+    {id: 2, title: "Mental Health", description: "Supporting emotional and psychological well-being.", icon: "/icon/icon3.png"},
+    {id: 3, title: "Senior Care", description: "Personalized healthcare for aging with dignity.", icon: "/icon/icon3.png"},
+    {id: 4, title: "Women's Health", description: "Dedicated to women's preventive care and lifelong wellness.", icon: "/icon/icon3.png"},
+    {id: 5, title: "Urgent Care", description: "Ensuring timely treatment for better health outcomes.", icon: "/icon/icon3.png"},
+    {id: 6, title: "Telehealth Services", description: "Convenient access to healthcare from anywhere.", icon: "/icon/icon3.png"},
+    {id: 7, title: "Diagnostic Services", description: "Advanced diagnostics for accurate health assessments.", icon: "/icon/icon3.png"},
 ]
 
 export {otherServiceData , serviceData};
