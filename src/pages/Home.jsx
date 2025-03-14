@@ -10,6 +10,7 @@ import IconCard from './home/IconCard';
 import MarqueeSection from './home/MarqueeSection';
 import PhotoGallery from './home/PhotoGallery';
 import FeedbackSlider from './home/FeedbackSlider';
+import OtherServices from '../components/section/OtherServices';
 
 const Home = () => {
     return (
@@ -23,6 +24,7 @@ const Home = () => {
             <HealthNeeds />
             <WellnessOfferings />
             <ServiceSection/>
+            <OtherServices/>
         </div>
     );
 };
