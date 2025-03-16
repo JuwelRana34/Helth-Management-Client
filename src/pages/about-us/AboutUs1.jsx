@@ -7,7 +7,7 @@ import globe from '../../assets/Home/icons/globe.png';
 import laptop from '../../assets/Home/icons/laptop.png';
 
 
-const AboutUs = () => {
+const AboutUs1 = () => {
 
     const features = [
         "Easy and user-friendly interface for staff and administrators", 'Efficient patient management and appointment scheduling', "Secure storage and access to medical records", "Real-time coordination between departments and staff"
@@ -16,9 +16,6 @@ const AboutUs = () => {
 
     return (
         <div className='py-12 w-3/4 mx-auto'>
-            <p className='flex justify-center'>
-                <span className="bg-primary text-white rounded-full py-2 px-3 font-semibold text-center"> About Us </span>
-            </p>
             <div className='flex justify-center flex-col md:flex-row-reverse gap-12 pt-8'>
 
                 <div className='flex-1'>
@@ -56,14 +53,8 @@ const AboutUs = () => {
 
                 </div>
             </div>
-            <div className="flex justify-center mt-8  ">
-                <Link to={"/about"} className="flex items-center bg-primary text-white font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-                    More About Us
-                    <img className="w-8 ml-4 rounded-full" src="https://cdn-icons-gif.flaticon.com/7740/7740503.gif" alt="Arrow" />
-                </Link>
-            </div>
         </div>
     );
 };
 
-export default AboutUs;
+export default AboutUs1;

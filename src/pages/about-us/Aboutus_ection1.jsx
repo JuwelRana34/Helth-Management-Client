@@ -95,7 +95,6 @@ function Aboutus_section1() {
             <p className="text-[#20265b]">
               Our dedicated team of medical professionals is here to guide you on your health journey.
             </p>
-            <button className="text-white bg-primary p-2 px-4 rounded-md">More About Us</button>
           </div>
         </div>
       </div>
