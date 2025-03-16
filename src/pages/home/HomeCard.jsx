@@ -61,8 +61,8 @@ const services = [
 
 const HomeCard = () => {
   return (
-    <section className="bg-gray-50 py-12 font-lato w-3/4 mx-auto">
-      <div className="container mx-auto px-4">
+    <section className="py-12 font-lato w-[90%] mx-auto">
+      <div className="mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10">
           <span className="bg-primary shadow-md text-white rounded-full py-2 px-4 font-semibold">
