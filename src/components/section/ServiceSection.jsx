@@ -1,16 +1,22 @@
-import React from 'react'
+import React from 'react';
 
 const ServiceSection = () => {
     return (
-        <div className='bg-yellow-300 flex flex-col items-center justify-center gap-5 py-20 text-center '>
-            <p className='font-bold'>Join Our Dental Family</p>
-            <p className='font-bold text-6xl'>Schedule Your Dental <br /> Exam With Us!</p>
-            <p className='text-gray-600'>Take the step towards a healthier smile: schedule you personalized <br /> consultation with our dental expert dental team tody.</p>
-            <div className="flex gap-5 items-center">
-                <button className='px-5 py-3 bg-blue-950 rounded-full text-white font-bold text-xl'>Book Appointment</button>
+        <div className="bg-gradient-to-r from-blue-900 to-blue-700 text-white text-center py-20 px-6">
+            <p className="text-lg font-semibold uppercase tracking-wide">Join Our Dental Family</p>
+            <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mt-4">
+                Comprehensive Dental Care <br className="hidden md:block" /> for a Healthier Smile
+            </h1>
+            <p className="text-lg text-gray-200 mt-6 max-w-2xl mx-auto">
+                Take the first step toward optimal oral health. Schedule your personalized consultation with our expert dental team today.
+            </p>
+            <div className="mt-8">
+                <button className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-blue-800  font-bold text-lg rounded-full transition duration-300">
+                    Book an Appointment
+                </button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ServiceSection
+export default ServiceSection;
