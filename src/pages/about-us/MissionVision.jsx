@@ -5,8 +5,11 @@ const MissionVision = () => {
     return (
 
 
-        
+
         <div>
+
+
+            
             <section
                 className="relative bg-cover bg-center bg-no-repeat py-20"
                 style={{
