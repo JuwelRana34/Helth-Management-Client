@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <>
       {/* Nav Top */}
-      <div className="flex justify-between px-5 bg-[#39B5A4] text-white">
+      <div className="flex justify-between px-5 bg-secondary text-white">
         <div className="flex items-center">
           <h1 className="py-2">We understand that each patient is unique</h1>
           <button className="ml-3 underline">Learn More</button>
