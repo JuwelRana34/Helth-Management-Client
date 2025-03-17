@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaPhone, FaBars } from "react-icons/fa6";
 import { CiLocationOn } from "react-icons/ci";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user, logOut} = useAuth();
   return (
     <>
       {/* Nav Top */}
@@ -68,11 +70,16 @@ const Navbar = () => {
             </NavLink>
           </ul>
 
-          {/* Button */}
+          {/* Button */} 
           <a className="hidden md:block bg-[#1C5CBB] text-white px-5 py-2 rounded-md hover:bg-[#174a91] transition">
-            Get Appointment
-          </a>
-
+                Get Appointment
+              </a>
+          
+              {
+                user  ? <button  onClick={() => logOut()} className="btn border border-red-700">Logout</button> : <button className="btn  border-t-green-300">Login</button>
+    
+              }
+          
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
