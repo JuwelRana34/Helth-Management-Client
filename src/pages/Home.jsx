@@ -20,7 +20,8 @@ const Home = () => {
             <AboutUs />
             <HomeCard />
             <Doctors />
-            <HealthNeeds />
+            <PhotoGallery/>
+            {/* <HealthNeeds /> */}
             <WellnessOfferings />
             <FeedbackSlider/>
         </div>
