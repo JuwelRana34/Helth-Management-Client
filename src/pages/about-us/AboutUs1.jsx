@@ -26,11 +26,11 @@ const AboutUs1 = () => {
                     We take pride in our remarkable milestones, from winning prestigious awards to empowering thousands ofmedical professionals. Our success is not just in numbers, but in the real-life improvements we bring tohealthcare systems around the world. Through continuous improvement and a commitment to excellence,Health Care is shaping a smarter, more connected future in healthcare management.</p>
 
                 </div>
-                <div className='flex-1 flex flex-col xl:flex-row gap-6'>
+                <div className='flex-1 flex flex-col gap-6'>
                     <div>
-                        <img className='w-full max-w-sm object-cover h-full  rounded-xl' src={doctor_paitent} alt="" />
+                        <img className='w-full object-cover rounded-xl' src={doctor_paitent} alt="" />
                     </div>
-                    <div className='flex xl:flex-col gap-6 flex-wrap'>
+                    <div className='flex gap-6 flex-wrap'>
                         <div className='bg-gray-100 px-2 py-4 rounded-lg flex gap-4 justify-center items-center'>
                             <img className='w-10 rounded-full' src={doctor} alt="" />
                             <p><span className='text-xl font-semibold'>5000+</span> <br /> <span className='text-sm text-gray-500'>Medical Professionals</span></p>
