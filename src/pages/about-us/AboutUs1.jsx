@@ -7,7 +7,7 @@ import globe from '../../assets/Home/icons/globe.png';
 import laptop from '../../assets/Home/icons/laptop.png';
 
 
-const AboutUs = () => {
+const AboutUs1 = () => {
 
     const features = [
         "Easy and user-friendly interface for staff and administrators", 'Efficient patient management and appointment scheduling', "Secure storage and access to medical records", "Real-time coordination between departments and staff"
@@ -16,22 +16,14 @@ const AboutUs = () => {
 
     return (
         <div className='py-12 w-3/4 mx-auto'>
-            <p className='flex justify-center'>
-                <span className="bg-primary text-white rounded-full py-2 px-3 font-semibold text-center"> About Us </span>
-            </p>
             <div className='flex justify-center flex-col md:flex-row-reverse gap-12 pt-8'>
 
                 <div className='flex-1'>
-                    <h2 className='text-2xl lg:text-4xl'>Transforming Healthcare, Simplifying Management</h2>
-                    <p className='py-5'> <span className='font-bold'>Health Care</span> is a modern hospital management system built to enhance efficiency, accuracy, and care quality within healthcare facilities. We aim to bring smart, digital solutions to hospitals, clinics, and medical centers for smoother daily operations and better patient experiences.</p>
-                    <p className='font-semibold pb-2'>Why Choose Health Care?</p>
-                    {
-                        features.map((feature, idx) => <ul key={idx} className='pt-[2px]'>
-                            <li className='flex items-center gap-2 pl-2'> <MdOutlineDone className=' bg-green-500 text-white rounded text-md' />
-                                {feature}</li>
-                        </ul>)
-                    }
-                    <p className='pt-5'>With Health Care, managing your hospital becomes easier, faster, and more reliable — so you can focus on what matters most: delivering better healthcare.</p>
+                    <p className='text-yellow-500 font-semibold underline'>Our Journey & Success</p>
+                    <h2 className='text-2xl lg:text-4xl py-5'>Driven by Excellence, Proven by Results</h2>
+
+                    <p className='pt-5 text-gray-500'>Our journey began with a vision to simplify and transform healthcare operations through cutting-edge technology. Over the years, Health Care has grown from a passionate idea into a trusted name in digital hospital management. With every step forward, we’ve focused on innovation, efficiency, and impact — helping hospitals, clinics, and healthcare professionals manage their tasks effortlessly and deliver better care to patients.
+                    We take pride in our remarkable milestones, from winning prestigious awards to empowering thousands ofmedical professionals. Our success is not just in numbers, but in the real-life improvements we bring tohealthcare systems around the world. Through continuous improvement and a commitment to excellence,Health Care is shaping a smarter, more connected future in healthcare management.</p>
 
                 </div>
                 <div className='flex-1 flex flex-col xl:flex-row gap-6'>
@@ -51,19 +43,13 @@ const AboutUs = () => {
                             <img className='w-10 rounded-full' src={laptop} alt="" />
                             <p><span className='text-xl font-semibold'>100k+</span> <br /> <span className='text-sm text-gray-500'>Appointments Managed</span></p>
                         </div>
-                       
+
                     </div>
 
                 </div>
-            </div>
-            <div className="flex justify-center mt-8  ">
-                <Link to={"/about"} className="flex items-center bg-primary text-white font-semibold px-4 py-2 rounded-full hover:bg-blue-600 transition">
-                    More About Us
-                    <img className="w-8 ml-4 rounded-full" src="https://cdn-icons-gif.flaticon.com/7740/7740503.gif" alt="Arrow" />
-                </Link>
             </div>
         </div>
     );
 };
 
-export default AboutUs;
+export default AboutUs1;
