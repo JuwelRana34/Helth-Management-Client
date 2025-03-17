@@ -6,7 +6,11 @@ import toast from "react-hot-toast";
 const OtherServices = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const toggleFAQ = (index) => {
     setOpenFAQ(openFAQ === index ? null : index);
   };
@@ -23,7 +27,7 @@ const OtherServices = () => {
     console.log("Form Data Submitted:", formData);
     setIsPopupOpen(false);
     setFormData({ name: "", email: "", message: "" });
-    toast.success('Form Data Submit Success')
+    toast.success("Form Data Submit Success");
   };
   const Faq = [
     {
@@ -111,7 +115,6 @@ const OtherServices = () => {
           </div>
         </div>
       </div>
-
       {/* FAQ Section */}
       <div className="mt-12 bg-gray-50 p-2 md:p-4 rounded-xl shadow-sm">
         <p className="text-3xl font-bold text-blue-900 text-center">
@@ -155,9 +158,7 @@ const OtherServices = () => {
           ))}
         </div>
       </div>
-
       {/*  Our Process */}
-
       <div className="mt-12 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-10 rounded-xl shadow-lg">
         <p className="text-3xl font-bold text-blue-900 text-center">
           Our Process
@@ -193,94 +194,93 @@ const OtherServices = () => {
           ))}
         </div>
       </div>
-
       {/* get in tuch  */}
       <section className="mt-10 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 p-6 rounded-xl shadow-md text-center">
-      <motion.p
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-3xl font-bold text-blue-900 flex justify-center items-center"
-      >
-        <img
-          className="w-10 mx-2"
-          src="https://cdn-icons-png.flaticon.com/128/10439/10439810.png"
-          alt=""
-        />
-        Get in Touch
-      </motion.p>
-      <p className="text-gray-700 mt-4">Need more information? Contact us today!</p>
-      <motion.button
-        whileTap={{ scale: 0.9 }}
-        whileHover={{ scale: 1.1 }}
-        onClick={togglePopup}
-        className="mt-4 bg-blue-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800"
-      >
-        Contact Us
-      </motion.button>
-
-      {/* Popup Contact Form */}
-      {isPopupOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4"
+          viewport={{ once: true }}
+          className="text-3xl font-bold text-blue-900 flex justify-center items-center"
         >
-          <form 
-            onSubmit={handleSubmit} 
-            className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md text-center"
+          <img
+            className="w-10 mx-2"
+            src="https://cdn-icons-png.flaticon.com/128/10439/10439810.png"
+            alt=""
+          />
+          Get in Touch
+        </motion.p>
+        <p className="text-gray-700 mt-4">
+          Need more information? Contact us today!
+        </p>
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.1 }}
+          onClick={togglePopup}
+          className="mt-4 bg-blue-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800"
+        >
+          Contact Us
+        </motion.button>
+
+        {/* Popup Contact Form */}
+        {isPopupOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4"
           >
-            <h2 className="text-2xl font-bold text-blue-900">Contact Us</h2>
-            <p className="text-gray-600 mt-2">Fill out the form and we’ll get back to you soon.</p>
-            <input
-              type="text"
-              name="name"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              className="mt-4 w-full p-2 border rounded-md"
-            />
-            <input
-              type="email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              className="mt-2 w-full p-2 border rounded-md"
-            />
-            <textarea
-              name="message"
-              required
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Your Message"
-              className="mt-2 w-full p-2 border rounded-md h-24"
-            ></textarea>
-            <button
-              type="submit"
-              className="mt-4 bg-blue-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 w-full"
+            <form
+              onSubmit={handleSubmit}
+              className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md text-center"
             >
-              Send
-            </button>
-            <button
-              type="button"
-              onClick={togglePopup}
-              className="mt-2 border-rose-200 bg-rose-50 border py-2 px-3 rounded-md text-rose-500 block w-full"
-            >
-              Close
-            </button>
-          </form>
-        </motion.div>
-      )}
-    </section>
-
-    
-
-      
+              <h2 className="text-2xl font-bold text-blue-900">Contact Us</h2>
+              <p className="text-gray-600 mt-2">
+                Fill out the form and we’ll get back to you soon.
+              </p>
+              <input
+                type="text"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Your Name"
+                className="mt-4 w-full p-2 border rounded-md"
+              />
+              <input
+                type="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Your Email"
+                className="mt-2 w-full p-2 border rounded-md"
+              />
+              <textarea
+                name="message"
+                required
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Your Message"
+                className="mt-2 w-full p-2 border rounded-md h-24"
+              ></textarea>
+              <button
+                type="submit"
+                className="mt-4 bg-blue-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 w-full"
+              >
+                Send
+              </button>
+              <button
+                type="button"
+                onClick={togglePopup}
+                className="mt-2 border-rose-200 bg-rose-50 border py-2 px-3 rounded-md text-rose-500 block w-full"
+              >
+                Close
+              </button>
+            </form>
+          </motion.div>
+        )}
+      </section>
     </div>
   );
 };
