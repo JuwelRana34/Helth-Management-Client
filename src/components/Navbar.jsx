@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaPhone, FaBars } from "react-icons/fa6";
 import { CiLocationOn } from "react-icons/ci";
 import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const {user, logOut} = useAuth();
+  const { user, logOut } = useAuth();
   return (
     <>
       {/* Nav Top */}
@@ -28,7 +28,7 @@ const Navbar = () => {
 
       {/* Main Navbar */}
       <nav className="bg-white shadow-md sticky top-0 w-full z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-16 py-4">
           {/* Logo */}
           <NavLink to="/" className="text-2xl font-bold text-[#1C5CBB]">
             MediCare
@@ -36,7 +36,7 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <ul className="hidden md:flex items-center space-x-6">
-          <NavLink
+            <NavLink
               to="/"
               className={({ isActive }) =>
                 `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
@@ -70,16 +70,20 @@ const Navbar = () => {
             </NavLink>
           </ul>
 
-          {/* Button */} 
-          <a className="hidden md:block bg-[#1C5CBB] text-white px-5 py-2 rounded-md hover:bg-[#174a91] transition">
-                Get Appointment
-              </a>
-          
-              {
-                user  ? <button  onClick={() => logOut()} className="btn border border-red-700">Logout</button> : <button className="btn  border-t-green-300">Login</button>
-    
-              }
-          
+          {user ? (
+            <button
+              onClick={() => logOut()}
+              className="bg-red-400 px-6 py-1 rounded-md text-white"
+            >
+              Logout
+            </button>
+          ) : (
+              <div className="flex space-x-3">
+                 <Link to={'/login'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Login</Link>
+                 <Link to={'/register'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Register</Link>
+              </div>
+          )}
+
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
@@ -92,7 +96,11 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`${isOpen ? "block" : "hidden"} md:hidden bg-white shadow-md`}>
+        <div
+          className={`${
+            isOpen ? "block" : "hidden"
+          } md:hidden bg-white shadow-md`}
+        >
           <ul className="flex flex-col items-center py-4 space-y-4">
             {["Home", "About Us", "Contact Us"].map((item, index) => (
               <li key={index}>
