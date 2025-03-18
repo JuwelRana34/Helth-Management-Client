@@ -1,6 +1,13 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
-
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 
 import app from "../Firebase/firebase.config";
 
@@ -12,96 +19,83 @@ const auth = getAuth(app);
 // const provider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-    const createUser = (email, password) => {
-        setLoading(true)
-        return createUserWithEmailAndPassword(auth, email, password)
+  const createUser = (email, password) => {
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
-    }
+  // sign in
+  const signIn = (email, password) => {
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
-    // sign in 
-    const signIn = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
-    }
+  const updateUserProfile = (name, photo) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    });
+  };
 
+  // darkmode light mode
+  const [isDarkMode, setDarkMode] = useState(false);
 
-    const logOut = () => {
-        setLoading(true)
-        return signOut(auth);
-    }
+  const toggleDarkMode = (checked) => {
+    setDarkMode(checked);
+  };
 
+  useEffect(() => {
+    const unsubsribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        setLoading(false);
+      }
 
-    const updateUserProfile = (name, photo) => {
-        return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photo
-        })
-    }
-
-
-    // darkmode light mode 
-    const [isDarkMode, setDarkMode] = useState(false);
-
-    const toggleDarkMode = (checked) => {
-        setDarkMode(checked);
-    };
-
-
-
-
-
-    useEffect(() => {
-        const unsubsribe = onAuthStateChanged(auth, currentUser => {
-
-            setUser(currentUser);
-         
-            console.log(currentUser);
-            if(currentUser){
-                // get token and store client
-                const userInfo = {
-                    email : currentUser.email
-                }
-               
-                .then(res => {
-                    if(res.data.token){
-                        localStorage.setItem('access-token',res.data.token)
-                        setLoading(false)
-                    }
-                })
-            }
-            else{
-                // do something
-                localStorage.removeItem('access-token')
-            }
-            
+      // console.log(currentUser);
+      if (currentUser) {
+        // get token and store client
+        const userInfo = {
+          email: currentUser.email,
+        }.then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
             setLoading(false);
-        })
+          }
+        });
+      } else {
+        // do something
+        localStorage.removeItem("access-token");
+      }
 
-        return () => {
-            return unsubsribe();
-        }
-    }, [])
+      setLoading(false);
+    });
 
-    const info = {
-        user,
-        loading,
-        createUser,
-        signIn,
-        updateUserProfile,
-        logOut,
-        isDarkMode,
-        toggleDarkMode,
-        setDarkMode
-    }
+    return () => {
+      return unsubsribe();
+    };
+  }, []);
 
-    return (
-        <AuthContext.Provider value={info}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const info = {
+    user,
+    loading,
+    createUser,
+    signIn,
+    updateUserProfile,
+    logOut,
+    isDarkMode,
+    toggleDarkMode,
+    setDarkMode,
+  };
+
+  return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
