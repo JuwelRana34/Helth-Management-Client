@@ -1,16 +1,19 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import app from "../../Firebase/firebase.config";
+import axios from "axios";
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
     const [loading, setLoading] = useState(false);
     const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -40,6 +43,8 @@ const Register = () => {
         const email = form.email.value.trim();
         const password = form.password.value.trim();
 
+        const userData = { name, email, photo };
+
         if (!validatePassword(password)) return;
 
         setLoading(true);
@@ -47,6 +52,7 @@ const Register = () => {
             await createUser(email, password);
             await updateUserProfile(name, photo);
             toast.success("Registration successful!");
+            await axios.post("http://localhost:5000/api/auth/register", userData);
             navigate(location.state?.from || "/");
         } catch (error) {
             toast.error(error.message);
@@ -59,12 +65,51 @@ const Register = () => {
     const googleLogin = async () => {
         if (loading) return;
         setLoading(true);
+
         try {
-            await signInWithPopup(auth, provider);
-            toast.success("Signed up with Google successfully!");
-            navigate(location.state?.from || "/");
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+
+            const userData = {
+                name: user.displayName,
+                email: user.email,
+                photo: user.photoURL,
+            };
+            await axios.post("http://localhost:5000/api/auth/register", userData);
+
+            console.log("User Data:", userData);
+            toast.success(`Welcome, ${user.displayName}!`);
+            navigate(location.state?.from?.pathname || "/");
         } catch (error) {
-            toast.error(error.message);
+            console.error("Google Sign-In Error:", error);
+            toast.error("Failed to sign in with Google. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Facebook Login
+    const facebookLogin = async () => {
+        if (loading) return;
+        setLoading(true);
+
+        try {
+            const result = await signInWithPopup(auth, facebookProvider);
+            const user = result.user;
+
+            const userData = {
+                name: user.displayName,
+                email: user.email,
+                photo: user.photoURL,
+            };
+            await axios.post("http://localhost:5000/api/auth/register", userData);
+
+            console.log("User Data:", userData);
+            toast.success(`Welcome, ${user.displayName}!`);
+            navigate(location.state?.from?.pathname || "/");
+        } catch (error) {
+            console.error("Facebook Sign-In Error:", error);
+            toast.error("Failed to sign in with Facebook. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -121,6 +166,16 @@ const Register = () => {
                 >
                     <FcGoogle className="text-2xl mr-2" />
                     {loading ? "Processing..." : "Sign up with Google"}
+                </button>
+
+                {/* Facebook Signup */}
+                <button
+                    onClick={facebookLogin}
+                    className={`w-full flex items-center justify-center py-2 mt-3 border border-gray-300 rounded-lg transition ${loading ? "bg-gray-200 cursor-not-allowed" : "hover:bg-gray-100"}`}
+                    disabled={loading}
+                >
+                    <FaFacebook className="text-2xl text-blue-600 mr-2" />
+                    {loading ? "Processing..." : "Sign up with Facebook"}
                 </button>
 
                 <p className="text-center mt-4 text-gray-600">
