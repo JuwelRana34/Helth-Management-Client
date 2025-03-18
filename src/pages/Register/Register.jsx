@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import app from "../../Firebase/firebase.config";
+import axios from "axios";
 
 const Register = () => {
     const { createUser, updateUserProfile } = useAuth();
@@ -40,6 +41,10 @@ const Register = () => {
         const email = form.email.value.trim();
         const password = form.password.value.trim();
 
+        const userData = {name,email,photo}
+       
+       
+
         if (!validatePassword(password)) return;
 
         setLoading(true);
@@ -47,6 +52,8 @@ const Register = () => {
             await createUser(email, password);
             await updateUserProfile(name, photo);
             toast.success("Registration successful!");
+            await axios.post('http://localhost:5000/api/auth/register',userData)
+          
             navigate(location.state?.from || "/");
         } catch (error) {
             toast.error(error.message);
@@ -59,12 +66,26 @@ const Register = () => {
     const googleLogin = async () => {
         if (loading) return;
         setLoading(true);
+    
         try {
-            await signInWithPopup(auth, provider);
-            toast.success("Signed up with Google successfully!");
-            navigate(location.state?.from || "/");
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user; // Extract user data
+    
+            // Get user details
+            const userData = {
+                name: user.displayName,
+                email: user.email,
+                photo: user.photoURL
+            };
+            await axios.post('http://localhost:5000/api/auth/register',userData)
+    
+            console.log("User Data:", userData); // Log user data
+            toast.success(`Welcome, ${user.displayName}!`);
+    
+            navigate(location.state?.from?.pathname || "/"); // Ensure pathname is accessed safely
         } catch (error) {
-            toast.error(error.message);
+            console.error("Google Sign-In Error:", error);
+            toast.error("Failed to sign in with Google. Please try again.");
         } finally {
             setLoading(false);
         }
