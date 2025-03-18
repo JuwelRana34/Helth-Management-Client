@@ -44,8 +44,6 @@ const MissionVision = () => {
                     </div>
                 </div>
             </section>
-
-        </div>
     );
 };
 
