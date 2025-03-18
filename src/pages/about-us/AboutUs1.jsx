@@ -22,6 +22,7 @@ const AboutUs1 = () => {
                 <div className='flex-1 flex flex-col gap-6'>
                     <div>
                         <img className='w-full max-w-2xl object-cover rounded-xl' src={doctor_paitent} alt="" />
+                        <img className='w-full max-w-2xl object-cover rounded-xl' src={doctor_paitent} alt="" />
                     </div>
                     <div className='grid grid-cols-2 gap-3 xl:grid-cols-3'>
                         <div className='bg-base-300 px-2 sm:px-8 md:px-2 xl:px-6 py-4 rounded-lg flex gap-2 justify-between items-center'>
