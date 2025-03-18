@@ -52,35 +52,31 @@ const AuthProvider = ({ children }) => {
     setDarkMode(checked);
   };
 
-    useEffect(() => {
-        const unsubsribe = onAuthStateChanged(auth, currentUser => {
+  useEffect(() => {
+    const unsubsribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        setLoading(false);
+      }
 
-            setUser(currentUser);
-            if(currentUser){
-                setLoading(false)
-            }
-         
-            // console.log(currentUser);
-            if(currentUser){
-                // get token and store client
-                const userInfo = {
-                    email : currentUser.email
-                }
-               
-                .then(res => {
-                    if(res.data.token){
-                        localStorage.setItem('access-token',res.data.token)
-                        setLoading(false)
-                    }
-                })
-            }
-            else{
-                // do something
-                localStorage.removeItem('access-token')
-            }
-            
+      // console.log(currentUser);
+      if (currentUser) {
+        // get token and store client
+        const userInfo = {
+          email: currentUser.email,
+        }.then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
             setLoading(false);
-        })
+          }
+        });
+      } else {
+        // do something
+        localStorage.removeItem("access-token");
+      }
+
+      setLoading(false);
+    });
 
     return () => {
       return unsubsribe();
