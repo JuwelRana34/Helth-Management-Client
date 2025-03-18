@@ -14,6 +14,7 @@ import Doctor from '../pages/Dashboard/Doctor';
 import Patients from '../pages/Dashboard/Patients';
 import Messages from '../pages/Dashboard/Messages';
 import Payments from '../pages/Dashboard/Payments';
+import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
     const route = createBrowserRouter([
@@ -49,7 +50,9 @@ const Routes = () => {
         },
         {
             path : 'Dashboard',
-            element : <Dashboard/>,
+            element : <PrivateRoute>
+                <Dashboard/>
+            </PrivateRoute>,
             children : [
                 {
                     index : true,
