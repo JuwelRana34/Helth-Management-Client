@@ -3,7 +3,7 @@ import { HashLoader } from "react-spinners";
 const Loading = () => {
     return (
         <div className="flex justify-center min-h-screen items-center">
-        <HashLoader size={70} color='#1C5CBB'/>
+            <img src={loading_gif} alt="" />
         </div>
     );
 };
