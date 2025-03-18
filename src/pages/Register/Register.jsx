@@ -43,8 +43,6 @@ const Register = () => {
         const email = form.email.value.trim();
         const password = form.password.value.trim();
 
-        const userData = { name, email, photo };
-
         if (!validatePassword(password)) return;
 
         setLoading(true);
@@ -52,7 +50,6 @@ const Register = () => {
             await createUser(email, password);
             await updateUserProfile(name, photo);
             toast.success("Registration successful!");
-            await axios.post("http://localhost:5000/api/auth/register", userData);
             navigate(location.state?.from || "/");
         } catch (error) {
             toast.error(error.message);
@@ -65,51 +62,12 @@ const Register = () => {
     const googleLogin = async () => {
         if (loading) return;
         setLoading(true);
-
         try {
-            const result = await signInWithPopup(auth, googleProvider);
-            const user = result.user;
-
-            const userData = {
-                name: user.displayName,
-                email: user.email,
-                photo: user.photoURL,
-            };
-            await axios.post("http://localhost:5000/api/auth/register", userData);
-
-            console.log("User Data:", userData);
-            toast.success(`Welcome, ${user.displayName}!`);
-            navigate(location.state?.from?.pathname || "/");
+            await signInWithPopup(auth, provider);
+            toast.success("Signed up with Google successfully!");
+            navigate(location.state?.from || "/");
         } catch (error) {
-            console.error("Google Sign-In Error:", error);
-            toast.error("Failed to sign in with Google. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    // Facebook Login
-    const facebookLogin = async () => {
-        if (loading) return;
-        setLoading(true);
-
-        try {
-            const result = await signInWithPopup(auth, facebookProvider);
-            const user = result.user;
-
-            const userData = {
-                name: user.displayName,
-                email: user.email,
-                photo: user.photoURL,
-            };
-            await axios.post("http://localhost:5000/api/auth/register", userData);
-
-            console.log("User Data:", userData);
-            toast.success(`Welcome, ${user.displayName}!`);
-            navigate(location.state?.from?.pathname || "/");
-        } catch (error) {
-            console.error("Facebook Sign-In Error:", error);
-            toast.error("Failed to sign in with Facebook. Please try again.");
+            toast.error(error.message);
         } finally {
             setLoading(false);
         }
