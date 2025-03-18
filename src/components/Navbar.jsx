@@ -78,6 +78,16 @@ const Navbar = () => {
             >
               Book Appoinment
             </NavLink>
+            <NavLink
+              to="/Dashboard"
+              className={({ isActive }) =>
+                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
+                  isActive ? "text-[#1C5CBB] font-bold" : ""
+                }`
+              }
+            >
+              Dashboard
+            </NavLink>
           </ul>
 
           {user ? (
