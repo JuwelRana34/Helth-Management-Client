@@ -8,6 +8,12 @@ import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
 import BookAppoinment from '../pages/book-appoinment/BookAppoinment';
 import Dashboard from '../layout/Dashboard';
+import UserDashboard from '../pages/Dashboard/UserDashboard';
+import Schedule from '../pages/Dashboard/Schedule';
+import Doctor from '../pages/Dashboard/Doctor';
+import Patients from '../pages/Dashboard/Patients';
+import Messages from '../pages/Dashboard/Messages';
+import Payments from '../pages/Dashboard/Payments';
 
 const Routes = () => {
     const route = createBrowserRouter([
@@ -47,9 +53,27 @@ const Routes = () => {
             children : [
                 {
                     index : true,
-                    element : <div> 
-                        <h1 className=' text-4xl font-bold text-lime-500 mb-2'> keyse laga mere majak</h1>
-                        <img src="https://img.freepik.com/premium-photo/low-angle-view-statue-against-sky_1048944-15410736.jpg?uid=R25037804&ga=GA1.1.1974322130.1689523785&semt=ais_hybrid" alt=""  /></div>
+                    element : <UserDashboard/>
+                },
+                {
+                    path:"schedule",
+                    element : <Schedule/>
+                },
+                {
+                    path :"patient",
+                    element : <Patients/>
+                },
+                {
+                    path :"doctor",
+                    element : <Doctor/>
+                },
+                {
+                    path :"messages",
+                    element : <Messages/>
+                },
+                {
+                    path :"payments",
+                    element : <Payments/>
                 },
                 
             ]
