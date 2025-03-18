@@ -17,23 +17,23 @@ const MissionVision = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Mission Card */}
-                    <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg">
+                    <div className="bg-base-300 backdrop-blur-md p-6 rounded-2xl shadow-lg">
                         <div className="flex items-center gap-3 text-blue-600 text-2xl font-semibold mb-3">
                             <FaHeartbeat />
                             <span>Our Mission</span>
                         </div>
-                        <p className="text-gray-700">
+                        <p className="text-gray-500">
                             To simplify healthcare management and improve patient care through smart and efficient digital solutions that empower hospitals and medical professionals.
                         </p>
                     </div>
 
                     {/* Vision Card */}
-                    <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg">
+                    <div className="bg-base-300 backdrop-blur-md p-6 rounded-2xl shadow-lg">
                         <div className="flex items-center gap-3 text-blue-600 text-2xl font-semibold mb-3">
                             <FaEye />
                             <span>Our Vision</span>
                         </div>
-                        <p className="text-gray-700">
+                        <p className="text-gray-500">
                             To become a global leader in digital hospital management by continuously innovating and making healthcare more connected, accessible, and efficient.
                         </p>
                     </div>

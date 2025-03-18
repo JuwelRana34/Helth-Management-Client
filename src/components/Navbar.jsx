@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaPhone, FaBars } from "react-icons/fa6";
+import { FaPhone, FaBars, FaMoon } from "react-icons/fa6";
 import { CiLocationOn } from "react-icons/ci";
 import useAuth from "../Hooks/useAuth";
+import ThemeContext from "../Providers/ThemeContext";
+import { LuSunMedium } from "react-icons/lu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
+  const { theme, setTheme } = useContext(ThemeContext)
+  
   return (
     <>
       {/* Nav Top */}
@@ -27,7 +31,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className="bg-white shadow-md sticky top-0 w-full z-50">
+      <nav className="bg-base-200 shadow-md sticky top-0 w-full z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-16 py-4">
           {/* Logo */}
           <NavLink to="/" className="text-2xl font-bold text-[#1C5CBB]">
@@ -39,8 +43,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
-                  isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
@@ -50,8 +53,7 @@ const Navbar = () => {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
-                  isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
@@ -61,8 +63,7 @@ const Navbar = () => {
             <NavLink
               to="/services"
               className={({ isActive }) =>
-                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
-                  isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
@@ -71,8 +72,7 @@ const Navbar = () => {
             <NavLink
               to="/book-appoinment"
               className={({ isActive }) =>
-                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
-                  isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
@@ -81,14 +81,14 @@ const Navbar = () => {
             <NavLink
               to="/Dashboard"
               className={({ isActive }) =>
-                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
-                  isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
               Dashboard
             </NavLink>
           </ul>
+
 
           {user ? (
             <button
@@ -98,11 +98,24 @@ const Navbar = () => {
               Logout
             </button>
           ) : (
-              <div className="flex space-x-3">
-                 <Link to={'/login'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Login</Link>
-                 <Link to={'/register'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Register</Link>
-              </div>
+            <div className="flex space-x-3">
+              <Link to={'/login'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Login</Link>
+              <Link to={'/register'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Register</Link>
+            </div>
           )}
+
+           {/* theme controller  */}
+          <div>
+            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+              {
+                theme === "dark" ? (
+                  <LuSunMedium className="swap-on h-8 w-8 fill-current" />
+                ) : (
+                  <FaMoon className="swap-off h-8 w-8 fill-current" />
+                )
+              }
+            </button>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -117,9 +130,8 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } md:hidden bg-white shadow-md`}
+          className={`${isOpen ? "block" : "hidden"
+            } md:hidden bg-white shadow-md`}
         >
           <ul className="flex flex-col items-center py-4 space-y-4">
             {["Home", "About Us", "Contact Us"].map((item, index) => (
@@ -127,8 +139,7 @@ const Navbar = () => {
                 <NavLink
                   to={`/${item.toLowerCase().replace(/\s/g, "")}`}
                   className={({ isActive }) =>
-                    `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${
-                      isActive ? "text-[#1C5CBB] font-bold" : ""
+                    `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                     }`
                   }
                 >
