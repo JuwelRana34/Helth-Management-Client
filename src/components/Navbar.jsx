@@ -105,25 +105,7 @@ const Navbar = () => {
           )}
 
            {/* theme controller  */}
-<<<<<<< HEAD
-          <div>
-=======
-          {/* <div>
->>>>>>> d6eb9155b36e458d4f3690ec15ed19fa8023a193
-            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-              {
-                theme === "dark" ? (
-                  <LuSunMedium className="swap-on h-8 w-8 fill-current" />
-                ) : (
-                  <FaMoon className="swap-off h-8 w-8 fill-current" />
-                )
-              }
-            </button>
-<<<<<<< HEAD
-          </div>
-=======
-          </div> */}
->>>>>>> d6eb9155b36e458d4f3690ec15ed19fa8023a193
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">

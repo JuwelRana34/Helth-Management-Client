@@ -44,11 +44,7 @@ const MissionVision = () => {
                     </div>
                 </div>
             </section>
-<<<<<<< HEAD
 
-        </div>
-=======
->>>>>>> d6eb9155b36e458d4f3690ec15ed19fa8023a193
     );
 };
 

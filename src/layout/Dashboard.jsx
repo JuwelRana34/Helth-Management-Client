@@ -11,6 +11,7 @@ import {
   Home,
   Bell,
   LogOut,
+  CircleFadingPlus,
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
 
@@ -63,6 +64,13 @@ function Dashboard() {
               label="Patients"
               collapsed={isCollapsed}
               active={location.pathname === "/Dashboard/patient"}
+            />
+            <NavItem
+              to="/Dashboard/add-doctor"
+              icon={<CircleFadingPlus size={28} />}
+              label="Add Doctors"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/add-doctor"}
             />
             <NavItem
               to="/Dashboard/doctor"
@@ -127,7 +135,7 @@ function Dashboard() {
         </div>
 
         {/* Page Content */}
-        <div className="p-4 flex-1">
+        <div className="p-4 flex-1 overflow-scroll">
           <Outlet />
         </div>
       </div>
