@@ -9,6 +9,7 @@ import app from "../../Firebase/firebase.config";
 import { useState } from "react";
 import axios from "axios";
 
+
 const Login = () => {
   const { signIn } = useAuth();
   const auth = getAuth(app);
@@ -36,12 +37,13 @@ const Login = () => {
       .finally(() => setLoading(false));
   };
 
-  const socialLogin = async (provider) => {
+  // facebook login 
+  const socialLogin = async () => {
     if (loading) return;
     setLoading(true);
 
     try {
-      const result = await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth,facebookProvider);
       const user = result.user;
 
       const userData = {
@@ -49,17 +51,46 @@ const Login = () => {
         email: user.email,
         photo: user.photoURL,
       };
-       const response = await axios.post("http://localhost:5000/api/auth/register", userData);
-       
+      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+  
+      console.log("User Data:", userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
-    } catch (error) {
-      console.error("Social Sign-In Error:", error);
-      toast.error("Failed to sign in. Please try again.");
-    } finally {
+  } catch (error) {
+      console.error("Google Sign-In Error:", error);
+      toast.error("Failed to sign in with Google. Please try again.");
+  } finally {
       setLoading(false);
-    }
+  }
   };
+
+      // Google Login
+     
+      const googleLogin = async () => {
+          if (loading) return;
+          setLoading(true);
+  
+          try {
+              const result = await signInWithPopup(auth, googleProvider);
+              const user = result.user;
+  
+              const userData = {
+                  name: user.displayName,
+                  email: user.email,
+                  photo: user.photoURL,
+              };
+              await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+  
+              console.log("User Data:", userData);
+              toast.success(`Welcome, ${user.displayName}!`);
+              navigate(location.state?.from?.pathname || "/");
+          } catch (error) {
+              console.error("Google Sign-In Error:", error);
+              toast.error("Failed to sign in with Google. Please try again.");
+          } finally {
+              setLoading(false);
+          }
+      };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-primary to-secondary py-10 px-4">
@@ -99,10 +130,10 @@ const Login = () => {
             <motion.button type="submit" className="btn bg-primary text-white w-full">Login</motion.button>
           </form>
           <div className="divider my-3">OR</div>
-          <button onClick={() => socialLogin(googleProvider)} className="btn w-full flex items-center justify-center gap-2 border border-gray-300">
+          <button onClick={googleLogin} className="btn w-full flex items-center justify-center gap-2 border border-gray-300">
             <FcGoogle className="text-2xl" /> Sign in with Google
           </button>
-          <button onClick={() => socialLogin(facebookProvider)} className="btn w-full flex items-center justify-center gap-2 mt-3 border border-gray-300">
+          <button onClick={socialLogin} className="btn w-full flex items-center justify-center gap-2 mt-3 border border-gray-300">
             <FaFacebook className="text-2xl text-blue-600" /> Sign in with Facebook
           </button>
           <p className="text-center text-gray-600 mt-4">
