@@ -15,6 +15,7 @@ import Patients from '../pages/Dashboard/Patients';
 import Messages from '../pages/Dashboard/Messages';
 import Payments from '../pages/Dashboard/Payments';
 import PrivateRoute from './PrivateRoute';
+import AddDoctor from '../pages/Dashboard/AddDoctor';
 
 const Routes = () => {
     const route = createBrowserRouter([
@@ -77,6 +78,10 @@ const Routes = () => {
                 {
                     path :"payments",
                     element : <Payments/>
+                },
+                {
+                    path :"add-doctor",
+                    element : <AddDoctor/>
                 },
                 
             ]

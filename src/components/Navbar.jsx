@@ -105,7 +105,7 @@ const Navbar = () => {
           )}
 
            {/* theme controller  */}
-          {/* <div>
+          <div>
             <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
               {
                 theme === "dark" ? (
@@ -115,7 +115,7 @@ const Navbar = () => {
                 )
               }
             </button>
-          </div> */}
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">

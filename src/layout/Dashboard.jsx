@@ -11,6 +11,7 @@ import {
   Home,
   Bell,
   LogOut,
+  CircleFadingPlus,
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
 
@@ -18,7 +19,7 @@ function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth()
-  
+
   const handelLogout = () => {
     logOut()
   }
@@ -27,9 +28,8 @@ function Dashboard() {
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div
-        className={`bg-primary text-white h-full p-4 transition-all duration-300 flex flex-col ${
-          isCollapsed ? "w-20" : "w-64"
-        }`}
+        className={`bg-primary text-white h-full p-4 transition-all duration-300 flex flex-col ${isCollapsed ? "w-20" : "w-64"
+          }`}
       >
         {/* Collapse Button */}
         <button
@@ -63,6 +63,13 @@ function Dashboard() {
               label="Patients"
               collapsed={isCollapsed}
               active={location.pathname === "/Dashboard/patient"}
+            />
+            <NavItem
+              to="/Dashboard/add-doctor"
+              icon={<CircleFadingPlus size={28} />}
+              label="Add Doctors"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/add-doctor"}
             />
             <NavItem
               to="/Dashboard/doctor"
@@ -127,7 +134,7 @@ function Dashboard() {
         </div>
 
         {/* Page Content */}
-        <div className="p-4 flex-1">
+        <div className="p-4 flex-1 overflow-scroll">
           <Outlet />
         </div>
       </div>
@@ -140,9 +147,8 @@ const NavItem = ({ to, icon, label, collapsed, active }) => (
   <ol className="relative group">
     <Link
       to={to}
-      className={`flex items-center space-x-3 p-3 rounded-md transition-all ${
-        active ? "bg-blue-500" : "hover:bg-blue-500"
-      }`}
+      className={`flex items-center space-x-3 p-3 rounded-md transition-all ${active ? "bg-blue-500" : "hover:bg-blue-500"
+        }`}
     >
       <span className="text-white flex justify-center items-center">{icon}</span>
       {!collapsed && <span className="text-white">{label}</span>}
