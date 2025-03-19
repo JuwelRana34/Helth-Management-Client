@@ -49,8 +49,13 @@ const Login = () => {
         email: user.email,
         photo: user.photoURL,
       };
+<<<<<<< HEAD
       await axios.post("http://localhost:5000/api/auth/register", userData);
 
+=======
+       const response = await axios.post("http://localhost:5000/api/auth/register", userData);
+       
+>>>>>>> d6eb9155b36e458d4f3690ec15ed19fa8023a193
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {

@@ -1,18 +1,11 @@
 import React from 'react';
 import doctor_paitent from '../../assets/Home/Doctor-Patient_Relationships .jpg';
-import { MdOutlineDone } from "react-icons/md";
-import { Link } from 'react-router';
 import doctor from '../../assets/Home/icons/doctor.png';
 import globe from '../../assets/Home/icons/globe.png';
 import laptop from '../../assets/Home/icons/laptop.png';
 
 
 const AboutUs1 = () => {
-
-    const features = [
-        "Easy and user-friendly interface for staff and administrators", 'Efficient patient management and appointment scheduling', "Secure storage and access to medical records", "Real-time coordination between departments and staff"
-    ]
-
 
     return (
         <div className='py-12 w-3/4 mx-auto'>
@@ -28,20 +21,21 @@ const AboutUs1 = () => {
                 </div>
                 <div className='flex-1 flex flex-col gap-6'>
                     <div>
-                        <img className='w-full object-cover rounded-xl' src={doctor_paitent} alt="" />
+                        <img className='w-full max-w-2xl object-cover rounded-xl' src={doctor_paitent} alt="" />
+                        <img className='w-full max-w-2xl object-cover rounded-xl' src={doctor_paitent} alt="" />
                     </div>
-                    <div className='flex gap-6 flex-wrap'>
-                        <div className='bg-gray-100 px-2 py-4 rounded-lg flex gap-4 justify-center items-center'>
-                            <img className='w-10 rounded-full' src={doctor} alt="" />
-                            <p><span className='text-xl font-semibold'>5000+</span> <br /> <span className='text-sm text-gray-500'>Medical Professionals</span></p>
+                    <div className='grid grid-cols-2 gap-3 xl:grid-cols-3'>
+                        <div className='bg-base-300 px-2 sm:px-8 md:px-2 xl:px-6 py-4 rounded-lg flex gap-2 justify-between items-center'>
+                            <img className='w-8 lg:w-10 rounded-full' src={doctor} alt="" />
+                            <p><span className='lg:text-xl font-semibold'>5000+</span> <br /> <span className='text-xs text-gray-500'>Medical Professionals</span></p>
                         </div>
-                        <div className='bg-gray-100 px-2 py-4 rounded-lg flex gap-4 justify-center items-center'>
-                            <img className='w-10 rounded-full' src={globe} alt="" />
-                            <p><span className='text-xl font-semibold'>100+</span> <br /> <span className='text-sm text-gray-500'>Digitized Facilities</span></p>
+                        <div className='bg-base-300 px-2 sm:px-8 md:px-2 xl:px-6 py-4 rounded-lg flex gap-2 justify-between items-center'>
+                            <img className='w-8 lg:w-10 rounded-full' src={globe} alt="" />
+                            <p><span className='lg:text-xl font-semibold'>100+</span> <br /> <span className='text-xs text-gray-500'>Digitized Facilities</span></p>
                         </div>
-                        <div className='bg-gray-100 px-2 py-4 rounded-lg flex gap-4 justify-center items-center'>
-                            <img className='w-10 rounded-full' src={laptop} alt="" />
-                            <p><span className='text-xl font-semibold'>100k+</span> <br /> <span className='text-sm text-gray-500'>Appointments Managed</span></p>
+                        <div className='bg-base-300 px-2 sm:px-8 md:px-2 xl:px-4 py-4 rounded-lg flex gap-2 justify-between items-center'>
+                            <img className='w-8 lg:w-10 rounded-full' src={laptop} alt="" />
+                            <p><span className='lg:text-xl font-semibold'>100k+</span> <br /> <span className='text-xs text-gray-500'>Appointments Managed</span></p>
                         </div>
 
                     </div>
