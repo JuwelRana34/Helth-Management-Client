@@ -104,7 +104,7 @@ function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <div className="bg-pri p-4 shadow-md flex justify-between items-center md:pr-16">
+        <div className="p-4 shadow-md flex justify-between items-center md:pr-16">
           {/* Page Title */}
           <h1 className="text-xl font-semibold">Welcome To <span className="text-secondary font-bold">Ataur Rahman</span></h1>
 
