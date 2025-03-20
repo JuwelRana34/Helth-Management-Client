@@ -75,7 +75,7 @@ const Register = () => {
                 email: user.email,
                 photo: user.photoURL,
             };
-            await axios.post("http://localhost:5000/api/auth/register", userData);
+            await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
 
             console.log("User Data:", userData);
             toast.success(`Welcome, ${user.displayName}!`);
