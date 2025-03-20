@@ -103,20 +103,6 @@ const Navbar = () => {
               <Link to={'/register'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Register</Link>
             </div>
           )}
-
-           {/* theme controller  */}
-          <div>
-            <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-              {
-                theme === "dark" ? (
-                  <LuSunMedium className="swap-on h-8 w-8 fill-current" />
-                ) : (
-                  <FaMoon className="swap-off h-8 w-8 fill-current" />
-                )
-              }
-            </button>
-          </div>
-
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
