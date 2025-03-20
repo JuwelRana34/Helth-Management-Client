@@ -2,50 +2,61 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import { FaCloudUploadAlt } from "react-icons/fa";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddDoctor = () => {
-
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-
-    const {
-        register,
-        reset,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm();
-
+    
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
     const [imagePreview, setImagePreview] = useState(null);
 
-    const onSubmit = async(data) => {
-        console.log(data,'data');
-        const imageFile = {image : data.image[0]}
-        console.log(imageFile,'image')
-        const res = await axiosPublic.post(image_hosting_api,imageFile,{
-            headers : {
-                 'Content-Type': 'multipart/form-data'
-            }
-        })
-        console.log(res.data,'image bb')
-        if(res.data.success){
-            
-            const doctorData = {...data, image : res.data.data.display_url};
-            console.log('doctor data',doctorData)
-            // post data to the database
-            const menuRes = await axiosSecure.post('/menu',doctorData)
-            console.log(menuRes);
-            if(menuRes.data.insertedId){
-                // show popup success
-                reset();
-                
+    const onSubmit = async (data) => {
+        try {
+            if (!data.image || data.image.length === 0) {
+                toast.error("Please upload an image.");
+                return;
             }
 
+            const imageFile = new FormData();
+            imageFile.append("image", data.image[0]);
+
+            // Upload image to imgbb
+            const res = await axiosPublic.post(image_hosting_api, imageFile, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+
+            if (!res.data.success) {
+                toast.error("Failed to upload image.");
+                return;
+            }
+
+            const doctorData = {
+                name: data.name,
+                dob: data.dob,
+                image: res.data.data.display_url,
+                gender: data.gender,
+                specialty: data.specialty,
+                brief: data.brief,
+                phone: data.phone,
+                email: data.email,
+            };
+
+            // Save doctor data to database
+            const response = await axios.post(`${import.meta.env.VITE_Url}/api/doctor`, doctorData);
+            toast.success("Doctor added successfully!");
+            reset();
+            setImagePreview(null);
+
+        } catch (error) {
+            console.error(error);
+            toast.error("Something went wrong. Please try again.");
         }
-       
     };
 
     const handleFileChange = (e) => {
@@ -56,93 +67,125 @@ const AddDoctor = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-xl rounded-lg mt-10">
-            <h2 className="text-3xl font-bold text-center mb-6 text-blue-600">
+        <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-8 mt-10">
+            <Toaster />
+            <h2 className="text-3xl font-bold text-center text-blue-600 mb-6">
                 Add Doctor
             </h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-                <input
-                    type="text"
-                    {...register("name", { required: "Name is required" })}
-                    placeholder="Full Name"
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                />
-                {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-
-                <input
-                    type="date"
-                    {...register("dob", { required: "Date of birth is required" })}
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                />
-                {errors.dob && <p className="text-red-500">{errors.dob.message}</p>}
-
-                <select
-                    {...register("gender", { required: "Gender is required" })}
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                >
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-                {errors.gender && <p className="text-red-500">{errors.gender.message}</p>}
-
-                {/* File Input */}
-                <input
-                    type="file"
-                    accept="image/*"
-                    {...register("image", { required: "Image is required" })}
-                    onChange={handleFileChange}
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                />
-                {errors.image && <p className="text-red-500">{errors.image.message}</p>}
-
-                {/* Image Preview */}
-                {imagePreview && (
-                    <div className="mt-3">
-                        <img
-                            src={imagePreview}
-                            alt="Preview"
-                            className="w-32 h-32 object-cover rounded-lg mx-auto shadow"
+            
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Name */}
+                    <div>
+                        <label className="block text-gray-700 font-semibold">Full Name</label>
+                        <input
+                            type="text"
+                            {...register("name", { required: "Name is required" })}
+                            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter full name"
                         />
+                        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                     </div>
-                )}
 
-                <input
-                    type="text"
-                    {...register("specialty", { required: "Specialty is required" })}
-                    placeholder="Specialty"
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                />
-                {errors.specialty && <p className="text-red-500">{errors.specialty.message}</p>}
+                    {/* DOB */}
+                    <div>
+                        <label className="block text-gray-700 font-semibold">Date of Birth</label>
+                        <input
+                            type="date"
+                            {...register("dob", { required: "Date of birth is required" })}
+                            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        />
+                        {errors.dob && <p className="text-red-500 text-sm">{errors.dob.message}</p>}
+                    </div>
+                </div>
 
-                <textarea
-                    {...register("brief", { required: "Brief description is required" })}
-                    placeholder="Brief Description"
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                ></textarea>
-                {errors.brief && <p className="text-red-500">{errors.brief.message}</p>}
+                {/* Gender */}
+                <div>
+                    <label className="block text-gray-700 font-semibold">Gender</label>
+                    <select
+                        {...register("gender", { required: "Gender is required" })}
+                        className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                    >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    {errors.gender && <p className="text-red-500 text-sm">{errors.gender.message}</p>}
+                </div>
 
-                <input
-                    type="tel"
-                    {...register("phone", { required: "Phone is required" })}
-                    placeholder="Phone"
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                />
-                {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
+                {/* Image Upload */}
+                <div className="flex flex-col items-center">
+                    <label className="block text-gray-700 font-semibold">Upload Image</label>
+                    <div className="relative border border-dashed border-gray-400 w-full p-5 text-center rounded-lg">
+                        <input
+                            type="file"
+                            accept="image/*"
+                            {...register("image", { required: "Image is required" })}
+                            onChange={handleFileChange}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        />
+                        <FaCloudUploadAlt className="text-gray-500 text-4xl mx-auto mb-2" />
+                        <p className="text-gray-500">Click to upload image</p>
+                    </div>
+                    {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
+                    
+                    {imagePreview && (
+                        <img src={imagePreview} alt="Preview" className="mt-3 w-32 h-32 object-cover rounded-lg shadow" />
+                    )}
+                </div>
 
-                <input
-                    type="email"
-                    {...register("email", { required: "Email is required" })}
-                    placeholder="Email"
-                    className="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400"
-                />
-                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+                {/* Specialty */}
+                <div>
+                    <label className="block text-gray-700 font-semibold">Specialty</label>
+                    <input
+                        type="text"
+                        {...register("specialty", { required: "Specialty is required" })}
+                        className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        placeholder="Enter specialty"
+                    />
+                    {errors.specialty && <p className="text-red-500 text-sm">{errors.specialty.message}</p>}
+                </div>
 
-                <button
-                    type="submit"
-                    className="w-full bg-blue-500 text-white py-3 rounded hover:bg-blue-600 transition duration-300"
-                >
+                {/* Brief Description */}
+                <div>
+                    <label className="block text-gray-700 font-semibold">Brief Description</label>
+                    <textarea
+                        {...register("brief", { required: "Brief description is required" })}
+                        className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        placeholder="Write a short description..."
+                        rows="3"
+                    ></textarea>
+                    {errors.brief && <p className="text-red-500 text-sm">{errors.brief.message}</p>}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Phone */}
+                    <div>
+                        <label className="block text-gray-700 font-semibold">Phone</label>
+                        <input
+                            type="tel"
+                            {...register("phone", { required: "Phone is required" })}
+                            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter phone number"
+                        />
+                        {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                        <label className="block text-gray-700 font-semibold">Email</label>
+                        <input
+                            type="email"
+                            {...register("email", { required: "Email is required" })}
+                            className="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            placeholder="Enter email"
+                        />
+                        {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                    </div>
+                </div>
+
+                <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-300">
                     Submit
                 </button>
             </form>
