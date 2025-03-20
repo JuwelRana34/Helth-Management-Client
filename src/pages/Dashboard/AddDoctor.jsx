@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddDoctor = () => {
-
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
 
@@ -15,37 +16,57 @@ const AddDoctor = () => {
         register,
         reset,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
 
     const [imagePreview, setImagePreview] = useState(null);
 
-    const onSubmit = async(data) => {
-        console.log(data,'data');
-        const imageFile = {image : data.image[0]}
-        console.log(imageFile,'image')
-        const res = await axiosPublic.post(image_hosting_api,imageFile,{
-            headers : {
-                 'Content-Type': 'multipart/form-data'
-            }
-        })
-        console.log(res.data,'image bb')
-        if(res.data.success){
-            
-            const doctorData = {...data, image : res.data.data.display_url};
-            console.log('doctor data',doctorData)
-            // post data to the database
-            const menuRes = await axiosSecure.post('/menu',doctorData)
-            console.log(menuRes);
-            if(menuRes.data.insertedId){
-                // show popup success
-                reset();
-                
+    const onSubmit = async (data) => {
+        try {
+            if (!data.image || data.image.length === 0) {
+                toast.error("Please upload an image.");
+                return;
             }
 
+            const imageFile = new FormData();
+            imageFile.append("image", data.image[0]);
+
+            // Upload image to imgbb
+            const res = await axiosPublic.post(image_hosting_api, imageFile, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+
+            if (res.data.success) {
+                const doctorData = {
+                    name: data.name,
+                    dob: data.dob, // Correct field name
+                    gender: data.gender,
+                    specialty: data.specialty,
+                    brief: data.brief,
+                    phone: data.phone,
+                    email: data.email,
+                    image: res.data.data.display_url, // Use uploaded image URL
+                };
+
+                // Save doctor data to the database
+                const response = await axios.post(`${import.meta.env.VITE_Url}/api/doctor`, doctorData);
+                console.log(response, 'this is response')
+                toast.success("Doctor added successfully!");
+                reset();
+                setImagePreview(null);
+
+                // if (response.data.insertedId) {
+                   
+                // } else {
+                //     toast.error("Failed to add doctor.");
+                // }
+            } else {
+                toast.error("Failed to upload image.");
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Something went wrong. Please try again.");
         }
-       
     };
 
     const handleFileChange = (e) => {
@@ -57,6 +78,7 @@ const AddDoctor = () => {
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-gray-100 shadow-xl rounded-lg mt-10">
+            <Toaster />
             <h2 className="text-3xl font-bold text-center mb-6 text-blue-600">
                 Add Doctor
             </h2>
