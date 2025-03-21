@@ -14,12 +14,14 @@ import {
   CircleFadingPlus,
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth()
-
+ const {notifi} =useContext(AuthContext)
   const handelLogout = () => {
     logOut()
   }
@@ -113,7 +115,7 @@ function Dashboard() {
             <button className="relative">
               <Bell size={24} className="text-gray-600 hover:text-gray-800" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
-                3
+                {notifi?.length}
               </span>
             </button>
             <div className="flex items-center space-x-3">
