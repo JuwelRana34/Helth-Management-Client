@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { AuthContext } from '../../Providers/AuthProvider';
+import Chat from '../../components/messagecomponents/Chat';
+import AdminChat from '../../components/messagecomponents/AdminChat';
 
 function Messages() {
   const {setNotifi} = useContext(AuthContext)
@@ -53,6 +55,7 @@ function Messages() {
   }
 
   return (
+
     <div className="p-4">
       <form onSubmit={handleNotification} className="space-y-4 p-4 border rounded-lg shadow-md">
         <label htmlFor="notification" className="block text-sm font-medium text-gray-700">
@@ -93,9 +96,12 @@ function Messages() {
         </ul>
       )}
 
-      <p className="font-semibold text-4xl capitalize text-red-500">
+      {/* <p className="font-semibold text-4xl capitalize text-red-500">
         Added later <span className="text-green-500">thank you. ⚠</span>
-      </p>
+      </p> */}
+
+      <Chat/>
+      {/* <AdminChat/> */}
     </div>
   );
 }
