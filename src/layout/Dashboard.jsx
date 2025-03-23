@@ -14,12 +14,14 @@ import {
   CircleFadingPlus,
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth()
-
+ const {notifi} =useContext(AuthContext)
   const handelLogout = () => {
     logOut()
   }
@@ -104,7 +106,7 @@ function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <div className="bg-pri p-4 shadow-md flex justify-between items-center md:pr-16">
+        <div className="p-4 shadow-md flex justify-between items-center md:pr-16">
           {/* Page Title */}
           <h1 className="text-xl font-semibold">Welcome To <span className="text-secondary font-bold">Ataur Rahman</span></h1>
 
@@ -113,7 +115,7 @@ function Dashboard() {
             <button className="relative">
               <Bell size={24} className="text-gray-600 hover:text-gray-800" />
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs px-1 rounded-full">
-                3
+                {notifi?.length}
               </span>
             </button>
             <div className="flex items-center space-x-3">
