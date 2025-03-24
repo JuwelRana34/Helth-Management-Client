@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Loading from './../../components/Loading';
 
 function Doctor() {
   const { data: doctors = [], isLoading, isError, error } = useQuery({
@@ -14,21 +15,17 @@ function Doctor() {
   });
 
   if (isLoading)
-    return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-        <p className="text-gray-500 text-lg">Loading doctor details...</p>
-      </div>
-    );
+    return <Loading/>
 
   if (isError)
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="flex justify-center items-center min-h-screen bg-white">
         <p className="text-red-500 text-lg">Error: {error.message}</p>
       </div>
     );
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
+    <div className="min-h-screen py-10 px-4">
       <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
         Meet Our Doctors
       </h1>

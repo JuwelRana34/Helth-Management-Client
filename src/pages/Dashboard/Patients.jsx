@@ -56,7 +56,7 @@ const Patients = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 min-h-screen">
       {/* Header */}
       <h2 className="text-3xl font-bold text-gray-800">Patient Profile</h2>
 

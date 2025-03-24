@@ -33,7 +33,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen">
       {/* Sidebar */}
       <div
         className={`bg-primary text-white h-full p-4 transition-all duration-300 flex flex-col ${
@@ -76,7 +76,7 @@ function Dashboard() {
             <NavItem
               to="/Dashboard/add-doctor"
               icon={<CircleFadingPlus size={28} />}
-              label="Add Doctors"
+              label="Add Doctor"
               collapsed={isCollapsed}
               active={location.pathname === "/Dashboard/add-doctor"}
             />
