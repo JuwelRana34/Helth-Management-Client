@@ -23,7 +23,7 @@ function Dashboard() {
   const [showNotifications, setShowNotifications] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth();
-  const { notifi } = useContext(AuthContext);
+  const { notifi, user } = useContext(AuthContext);
   const handelLogout = () => {
     logOut();
   };
@@ -122,7 +122,7 @@ function Dashboard() {
           {/* Page Title */}
           <h1 className="text-xl font-semibold">
             Welcome To{" "}
-            <span className="text-secondary font-bold">Ataur Rahman</span>
+            <span className="text-secondary font-bold">{user?.displayName}</span>
           </h1>
 
           {/* User Info */}
@@ -175,12 +175,12 @@ function Dashboard() {
     </button>
             <div className="flex items-center space-x-3">
               <img
-                src="https://i.pravatar.cc/40" // Replace with actual user image
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full border"
+                src={user?.photoURL} // Replace with actual user image
+                alt={user?.displayName}
+                className="w-10 h-10 rounded-full border shadow-2xl hover:scale-110 transform transition-transform"
               />
               <div>
-                <p className="text-sm font-medium">John Doe</p>
+                <p className="text-sm font-medium">{user?.displayName}</p>
                 <p className="text-xs text-gray-500">Admin</p>
               </div>
               <button onClick={handelLogout}>
