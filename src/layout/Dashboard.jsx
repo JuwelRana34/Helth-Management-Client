@@ -155,8 +155,8 @@ function Dashboard() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="absolute right-0 top-11 mt-2 w-64 bg-white text-slate-700 shadow-lg rounded-md p-2"
           >
-            {notifi.length > 0 ? (
-              notifi.map((notification, index) => (
+            {notifi?.length > 0 ? (
+              notifi?.map((notification, index) => (
                 <div
                   key={notification._id}
                   className={`p-2 border-b last:border-none ${
