@@ -11,14 +11,6 @@ function Messages() {
   const queryClient = useQueryClient();
   const [notificationText, setNotificationText] = useState('');
 
-  // Fetch notifications
-  // const { data: notifications, refetch, isLoading, isError } = useQuery({
-  //   queryKey: ['notifications'],
-  //   queryFn: async () => {
-  //     const response = await axios.get(`${import.meta.env.VITE_Url}/api/notifications`);
-  //     return response.data;
-  //   }
-  // });
   const { data: notifications, refetch, isLoading, isError } = useFetchData('getNotifications', 'notifications');
   
   useEffect(() => {
@@ -33,8 +25,8 @@ function Messages() {
     },
     onSuccess: () => {
       toast.success('Notification saved successfully!');
-      queryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
-      refetch(); // Fetch latest notifications
+      queryClient.invalidateQueries(['notifications']); 
+      refetch();
       
     },
     onError: (error) => {
@@ -106,7 +98,7 @@ function Messages() {
 
       <Chat/>
       {/* <AdminChat/> */}
-    </div>
+    </div>   
   );
 }
 
