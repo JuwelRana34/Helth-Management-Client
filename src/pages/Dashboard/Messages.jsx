@@ -5,6 +5,8 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Chat from '../../components/messagecomponents/Chat';
 import useFetchData from '../../utils/fetchGetFunction';
 import toast from 'react-hot-toast';
+import useFetchData from '../../utils/fetchGetFunction';
+import toast from 'react-hot-toast';
 
 function Messages() {
   const {setNotifi} = useContext(AuthContext)
@@ -45,6 +47,7 @@ function Messages() {
 
   const handelDelete = async (id) => {
     await axios.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
+    toast.error('Notification deleted successfully!');
     toast.error('Notification deleted successfully!');
     queryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
     refetch(); // Fetch latest notifications
