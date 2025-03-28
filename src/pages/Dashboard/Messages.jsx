@@ -5,8 +5,8 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Chat from '../../components/messagecomponents/Chat';
 import useFetchData from '../../utils/fetchGetFunction';
 import toast from 'react-hot-toast';
-import useFetchData from '../../utils/fetchGetFunction';
-import toast from 'react-hot-toast';
+
+
 
 
 function Messages() {
