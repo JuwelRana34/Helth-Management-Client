@@ -17,6 +17,7 @@ import useAuth from "../Hooks/useAuth";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import { motion, AnimatePresence } from "framer-motion";
+import AiChatBox from "../components/AiChatBox";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -196,6 +197,7 @@ function Dashboard() {
         {/* Page Content */}
         <div className="p-4 flex-1 overflow-scroll">
           <Outlet />
+          <AiChatBox/>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { Outlet } from 'react-router';
 import Footer from '../components/Footer';
 import useAuth from '../Hooks/useAuth';
 import Loading from '../components/Loading';
+import AiChatBox from '../components/AiChatBox';
 
 const Layout = () => {
 
@@ -18,7 +19,11 @@ const Layout = () => {
     return (
         <div className='font-roboto'>
             <Navbar />
-            <Outlet/>
+            <div>
+                <Outlet/> 
+                <AiChatBox/>
+            </div>
+           
             <Footer/>
         </div>
     );
