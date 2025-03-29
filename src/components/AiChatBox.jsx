@@ -65,7 +65,7 @@ function AiChatBox() {
   return (
     <>
       {/* Chat Toggle Button */}
-      <div onClick={toggleChatBox} className="fixed bottom-5 right-5 cursor-pointer group z-[9999]">
+      <div onClick={toggleChatBox} className="fixed bottom-2  right-2 cursor-pointer group z-[500]">
         <div className="relative w-24">
           <Player
             src="https://lottie.host/e7819edb-b329-4d03-8993-37fea417d89c/jOi4iKKqHn.json"
@@ -87,12 +87,12 @@ function AiChatBox() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-5 right-5 w-80 p-3 border rounded-lg shadow-lg bg-white z-[9999]"
+            className="fixed bottom-0 md:bottom-5 right-0 md:right-5 w-80 p-3 border rounded-lg shadow-lg bg-white z-[9999]"
           >
             {/* Close Button */}
             <button
               onClick={toggleChatBox}
-              className="absolute top-2 right-2 bg-gray-200 rounded-full p-1 text-rose-500 hover:bg-red-200 hover:text-rose-700"
+              className="absolute top-2 right-2 bg-gray-200 rounded-full p-1 text-rose-500 hover:bg-red-200 hover:text-rose-700 z-[9999]"
             >
               <X size={24} />
             </button>

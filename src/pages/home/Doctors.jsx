@@ -33,7 +33,7 @@ const Doctors = () => {
     selectedDept === "All" ? doctors : doctors.filter((doc) => doc.department === selectedDept);
 
   return (
-    <div className="pb-10 w-[80%] mx-auto px-5">
+    <div className="pb-10 w-[80%] mx-auto">
       <h1 className="text-3xl md:text-5xl text-primary font-bold text-center py-10">
         Meet Our Skilled Professionals Making a Difference at the Clinic
       </h1>
