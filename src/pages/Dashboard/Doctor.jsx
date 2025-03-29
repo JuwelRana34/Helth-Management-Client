@@ -1,13 +1,42 @@
 import React from "react";
 import useFetchData from "../../utils/fetchGetFunction";
-import { Mail, PhoneCall, Stethoscope } from "lucide-react";
+import { DeleteIcon, Mail, PhoneCall, Stethoscope, X } from "lucide-react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 function Doctor() {
-  const { data, isLoading, isError } = useFetchData("getDoctors", "doctor");
+  const { data, isLoading, isError, refetch } = useFetchData("getDoctors", "doctor");
 
   if (isLoading) return <p className="text-center text-lg font-semibold">Loading...</p>;
   if (isError) return <p className="text-center text-red-500">Error fetching data.</p>;
+
+  const handelDoctorDelete = async (id)=>{
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to undo this action!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!"
+    });
+  
+    if (!result.isConfirmed) return;
+  
+    console.log(id);
+    try {
+      const response = await axios.delete(`${import.meta.env.VITE_Url}/api/doctor/${id}`);
+      console.log(response);
+      refetch();
+      Swal.fire("Deleted!", "Doctor has been deleted.", "success");
+    } catch (error) {
+      console.log(error);
+      Swal.fire("Error!", "Something went wrong! 😥", "error");
+    }
+  }
+
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -21,8 +50,11 @@ function Doctor() {
             key={doctor._id}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white shadow-xl rounded-2xl overflow-hidden border p-5 hover:shadow-2xl transition duration-300 flex flex-col"
+            className="bg-white relative shadow-xl rounded-2xl overflow-hidden border p-5 hover:shadow-2xl transition duration-300 flex flex-col"
           >
+            <button onClick={()=>handelDoctorDelete(doctor._id)} className="absolute top-0 right-2">
+            <DeleteIcon size={24} className=" text-red-600"/>
+            </button>
             <img
               src={doctor.image}
               alt={doctor.name}
