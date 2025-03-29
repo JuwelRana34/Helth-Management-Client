@@ -23,6 +23,17 @@ const teamMembers = [
       { href: "https://www.linkedin.com/in/al-amin-islam-rahat", icon: <Linkedin /> },
       { href: "https://github.com/alaminislamrahat", icon: <Github />}
     ]
+  },
+  {
+    name: "MD.Juwel Rana ",
+    role: "Full Stack Developer",
+    description: "Responsible for managing both client-side and server-side operations,also functionality between the frontend and backend",
+    avatar: "https://avatars.githubusercontent.com/u/91797864?v=4",
+    socialLinks: [
+      { href: " https://developer-juwel.web.app/", icon: <Unlink /> },
+      { href: "https://www.linkedin.com/in/md-juwel-rana-14b563204/", icon: <Linkedin /> },
+      { href: "https://github.com/JuwelRana34", icon: <Github />}
+    ]
   }
 ];
 
@@ -38,9 +49,9 @@ const DevTeam = () => {
           {teamMembers.map((member, index) => (
             <div key={index} className="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                <img className="w-[400px] h-[250px] object-cover rounded-lg sm:rounded-none sm:rounded-l-lg" src={member.avatar} alt={member.name} />
+                <img className="w-full md:w-[400px] h-auto md:h-[250px] object-cover rounded-lg sm:rounded-none sm:rounded-l-lg" src={member.avatar} alt={member.name} />
               </a>
-              <div className="px-5">
+              <div className="px-5 w-[80%] py-5">
                 <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                   <a href="#">{member.name}</a>
                 </h3>

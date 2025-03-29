@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const ServiceSection = () => {
     return (
@@ -11,9 +12,9 @@ const ServiceSection = () => {
                 Take the first step toward optimal oral health. Schedule your personalized consultation with our expert dental team today.
             </p>
             <div className="mt-8">
-                <button className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-blue-800  font-bold text-lg rounded-full transition duration-300">
+                <Link to="/book-appoinment" className="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-blue-800  font-bold text-lg rounded-full transition duration-300">
                     Book an Appointment
-                </button>
+                </Link>
             </div>
         </div>
     );
