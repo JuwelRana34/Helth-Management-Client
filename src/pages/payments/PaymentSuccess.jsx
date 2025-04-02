@@ -10,33 +10,33 @@ function PaymentSuccess() {
   const [verified, setVerified] = useState(false);
   const [searchParams] = useSearchParams();
   const userID = userDatabaseInfo?._id;
-  console.log(userID)
   useEffect(() => {
     const tran_id = searchParams.get("tran_id");
     if (!tran_id) {
       return toast.error("Transaction ID not found!");
     }
+
+    if (!userID) return;
+
     const verifyPayment = async () => {
       try {
         const {data} = await axios.get(
           `${import.meta.env.VITE_Url}/api/verify-payment/${tran_id}/${userID}`
         );
 
-        console.log(data.status);
-
         if (data.status === true) {
-          setStatus(false);
           setVerified(true);
           toast.success("Payment Successful! Thank you.");
+          
         } else {
           setStatus(false);
         }
       } catch (error) {
         console.error("Error verifying payment:", error);
-        setStatus(false);
-        toast.error("Payment verification failed. Please try again.");
-      }
-    };
+        toast.error("Failed to verify payment. Please try again.");
+        setStatus(false)
+    }
+  }
     verifyPayment();
   }, [searchParams, userID]);
 
