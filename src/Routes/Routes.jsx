@@ -58,6 +58,14 @@ const Routes = () => {
                     path : '/paymentFailure',
                     element : <PaymentFail/>
                 },
+                {
+                    path : '/paymentSuccess',
+                    element : <PaymentSuccess/>
+                },
+                {
+                    path : '/paymentFailure',
+                    element : <PaymentFail/>
+                },
             ]
         },
         {
