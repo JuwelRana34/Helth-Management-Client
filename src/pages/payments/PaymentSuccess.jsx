@@ -26,15 +26,13 @@ function PaymentSuccess() {
 
         if (data.status === true) {
           setVerified(true);
-          toast.success("Payment Successful! Thank you.");
-          
-        } else {
-          setStatus(false);
-        }
+          toast.success("Payment Successful! Thank you.");       
+        } 
       } catch (error) {
         console.error("Error verifying payment:", error);
         toast.error("Failed to verify payment. Please try again.");
-        setStatus(false)
+    } finally{
+      setStatus(false);
     }
   }
     verifyPayment();

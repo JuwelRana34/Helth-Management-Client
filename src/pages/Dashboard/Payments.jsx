@@ -3,6 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../../Providers/AuthProvider";
 import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
+import PaymentTable from "../payments/PaymentTable";
 function Payments() {
   const { userDatabaseInfo, user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
@@ -35,17 +36,7 @@ function Payments() {
 
   return (
     <div>
-      Payments
-      <p>
-        &quot;Dear{" "}
-        <span className="text-green-500 font-semibold font-roboto">
-          Ataur Rahman,{" "}
-        </span>{" "}
-        your payment of $500 for checkup on {new Date().toLocaleDateString()}{" "}
-        has been successfully processed. Transaction ID: 4asf787f67df7. Thank
-        you for choosing <span className="text-cyan-600"> Madicare</span>. For
-        inquiries, contact +099605465246.&quot;
-      </p>
+       <PaymentTable/>
       <button disabled={loading} onClick={handelPayments} className="btn btn-primary my-5 disabled:bg-gray-400 disabled:text-gray-500 disabled:cursor-not-allowed">
        {loading?<div className=" animate-pulse"> 
        paying...
