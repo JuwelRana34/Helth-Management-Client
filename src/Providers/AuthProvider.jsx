@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 
 import app from "../Firebase/firebase.config";
+import axios from "axios";
 
 // import { DarkModeSwitch } from "react-toggle-dark-mode";
 // import { GoogleAuthProvider } from "firebase/auth";
@@ -20,6 +21,7 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userDatabaseInfo, setUserDatabaseInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notifi, setNotifi] = useState([]);
   const createUser = (email, password) => {
@@ -51,6 +53,24 @@ const AuthProvider = ({ children }) => {
   const toggleDarkMode = (checked) => {
     setDarkMode(checked);
   };
+
+  // mongodb userID 
+  useEffect(() => {
+    async function userinfoGet() {
+      try {
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_Url}/api/user/${user?.email}`
+        );
+        setUserDatabaseInfo(data?.user);
+      } catch (e) {
+        console.error(e);
+        setLoading(false);
+        return;
+      }
+    }
+
+    userinfoGet();
+  }, [user?.email]);
 
     useEffect(() => {
         const unsubsribe = onAuthStateChanged(auth, currentUser => {
@@ -98,7 +118,8 @@ const AuthProvider = ({ children }) => {
     toggleDarkMode,
     setDarkMode,
     notifi,
-    setNotifi
+    setNotifi,
+    userDatabaseInfo
   };
 
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;

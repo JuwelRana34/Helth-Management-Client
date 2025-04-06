@@ -3,21 +3,18 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Chat from '../../components/messagecomponents/Chat';
-import AdminChat from '../../components/messagecomponents/AdminChat';
+import useFetchData from '../../utils/fetchGetFunction';
+import toast from 'react-hot-toast';
+
+
+
 
 function Messages() {
   const {setNotifi} = useContext(AuthContext)
   const queryClient = useQueryClient();
   const [notificationText, setNotificationText] = useState('');
 
-  // Fetch notifications
-  const { data: notifications, refetch, isLoading, isError } = useQuery({
-    queryKey: ['notifications'],
-    queryFn: async () => {
-      const response = await axios.get(`${import.meta.env.VITE_Url}/api/notifications`);
-      return response.data;
-    }
-  });
+  const { data: notifications, refetch, isLoading, isError } = useFetchData('getNotifications', 'notifications');
   
   useEffect(() => {
     setNotifi(notifications)
@@ -30,9 +27,10 @@ function Messages() {
       return response.data;
     },
     onSuccess: () => {
-      console.log('Notification saved successfully!');
-      queryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
-      refetch(); // Fetch latest notifications
+      toast.success('Notification saved successfully!');
+      queryClient.invalidateQueries(['notifications']); 
+      refetch();
+      
     },
     onError: (error) => {
       console.error('Error saving notification:', error);
@@ -50,6 +48,8 @@ function Messages() {
 
   const handelDelete = async (id) => {
     await axios.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
+    toast.error('Notification deleted successfully!');
+    toast.error('Notification deleted successfully!');
     queryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
     refetch(); // Fetch latest notifications
   }
@@ -102,7 +102,7 @@ function Messages() {
 
       <Chat/>
       {/* <AdminChat/> */}
-    </div>
+    </div>   
   );
 }
 

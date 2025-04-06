@@ -16,6 +16,9 @@ import Messages from '../pages/Dashboard/Messages';
 import Payments from '../pages/Dashboard/Payments';
 import PrivateRoute from './PrivateRoute';
 import AddDoctor from '../pages/Dashboard/AddDoctor';
+import PaymentFail from '../pages/payments/PaymentFail';
+import PaymentSuccess from '../pages/payments/PaymentSuccess';
+
 
 const Routes = () => {
     const route = createBrowserRouter([
@@ -46,6 +49,22 @@ const Routes = () => {
                 {
                     path : '/register',
                     element : <Register/>
+                },
+                {
+                    path : '/paymentSuccess',
+                    element : <PaymentSuccess/>
+                },
+                {
+                    path : '/paymentFailure',
+                    element : <PaymentFail/>
+                },
+                {
+                    path : '/paymentSuccess',
+                    element : <PaymentSuccess/>
+                },
+                {
+                    path : '/paymentFailure',
+                    element : <PaymentFail/>
                 },
             ]
         },

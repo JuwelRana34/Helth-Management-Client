@@ -17,13 +17,14 @@ import useAuth from "../Hooks/useAuth";
 import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import { motion, AnimatePresence } from "framer-motion";
+import AiChatBox from "../components/AiChatBox";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth();
-  const { notifi } = useContext(AuthContext);
+  const { notifi, user } = useContext(AuthContext);
   const handelLogout = () => {
     logOut();
   };
@@ -33,7 +34,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen">
       {/* Sidebar */}
       <div
         className={`bg-primary text-white h-full p-4 transition-all duration-300 flex flex-col ${
@@ -76,7 +77,7 @@ function Dashboard() {
             <NavItem
               to="/Dashboard/add-doctor"
               icon={<CircleFadingPlus size={28} />}
-              label="Add Doctors"
+              label="Add Doctor"
               collapsed={isCollapsed}
               active={location.pathname === "/Dashboard/add-doctor"}
             />
@@ -122,7 +123,7 @@ function Dashboard() {
           {/* Page Title */}
           <h1 className="text-xl font-semibold">
             Welcome To{" "}
-            <span className="text-secondary font-bold">Ataur Rahman</span>
+            <span className="text-secondary font-bold">{user?.displayName}</span>
           </h1>
 
           {/* User Info */}
@@ -155,8 +156,8 @@ function Dashboard() {
             transition={{ duration: 0.2, ease: "easeInOut" }}
             className="absolute right-0 top-11 mt-2 w-64 bg-white text-slate-700 shadow-lg rounded-md p-2"
           >
-            {notifi.length > 0 ? (
-              notifi.map((notification, index) => (
+            {notifi?.length > 0 ? (
+              notifi?.map((notification, index) => (
                 <div
                   key={notification._id}
                   className={`p-2 border-b last:border-none ${
@@ -175,12 +176,12 @@ function Dashboard() {
     </button>
             <div className="flex items-center space-x-3">
               <img
-                src="https://i.pravatar.cc/40" // Replace with actual user image
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full border"
+                src={user?.photoURL} // Replace with actual user image
+                alt={user?.displayName}
+                className="w-10 h-10 rounded-full border shadow-2xl hover:scale-110 transform transition-transform"
               />
               <div>
-                <p className="text-sm font-medium">John Doe</p>
+                <p className="text-sm font-medium">{user?.displayName}</p>
                 <p className="text-xs text-gray-500">Admin</p>
               </div>
               <button onClick={handelLogout}>
@@ -196,6 +197,7 @@ function Dashboard() {
         {/* Page Content */}
         <div className="p-4 flex-1 overflow-scroll">
           <Outlet />
+          <AiChatBox/>
         </div>
       </div>
     </div>
