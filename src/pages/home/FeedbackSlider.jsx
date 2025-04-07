@@ -42,7 +42,7 @@ const testimonials = [
 
 const FeedbackSlider = () => {
   return (
-    <div className="py-16 px-6 rounded-xl w-11/12 mx-auto text-center">
+    <div className="py-16  rounded-xl w-11/12 mx-auto text-center">
       {/* Heading Section */}
       <div className="mb-12">
         <p className="text-md font-semibold text-[#1C5CBB] uppercase tracking-widest">Client Feedback</p>
