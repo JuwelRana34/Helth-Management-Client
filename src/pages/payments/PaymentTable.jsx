@@ -43,7 +43,7 @@ const PaymentTable = () => {
         <p className="text-center text-gray-600">Loading payments...</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white shadow-md rounded-lg">
+          <table className="min-w-full min-h-40 bg-white shadow-md rounded-lg relative">
             <thead>
               <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 {tableHeaders.map((header, index) => (
@@ -53,8 +53,16 @@ const PaymentTable = () => {
                 ))}
               </tr>
             </thead>
-            <tbody className="text-gray-700 text-sm font-light">
-              {payments.map((payment) => (
+            <tbody className="text-gray-700  text-sm font-light relative">
+            {payments.length === 0 ?<>
+            <h1 className="text-center text-yellow-500 font-semibold md:text-xl my-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+
+
+            You have no payment history.
+            </h1>
+            </>:<>
+            
+            {payments.map((payment) => (
                 <tr
                   key={payment._id}
                   className="border-b border-gray-200 hover:bg-gray-100"
@@ -82,6 +90,8 @@ const PaymentTable = () => {
                   ))}
                 </tr>
               ))}
+            </>}
+              
             </tbody>
           </table>
         </div>
