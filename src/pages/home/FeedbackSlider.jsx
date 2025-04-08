@@ -45,10 +45,10 @@ const FeedbackSlider = () => {
     <div className="py-16  rounded-xl w-11/12 mx-auto text-center">
       {/* Heading Section */}
       <div className="mb-12">
-        <p className="text-md font-semibold text-[#1C5CBB] uppercase tracking-widest">Client Feedback</p>
+        <p className="text-md font-semibold text-cyan-600 uppercase tracking-widest">Client Feedback</p>
         <h2 className="text-4xl font-bold text-gray-800 leading-snug mt-2">
           Words of Satisfaction:{" "}
-          <span className="italic text-[#1C5CBB]">Life-Changing Experiences</span>  
+          <span className="italic text-primary">Life-Changing Experiences</span>  
         </h2>
         <p className="text-gray-500 mt-3 text-lg">
           Hear what our esteemed patients have to say about their experiences.
