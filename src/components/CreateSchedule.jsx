@@ -86,7 +86,7 @@ const CreateSchedule = () => {
                 placeholder="End Time"
                 required
               />
-              <button type="button" onClick={() => handleRemoveTimeSlot(index)}>
+              <button type="button" className="bg-primary text-white rounded-md py-2 px-3" onClick={() => handleRemoveTimeSlot(index)}>
                 Remove
               </button>
             </div>

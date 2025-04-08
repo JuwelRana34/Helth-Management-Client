@@ -65,10 +65,10 @@ const HomeCard = () => {
       <div className="mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10">
-          <span className="bg-primary shadow-md text-white rounded-full py-2 px-4 font-semibold">
+          <span className="text-primary shadow-md bg-btnBg rounded-full py-2 px-4 font-semibold">
             Our Services
           </span>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-3">
+          <h1 className="text-3xl md:text-4xl font-bold text-primary mt-3">
             Begin Your Health Journey with <br /> Key Wellness Services
           </h1>
         </div>
@@ -78,7 +78,7 @@ const HomeCard = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="border bg-white shadow-lg rounded-lg p-5 transition transform hover:-translate-y-2 hover:shadow-xl"
+              className="border bg-white shadow-lg rounded-lg p-5 transition transform hover:-translate-y-2 hover:shadow-xl hover:bg-emerald-100 hover:text-primary group"
             >
               <div className="flex justify-start">
                 <img className="w-16 h-16" src={service.img} alt={service.alt} />
@@ -89,14 +89,14 @@ const HomeCard = () => {
                   <li key={i}>{item}</li>
                 ))}
               </ul>
-              <p className="text-gray-600 mt-3 text-sm">{service.description}</p>
+              <p className="text-gray-600 group-hover:text-primary mt-3 text-sm">{service.description}</p>
             </div>
           ))}
         </div>
 
         {/* View More Button */}
         <div className="flex justify-center mt-8  ">
-          <button className="flex items-center bg-primary text-white font-semibold px-4 py-3 rounded-full hover:bg-blue-600 transition">
+          <button className="flex items-center bg-btnBg text-primary font-semibold px-4 py-3 rounded-full hover:bg-emerald-300 transition">
             View More Services
             <img className="w-8 ml-4 rounded-full" src="https://cdn-icons-gif.flaticon.com/7740/7740503.gif" alt="Arrow" />
           </button>
