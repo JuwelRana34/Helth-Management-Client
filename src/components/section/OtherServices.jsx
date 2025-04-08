@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { otherServiceData, serviceData } from "../../utils/serviceData";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import axios from "axios"
 
 const OtherServices = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -22,12 +23,17 @@ const OtherServices = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+    try {
+        await axios.post(`${import.meta.env.VITE_Url}/api/Contact`,formData)
     setIsPopupOpen(false);
     setFormData({ name: "", email: "", message: "" });
     toast.success("Form Data Submit Success");
+    } catch (error) {
+       console.log(error)
+    }
+   
   };
   const Faq = [
     {
