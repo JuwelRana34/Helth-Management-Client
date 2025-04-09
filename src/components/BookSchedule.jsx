@@ -24,6 +24,7 @@ const BookSchedule = () => {
 
   const { data: BookedSlots = [], refetch, isLoading, isError } = useFetchData('getBookedSlots', userID ? `schedule/${userID}` : null);
 
+
   useEffect(() => {
     // Load doctors on first load
     axiosSecure.get(`${import.meta.env.VITE_Url}/api/doctor`)
@@ -31,7 +32,6 @@ const BookSchedule = () => {
       .catch(err => toast.error('Failed to load doctors. Please try again later.'));
   }, [axiosSecure]);
 
-  useEffect(() => {
     const fetchSchedule = async () => {
       if (!selectedDate || !doctorId) return;
 
@@ -40,12 +40,15 @@ const BookSchedule = () => {
         setSlots(res.data.slots);
       } catch (err) {
         setSlots([]);
-        toast.error('Failed to fetch schedule. Please try again later.');
+        toast.error('schedule not available. Please try again later.');
       }
     };
+    
 
-    fetchSchedule();
-  }, [selectedDate, doctorId, axiosSecure]);
+  useEffect(() => {
+
+       fetchSchedule();
+  }, [axiosSecure, doctorId, selectedDate]);
 
   const handleBooking = async (time) => {
     setLoading(true);
@@ -57,6 +60,7 @@ const BookSchedule = () => {
         time,
       });
       refetch();
+      fetchSchedule()
       toast.success(res.data.msg);
       setLoading(false);
     } catch (err) {
@@ -128,7 +132,7 @@ const BookSchedule = () => {
 
       {!isLoading ? (
         <div className="mt-6 space-y-4">
-          {BookedSlots.map((item, index) => (
+          {BookedSlots?.map((item, index) => (
             <div key={index} className="border p-4 rounded-lg bg-emerald-100 shadow-md">
               <h3 className="text-lg font-semibold text-primary">Doctor: {item.doctorName}</h3>
               <p className="text-sm text-primary">Time: {item.time}</p>
