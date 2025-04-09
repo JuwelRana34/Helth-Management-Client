@@ -46,16 +46,24 @@ function PaymentSuccess() {
     );
   }
   return verified ? (
-    <>
+    <div className="w-11/12 mx-auto min-h-80 text-center">
       <h2 className="text-green-500 font-semibold flex justify-center items-center my-5">
-      <img className=" w-10 mx-2" src="https://cdn-icons-gif.flaticon.com/7920/7920940.gif" alt="paymentIcon" />
+        <img
+          className=" w-10 mx-2"
+          src="https://cdn-icons-gif.flaticon.com/7920/7920940.gif"
+          alt="paymentIcon"
+        />
         Payment Successful! 🎉
       </h2>
-      <Link to={"/"} className="btn btn-primary text-center">
-        {" "}
-        back to home{" "}
-      </Link>
-    </>
+      <div className="flex justify-center items-center my-5">
+        <Link
+          to={"/Dashboard/payments"}
+          className="btn btn-primary text-center"
+        >
+          Check Payment History
+        </Link>
+      </div>
+    </div>
   ) : (
     <h2>Payment Failed!</h2>
   );

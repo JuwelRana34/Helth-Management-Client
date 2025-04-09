@@ -1,8 +1,11 @@
 import React from 'react'
+import CreateSchedule from '../../components/CreateSchedule'
 
 function Schedule() {
   return (
-    <div>Schedule</div>
+    <div>
+      <CreateSchedule/>
+    </div>
   )
 }
 

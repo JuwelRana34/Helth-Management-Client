@@ -44,8 +44,8 @@ const Doctors = () => {
           <button
             key={dept}
             onClick={() => setSelectedDept(dept)}
-            className={`px-5 py-2 rounded-md text-primary border-2 border-pritext-primary transition-all duration-300
-            ${selectedDept === dept ? "bg-primary text-white shadow-md" : "bg-[#F5F5F3] hover:bg-pritext-primary hover:text-black"}`}
+            className={`px-5 py-2 rounded-md text-primary border border-emerald-200 transition-all duration-300
+            ${selectedDept === dept ? "bg-primary text-white shadow-md" : "bg-emerald-100 hover:bg-primary text-primary hover:text-white"}`}
           >
             {dept}
           </button>

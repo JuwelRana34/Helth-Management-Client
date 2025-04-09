@@ -1,49 +1,89 @@
-import React from "react";
+import axios from "axios";
+import { Loader } from "lucide-react";
+import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const BookAppointment = () => {
   const plans = [
     {
-      name: "Free",
-      price: "$0",
+      name: "Basic",
+      plan: "basic",
+      price: "$100",
       duration: "Month",
-      features: ["Full Text log search", "Basic alarms", "Community support"],
+      features: ["3 tickets", "7 days", "Doctor support"],
       button: "Get Started",
     },
     {
       name: "Starter",
-      price: "$48",
+      plan: "starter",
+      price: "$200",
       duration: "Month",
       features: [
-        "Unlimited AWS accounts",
-        "Unlimited invocations",
-        "Advanced Alarms",
+        "7 tickets",
+        "25 days",
         "Email support",
       ],
-      button: "Try Free for 14 days",
+      button: "subscribe now",
     },
     {
-      name: "Pro",
-      price: "$250",
+      name: "Premium",
+      plan: "premium",
+      price: "$300",
       duration: "Month",
       features: [
-        "Smart Insights",
-        "Premium notification channels",
+        "13 tickets",
+        "30 days",
         "Email & Chat support",
       ],
-      button: "Try Free for 14 days",
+      button: " unsubscribe now",
     },
-    {
-      name: "Enterprise",
-      price: "Custom",
-      duration: "",
-      features: [
-        "Dedicated account manager",
-        "Integration support",
-        "Email & Chat support",
-      ],
-      button: "Contact Sales",
-    },
+    // {
+    //   name: "Enterprise",
+    //   price: "Custom",
+    //   duration: "",
+    //   features: [
+    //     "Dedicated account manager",
+    //     "Integration support",
+    //     "Email & Chat support",
+    //   ],
+    //   button: "Contact us",
+    // },
   ];
+
+  const { userDatabaseInfo, user } = useContext(AuthContext);
+  const [loadingButtons, setLoadingButtons] = useState({});
+  
+
+  const handelPayments = async (plan) => {
+    setLoadingButtons((prev) => ({ ...prev, [plan]: true }));
+
+    const paymentData = {
+      plan: plan ,
+      cus_name: user?.displayName,
+      cus_email: user?.email,
+      cus_phone: "018******",
+      currency: "BDT",
+      userID: userDatabaseInfo?._id,
+      fail_url: "https://healthcarebd2.netlify.app/paymentFailure",
+      cancel_url: "https://healthcarebd2.netlify.app/paymentFailure",
+    };
+
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_Url}/api/payment`,
+        paymentData
+      );
+
+      window.location.href = data?.payment_url;
+      toast.success("now you will redirect to the payment page")
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingButtons((prev) => ({ ...prev, [plan]: false }));
+    }
+  };
+
 
   return (
     <div className="w-11/12 mx-auto py-16 text-center">
@@ -63,7 +103,7 @@ const BookAppointment = () => {
       </div>
 
       {/* Pricing Cards */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
+      <div className=" grid md:grid-cols-2 lg:grid-cols-3 gap-16 mt-10">
         {plans.map((plan, index) => (
           <div
             key={index}
@@ -99,8 +139,23 @@ const BookAppointment = () => {
               </ul>
 
               {/* Button */}
-              <button className="mt-6 px-6 py-3 w-full rounded-lg text-sm font-medium transition-all bg-[#1C5CBB] text-white group-hover:bg-white group-hover:text-[#1C5CBB] shadow-md">
-                {plan.button}
+ 
+              <button
+                onClick={() => handelPayments(plan.plan)}
+                disabled={loadingButtons[plan.plan]}
+                className={`mt-6 px-6 py-3 w-full rounded-lg text-sm font-medium transition-all ${
+                  loadingButtons[plan.plan]
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-[#1C5CBB] text-white group-hover:bg-white group-hover:text-[#1C5CBB]"
+                } shadow-md`}
+              >
+                {loadingButtons[plan.plan] ? (
+                  <div className="animate-pulse flex justify-center items-center gap-2">
+                    Paying... <Loader className="animate-spin" size={20} />
+                  </div>
+                ) : (
+                  plan.button
+                )}
               </button>
             </div>
           </div>

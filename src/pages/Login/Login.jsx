@@ -124,10 +124,10 @@ const Login = () => {
               <label className="label text-gray-700 font-semibold">Password</label>
               <input name="password" type="password" required className="input input-bordered w-full" />
               <label className="label">
-                <a href="#" className="text-sm text-blue-600 hover:underline">Forgot password?</a>
+                <a href="#" className="text-sm text-primary hover:underline">Forgot password?</a>
               </label>
             </div>
-            <motion.button type="submit" className="btn bg-primary text-white w-full">Login</motion.button>
+            <motion.button type="submit" className="btn bg-emerald-200 border-emerald-300 text-primary w-full">Login</motion.button>
           </form>
           <div className="divider my-3">OR</div>
           <button onClick={googleLogin} className="btn w-full flex items-center justify-center gap-2 border border-gray-300">
