@@ -3,7 +3,7 @@ import React from "react";
 const Card = ({ item }) => {
   const { name, img, department } = item;
   return (
-    <div className="card bg-emerald-50 shadow-lg rounded-lg p-5 mx-auto">
+    <div className="card bg-emerald-200 shadow-lg rounded-lg p-5 mx-auto">
       <figure className="">
         <img src={img} alt="Doctor" className="h-60 object-cover rounded-lg" />
       </figure>
