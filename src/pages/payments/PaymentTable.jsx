@@ -2,19 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const PaymentTable = () => {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
   const { userDatabaseInfo } = useContext(AuthContext);
   const userID = userDatabaseInfo?._id;
-  console.log(payments);
+  const axiosSecure = useAxiosSecure()
+
   useEffect(() => {
     if (!userID) return;
 
     const fetchPayments = async () => {
       try {
-        const { data } = await axios.get(
+        const { data } = await axiosSecure.get(
           `${import.meta.env.VITE_Url}/api/payments/${userID}`
         );
         setPayments(data);

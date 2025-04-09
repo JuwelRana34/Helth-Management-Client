@@ -4,11 +4,13 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useSearchParams } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 function PaymentSuccess() {
   const {userDatabaseInfo}= useContext(AuthContext)
   const [status, setStatus] = useState(true);
   const [verified, setVerified] = useState(false);
   const [searchParams] = useSearchParams();
+  const axiosSecure = useAxiosSecure()
   const userID = userDatabaseInfo?._id;
   useEffect(() => {
     const tran_id = searchParams.get("tran_id");
@@ -20,7 +22,7 @@ function PaymentSuccess() {
 
     const verifyPayment = async () => {
       try {
-        const {data} = await axios.get(
+        const {data} = await axiosSecure.get(
           `${import.meta.env.VITE_Url}/api/verify-payment/${tran_id}/${userID}`
         );
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../Providers/AuthProvider';
 import useFetchData from '../utils/fetchGetFunction';
@@ -8,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"; 
 import { Loader } from 'lucide-react';
 import { format } from 'date-fns';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const BookSchedule = () => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -17,7 +17,7 @@ const BookSchedule = () => {
   const [loading, setLoading] = useState(false);
   const { userDatabaseInfo } = useContext(AuthContext);
   const userID = userDatabaseInfo?._id;
-
+  const axiosSecure = useAxiosSecure()
   const formattedDate = selectedDate ? format(new Date(selectedDate), 'yyyy-MM-dd') : '';
 
 
@@ -26,17 +26,17 @@ const BookSchedule = () => {
 
   useEffect(() => {
     // Load doctors on first load
-    axios.get(`${import.meta.env.VITE_Url}/api/doctor`)
+    axiosSecure.get(`${import.meta.env.VITE_Url}/api/doctor`)
       .then(res => setDoctors(res.data))
       .catch(err => toast.error('Failed to load doctors. Please try again later.'));
-  }, []);
+  }, [axiosSecure]);
 
   useEffect(() => {
     const fetchSchedule = async () => {
       if (!selectedDate || !doctorId) return;
 
       try {
-        const res = await axios.get(`${import.meta.env.VITE_Url}/api/schedule?doctorId=${doctorId}&date=${selectedDate}`);
+        const res = await axiosSecure.get(`${import.meta.env.VITE_Url}/api/schedule?doctorId=${doctorId}&date=${selectedDate}`);
         setSlots(res.data.slots);
       } catch (err) {
         setSlots([]);
@@ -45,12 +45,12 @@ const BookSchedule = () => {
     };
 
     fetchSchedule();
-  }, [selectedDate, doctorId]);
+  }, [selectedDate, doctorId, axiosSecure]);
 
   const handleBooking = async (time) => {
     setLoading(true);
     try {
-      const res = await axios.post(`${import.meta.env.VITE_Url}/api/bookSchedule`, {
+      const res = await axiosSecure.post(`${import.meta.env.VITE_Url}/api/bookSchedule`, {
         doctorId,
         userId: userDatabaseInfo?._id,
         date: formattedDate ,

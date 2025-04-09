@@ -3,6 +3,7 @@ import { Loader } from "lucide-react";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const BookAppointment = () => {
   const plans = [
@@ -47,7 +48,7 @@ const BookAppointment = () => {
 
   const { userDatabaseInfo, user } = useContext(AuthContext);
   const [loadingButtons, setLoadingButtons] = useState({});
-
+  const axiosSecure = useAxiosSecure()
   const handlePayments = async (plan) => {
     setLoadingButtons((prev) => ({ ...prev, [plan]: true }));
 
@@ -63,7 +64,7 @@ const BookAppointment = () => {
     };
 
     try {
-      const { data } = await axios.post(
+      const { data } = await axiosSecure.post(
         `${import.meta.env.VITE_Url}/api/payment`,
         paymentData
       );

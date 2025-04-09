@@ -52,7 +52,7 @@ const Register = () => {
             await createUser(email, password);
             await updateUserProfile(name, photo);
             toast.success("Registration successful!");
-            await axios.post("http://localhost:5000/api/auth/register", userData);
+            await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
             navigate(location.state?.from || "/");
         } catch (error) {
             toast.error(error.message);
@@ -102,7 +102,7 @@ const Register = () => {
                 email: user.email,
                 photo: user.photoURL,
             };
-            await axios.post("http://localhost:5000/api/auth/register", userData);
+            await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
 
             console.log("User Data:", userData);
             toast.success(`Welcome, ${user.displayName}!`);
