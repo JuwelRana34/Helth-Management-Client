@@ -72,40 +72,39 @@ const AuthProvider = ({ children }) => {
     userinfoGet();
   }, [user?.email]);
 
-    useEffect(() => {
-        const unsubsribe = onAuthStateChanged(auth, currentUser => {
-
-            setUser(currentUser);
-            if(currentUser){
-                setLoading(false)
-            }
-         
-            // console.log(currentUser);
-            if(currentUser){
-                // get token and store client
-                const userInfo = {
-                    email : currentUser.email
-                }
-               
-                .then(res => {
-                    if(res.data.token){
-                        localStorage.setItem('access-token',res.data.token)
-                        setLoading(false)
-                    }
-                })
-            }
-            else{
-                // do something
-                localStorage.removeItem('access-token')
-            }
-            
-            setLoading(false);
-        })
-
-    return () => {
-      return unsubsribe();
-    };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setLoading(true);
+  
+      try {
+        if (currentUser) {
+          const { data } = await axios.post(
+            'http://localhost:5000/jwt',
+            { email: currentUser.email },
+            { withCredentials: true }
+          );
+          setUser(currentUser);
+          console.log(currentUser,'from test')
+        } else {
+          await axios.post(
+            'http://localhost:5000/logout',
+            {},
+            { withCredentials: true }
+          );
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error in auth state change handler:', error);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    });
+  
+    // Cleanup on component unmount
+    return () => unsubscribe();
   }, []);
+  
 
   const info = {
     user,
