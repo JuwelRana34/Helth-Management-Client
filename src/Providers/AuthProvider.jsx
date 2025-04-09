@@ -78,8 +78,8 @@ const AuthProvider = ({ children }) => {
   
       try {
         if (currentUser) {
-          const { data } = await axios.post(
-            'http://localhost:5000/jwt',
+           await axios.post(
+            `${import.meta.env.VITE_Url}/jwt`,
             { email: currentUser.email },
             { withCredentials: true }
           );
@@ -87,7 +87,7 @@ const AuthProvider = ({ children }) => {
           console.log(currentUser,'from test')
         } else {
           await axios.post(
-            'http://localhost:5000/logout',
+           ` ${import.meta.env.VITE_Url}/logout`,
             {},
             { withCredentials: true }
           );

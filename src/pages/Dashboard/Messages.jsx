@@ -5,7 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Chat from '../../components/messagecomponents/Chat';
 import useFetchData from '../../utils/fetchGetFunction';
 import toast from 'react-hot-toast';
-import AddProduct from '../../components/AddProduct';
+
 
 
 
@@ -112,11 +112,6 @@ function Messages() {
     </div>
   ))}
       </div>
-
-      <div>
-        <AddProduct/>
-      </div>
-
 
     </div>   
   );
