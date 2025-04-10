@@ -234,11 +234,11 @@ const OtherServices = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4"
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[599] p-4"
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md text-center"
+              className="bg-white p-2 rounded-xl shadow-lg w-full md:max-w-md text-center"
             >
               <h2 className="text-2xl font-bold text-blue-900">Contact Us</h2>
               <p className="text-gray-600 mt-2">
