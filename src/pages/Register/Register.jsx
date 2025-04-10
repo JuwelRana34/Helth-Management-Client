@@ -116,9 +116,9 @@ const Register = () => {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center p-6">
-            <div className="bg-white shadow-2xl rounded-lg w-full max-w-lg p-8">
-                <h1 className="text-3xl font-bold text-center text-gray-800">Create an Account</h1>
+        <div className="flex min-h-screen items-center justify-center p-6 bg-gradient-to-br from-lime-100 to-green-200">
+            <div className="bg-white shadow-2xl rounded-lg w-full max-w-lg p-4">
+                <h1 className="text-xl md:text-3xl font-bold text-center text-gray-800">Create an Account</h1>
                 <p className="text-center text-gray-500 mb-6">Join us and explore amazing features</p>
 
                 {/* Registration Form */}
@@ -145,7 +145,7 @@ const Register = () => {
 
                     <button
                         type="submit"
-                        className={`w-full py-2 text-white font-bold rounded-lg transition ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"}`}
+                        className={`w-full py-2 text-white font-bold rounded-lg transition ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-primary hover:bg-emerald-600"}`}
                         disabled={loading}
                     >
                         {loading ? "Creating Account..." : "Sign Up"}

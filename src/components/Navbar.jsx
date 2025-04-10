@@ -26,7 +26,7 @@ console.log(user,'user from nav')
           <h1 className="flex gap-1 items-center">
             <CiLocationOn /> Find Location
           </h1>
-          <h1 className="flex gap-1 items-center">Pay Your Bill</h1>
+          <Link to="/Subscription" className="flex gap-1 items-center">Pay Your Bill</Link>
         </div>
       </div>
 
@@ -34,7 +34,7 @@ console.log(user,'user from nav')
       <nav className=" bg-base-100 shadow-md sticky top-0 w-full z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
           {/* Logo */}
-          <NavLink to="/" className="text-2xl font-bold text-primary">
+          <NavLink to="/" className=" text-lg md:text-2xl font-bold text-primary">
             MediCare
           </NavLink>
 
@@ -70,13 +70,13 @@ console.log(user,'user from nav')
               Services
             </NavLink>
             <NavLink
-              to="/book-appoinment"
+              to="/Subscription"
               className={({ isActive }) =>
                 `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
-              Book Appoinment
+              Subscription
             </NavLink>
             <NavLink
               to="/Dashboard"
@@ -99,8 +99,8 @@ console.log(user,'user from nav')
             </button>
           ) : (
             <div className="flex space-x-3">
-              <Link to={'/login'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Login</Link>
-              <Link to={'/register'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Register</Link>
+              <Link to={'/login'} className="btn bg-primary px-3 md:px-6 py-1 rounded-md text-white">Login</Link>
+              <Link to={'/register'} className="btn bg-lime-600 px-3 md:px-6 py-1 rounded-md text-white">Register</Link>
             </div>
           )}
           {/* Mobile Menu Button */}
@@ -120,7 +120,7 @@ console.log(user,'user from nav')
             } md:hidden bg-white shadow-md`}
         >
           <ul className="flex flex-col items-center py-4 space-y-4">
-            {[ "About", "services","book-appoinment","Dashboard"].map((item, index) => (
+            {[ "About", "services","Subscription","Dashboard"].map((item, index) => (
               <li key={index}>
                 <NavLink
                   to={`/${item.toLowerCase().replace(/\s/g, "")}`}
