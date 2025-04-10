@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
 import useAuth from './useAuth';
 
 const useLoginUser = () => {
@@ -8,7 +7,7 @@ const useLoginUser = () => {
     const { data } = useQuery({
         queryKey: ['loginUser'],
         queryFn: async () => { 
-            const res = await axios.get("http://localhost:5000/api/users")
+            const res = await axios.get(`${import.meta.env.VITE_Url}/api/users`)
             return res.data;  // Return the fetched data
         }
     })
