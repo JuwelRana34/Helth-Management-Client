@@ -71,7 +71,9 @@ function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div 
+       style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
+      className="flex-1 flex flex-col h-screen  overflow-y-scroll">
         {/* Top Navbar */}
         <div className="p-4 shadow-md flex justify-between items-center md:pr-16">
           {/* Mobile Sidebar Toggle Button */}
@@ -148,7 +150,7 @@ function Dashboard() {
         </div>
 
         {/* Page Content */}
-        <div className="p-4 flex-1 overflow-scroll">
+         <div className="p-4 flex-1 ">
           <Outlet />
           <AiChatBox />
         </div>
@@ -192,7 +194,7 @@ const NavItem = ({ to, icon, label, collapsed, active }) => (
     <Link
       to={to}
       className={`flex items-center space-x-3 p-3 rounded-md transition-all ${
-        active ? "bg-blue-500" : "hover:bg-blue-500"
+        active ? "bg-emerald-500" : "hover:bg-emerald-400"
       }`}
     >
       <span className="text-white flex justify-center items-center">{icon}</span>

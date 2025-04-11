@@ -39,7 +39,7 @@ const PaymentTable = () => {
   ];
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto">
       <h2 className="text-2xl font-semibold mb-4">Payment History</h2>
       {loading ? (
         <p className="text-center text-gray-600">Loading payments...</p>
