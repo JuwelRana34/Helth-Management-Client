@@ -52,7 +52,7 @@ const OtherServices = () => {
 
   return (
     <div className="w-11/12 mx-auto py-10">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+      <div className="">
         <div className="lg:col-span-2">
           <p className="text-3xl font-bold text-primary">
             Senior Care Services
@@ -95,7 +95,7 @@ const OtherServices = () => {
             ))}
           </div>
         </div>
-        <div className="flex  mt-10 flex-col gap-6">
+        {/* <div className="flex  mt-10 flex-col gap-6">
           <div className="bg-blue-100 py-5 px-5 rounded-xl shadow-md border h-full border-gray-200 flex flex-col gap-3">
             <p className="text-xl font-bold text-primary mb-5">
               Other Services
@@ -119,7 +119,7 @@ const OtherServices = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
       {/* FAQ Section */}
       <div className="mt-12 bg-gray-50 p-2 md:p-4 rounded-xl shadow-sm">
@@ -223,7 +223,7 @@ const OtherServices = () => {
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
           onClick={togglePopup}
-          className="mt-4 bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-green-300"
+          className="mt-4 bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary"
         >
           Contact Us
         </motion.button>
