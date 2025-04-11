@@ -39,7 +39,7 @@ const Routes = () => {
                     element : <Services/>
                 },
                 {
-                    path : '/book-appoinment',
+                    path : '/Subscription',
                     element : <BookAppoinment></BookAppoinment>
                 },
                 {

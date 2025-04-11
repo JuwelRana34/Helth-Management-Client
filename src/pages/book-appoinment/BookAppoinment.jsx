@@ -82,17 +82,17 @@ const BookAppointment = () => {
     <section className="w-full max-w-7xl mx-auto px-4 py-16">
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-          Simple, <span className="text-[#1C5CBB]">Transparent</span> Pricing
+          Simple, <span className="text-primary">Transparent</span> Pricing
         </h2>
         <p className="mt-2 text-gray-500">No contract. No surprise fees.</p>
 
-        <div className="flex justify-center items-center gap-4 mt-4">
+        {/* <div className="flex justify-center items-center gap-4 mt-4">
           <span className="text-sm font-medium text-gray-700">
             20% Discount – Yearly Plan
           </span>
           <input type="checkbox" className="toggle toggle-primary" />
           <span className="text-sm font-medium text-gray-700">Pay Monthly</span>
-        </div>
+        </div> */}
       </div>
 
       <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-3">
@@ -102,11 +102,11 @@ const BookAppointment = () => {
             className="group relative p-8 bg-white rounded-2xl border border-gray-200 shadow-md transition hover:shadow-lg"
           >
             {/* Hover Background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1C5CBB] to-[#39B5A4] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-[#39B5A4] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
 
             <div className="relative z-10 text-gray-800 group-hover:text-white">
               {/* Plan Title */}
-              <h3 className="text-xl font-semibold mb-2 uppercase">
+              <h3 className="text-xl text-center mb-5 font-semibold mb-2 uppercase">
                 {plan.name}
               </h3>
 
@@ -134,7 +134,7 @@ const BookAppointment = () => {
                 className={`mt-6 w-full py-3 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md ${
                   loadingButtons[plan.plan]
                     ? "bg-gray-400 text-white cursor-not-allowed"
-                    : "bg-[#1C5CBB] text-white group-hover:bg-white group-hover:text-[#1C5CBB]"
+                    : "bg-primary text-white group-hover:bg-white group-hover:text-primary"
                 }`}
               >
                 {loadingButtons[plan.plan] ? (

@@ -105,12 +105,12 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-primary to-secondary py-10 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-lime-100 to-btnBg py-5 px-4">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col lg:flex-row gap-10 items-center p-10 bg-white rounded-xl shadow-2xl w-full max-w-5xl"
+        className="flex flex-col lg:flex-row gap-10 items-center  bg-white rounded-xl shadow-2xl w-full max-w-5xl"
       >
         <motion.div className="hidden lg:block w-1/2">
           <img
@@ -124,7 +124,7 @@ const Login = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-md p-8 bg-gray-100 rounded-lg shadow-lg"
+          className="w-full max-w-md p-2  rounded-lg shadow-lg"
         >
           <h1 className="text-center text-3xl font-bold text-gray-700 mb-6">Login</h1>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -147,7 +147,7 @@ const Login = () => {
             </div>
             <motion.button
               type="submit"
-              className="btn bg-emerald-200 border-emerald-300 text-primary w-full"
+              className="btn bg-primary  text-white w-full"
             >
               Login
             </motion.button>

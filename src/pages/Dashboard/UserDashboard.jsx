@@ -51,13 +51,13 @@ const Dashboard = () => {
   
 
   return (
-    <section className="p-6 min-h-screen">
+    <section className="min-h-screen">
       {/* Header */}
       <h1 className="text-3xl font-bold text-gray-700 mb-6">Welcome to Eres!</h1>
       <p className="text-gray-500 mb-6">Hospital Admin Dashboard Template</p>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <div className="bg-red-100 shadow-lg p-6 rounded-lg text-center">
           <FaHeart className="text-red-500 text-4xl mx-auto" />
           <h2 className="text-xl text-gray-600 mt-2">Total Patient</h2>
@@ -84,7 +84,7 @@ const Dashboard = () => {
       </div>
 
       {/* Revenue & Patient Statistics */}
-      <div className="grid grid-cols-2 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
         {/* Revenue Chart */}
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-xl font-bold text-gray-700">Revenue</h2>
@@ -101,9 +101,9 @@ const Dashboard = () => {
         </div>
 
         {/* Patient Statistics */}
-        <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="bg-white shadow-lg rounded-lg p-2">
           <h2 className="text-xl font-bold text-gray-700">Patient Statistics</h2>
-          <div className="flex space-x-4 mb-4">
+          <div className="flex space-x-2 mb-4">
             <button className="bg-green-500 text-white px-4 py-2 rounded-lg">Monthly</button>
             <button className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg">Weekly</button>
             <button className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg">Today</button>
@@ -122,7 +122,7 @@ const Dashboard = () => {
       </div>
 
       {/* New Section from Second Image */}
-      <div className="grid grid-cols-3 gap-6 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
         <div className="bg-yellow-100 shadow-lg p-6 rounded-lg text-center">
           <FaUserCheck className="text-yellow-500 text-4xl mx-auto" />
           <h2 className="text-xl text-gray-600 mt-2">New Registrations</h2>

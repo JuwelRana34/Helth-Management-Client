@@ -4,7 +4,7 @@ import ServiceSection from "../../components/section/ServiceSection";
 
 const Services = () => {
   return (
-    <div>
+    <div className="">
       <ServiceSection />
       <OtherServices />
     </div>
