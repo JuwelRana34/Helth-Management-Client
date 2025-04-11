@@ -76,7 +76,7 @@ const BookSchedule = () => {
   }));
 
   return (
-    <div className="p-6 max-w-lg mx-auto space-y-6 bg-white shadow-xl rounded-xl">
+    <div className="p-4 max-w-lg mx-auto space-y-6 bg-white shadow-xl rounded-xl">
       <h2 className="text-3xl font-semibold text-center text-primary">Book a Doctor&apos;s Appointment</h2>
 
       <div>
@@ -91,7 +91,7 @@ const BookSchedule = () => {
         />
       </div>
 
-      <div>
+      <div className='w-full'>
         <label className="block text-sm font-medium text-primary mb-2">Select Date</label>
         <DatePicker
           selected={selectedDate}
@@ -112,20 +112,20 @@ const BookSchedule = () => {
         <div className="space-y-4">
           {slots?.length > 0 ? (
             slots?.map(slot => (
-              <div key={slot.time} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm hover:bg-emerald-50 transition duration-200">
-                <span className="text-lg text-primary">{slot.time}</span>
+              <div key={slot.time} className="flex justify-between items-center bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm hover:bg-emerald-50 transition duration-200 space-x-2">
+                <span className=" text-sm md:text-lg text-primary">{slot.time}</span>
                 <span className="text-sm text-primary">{slot.bookedUsers.length}/{slot.maxBookings}</span>
                 <button
                   onClick={() => handleBooking(slot.time)}
                   disabled={slot.bookedUsers.length >= slot.maxBookings}
-                  className={`px-4 py-2 rounded-lg font-semibold ${slot.bookedUsers.length >= slot.maxBookings ? 'bg-emerald-400' : 'bg-btnBg text-primary hover:bg-emerald-300'}`}
+                  className={` px-3 md:px-4 py-2 rounded-lg font-semibold ${slot.bookedUsers.length >= slot.maxBookings ? 'bg-rose-500' : 'bg-btnBg text-primary hover:bg-emerald-300'}`}
                 >
                   {slot.bookedUsers.length >= slot.maxBookings ? 'Full' : 'Book'}
                 </button>
               </div>
             ))
           ) : (
-            <p className="text-primary">No available slots for the selected date.</p>
+            <p className="text-rose-500">No available slots for the selected date.</p>
           )}
         </div>
       )}
@@ -133,7 +133,7 @@ const BookSchedule = () => {
       {!isLoading ? (
         <div className="mt-6 space-y-4">
           {BookedSlots?.map((item, index) => (
-            <div key={index} className="border p-4 rounded-lg bg-emerald-100 shadow-md">
+            <div key={index} className="border p-4 rounded-lg bg-emerald-50 shadow-md">
               <h3 className="text-lg font-semibold text-primary">Doctor: {item.doctorName}</h3>
               <p className="text-sm text-primary">Time: {item.time}</p>
               <p className="text-sm text-primary">Date: {new Date(item.date).toDateString()}</p>

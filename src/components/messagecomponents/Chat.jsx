@@ -119,7 +119,7 @@ const Chat = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-4 bg-gray-50 shadow-lg rounded-lg flex h-[600px]">
+        <div className=" mx-w-3xl mx-auto p-4 bg-gray-50 shadow-lg rounded-lg md:flex h-[600px]">
             {isAdmin && (
                 <div className="w-1/3 bg-gray-100 p-3 rounded-lg overflow-auto">
                     <h3 className="font-semibold text-gray-700 mb-2">Active Users</h3>
@@ -173,7 +173,7 @@ const Chat = () => {
                     <div ref={messagesEndRef}></div>
                 </div>
 
-                <div className="mt-4 flex gap-2">
+                <div className="mt-4 w-1/2 mx-auto flex justify-center gap-2">
                     <input
                         type="text"
                         value={message}
