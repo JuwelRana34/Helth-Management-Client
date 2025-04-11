@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const ServiceSection = () => {
     return (
-        <div className="bg-gradient-to-l from-emerald-600 to-lime-600 text-white text-center py-20 px-6">
+        <div className="bg-[#143323] text-white text-center py-20 px-6">
             <p className="text-lg font-semibold uppercase tracking-wide">Join Our Dental Family</p>
             <h1 className="text-3xl md:text-6xl font-extrabold leading-tight mt-4">
                 Comprehensive Dental Care <br className="hidden md:block" /> for a Healthier Smile

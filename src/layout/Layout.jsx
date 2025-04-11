@@ -17,7 +17,7 @@ const Layout = () => {
 
 
     return (
-        <div className='font-roboto'>
+        <div className='font-roboto bg-[#f7f9f8]'>
             <Navbar />
             <div>
                 <Outlet/> 

@@ -4,7 +4,7 @@ import { FaEye, FaHeartbeat } from "react-icons/fa";
 const MissionVision = () => {
     return (
         <section
-            className="relative bg-cover bg-center bg-no-repeat py-20"
+            className="relative bg-cover bg-center bg-no-repeat py-20 bg-fixed"
             style={{
                 backgroundImage: "url('https://i.ibb.co.com/3m865ffp/pngtree-medical-practitioner-utilizing-advanced-computer-interface-in-healthcare-practice-photo-imag.jpg')",
             }}
@@ -17,12 +17,12 @@ const MissionVision = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Mission Card */}
-                    <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg">
-                        <div className="flex items-center gap-3 text-blue-600 text-2xl font-semibold mb-3">
+                    <div className="text-[#44c584] backdrop-blur-md p-6 rounded-2xl shadow-lg">
+                        <div className="flex items-center gap-3 text-#2F7A55 text-2xl font-semibold mb-3">
                             <FaHeartbeat />
-                            <span>Our Mission</span>
+                            <span className="text-white">Our Mission</span>
                         </div>
-                        <p className="text-gray-700">
+                        <p className="text-white">
                             To simplify healthcare management and improve patient care through
                             smart and efficient digital solutions that empower hospitals and
                             medical professionals.
@@ -30,12 +30,12 @@ const MissionVision = () => {
                     </div>
 
                     {/* Vision Card */}
-                    <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg">
-                        <div className="flex items-center gap-3 text-blue-600 text-2xl font-semibold mb-3">
+                    <div className=" backdrop-blur-md p-6 rounded-2xl shadow-lg">
+                        <div className="flex items-center gap-3 text-[#44c584] text-2xl font-semibold mb-3">
                             <FaEye />
-                            <span>Our Vision</span>
+                            <span className="text-white">Our Vision</span>
                         </div>
-                        <p className="text-gray-700">
+                        <p className="text-white">
                             To become a global leader in digital hospital management by
                             continuously innovating and making healthcare more connected,
                             accessible, and efficient.

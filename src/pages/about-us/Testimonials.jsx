@@ -7,7 +7,7 @@ const testimonials = [
     review: "A serene visit amidst anxiety. Finding a good dentist is challenging. Thankfully, I found MediCare.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/women/44.jpg",
-    bgColor: "bg-orange-100",
+    bgColor: "",
   },
   {
     name: "John D.",
@@ -15,7 +15,7 @@ const testimonials = [
     review: "I’ve been bringing my kids to MediCare for years, and they always have a great experience.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/men/45.jpg",
-    bgColor: "bg-blue-100",
+    bgColor: "",
   },
   {
     name: "Mike L.",
@@ -23,7 +23,7 @@ const testimonials = [
     review: "I recently had a dental emergency and was amazed at how quickly I was seen.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/men/46.jpg",
-    bgColor: "bg-yellow-100",
+    bgColor: "",
   },
   {
     name: "Mark T.",
@@ -31,7 +31,7 @@ const testimonials = [
     review: "I can’t thank the team at MediCare enough for their outstanding care and attention.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/men/47.jpg",
-    bgColor: "bg-indigo-100",
+    bgColor: "",
   },
   {
     name: "Emily W.",
@@ -39,7 +39,7 @@ const testimonials = [
     review: "Had a great visit to the dentist! Staff is friendly and professional.",
     rating: 5,
     img: "https://randomuser.me/api/portraits/women/48.jpg",
-    bgColor: "bg-green-100",
+    bgColor: "",
   },
   {
     name: "Emma S.",
@@ -47,7 +47,7 @@ const testimonials = [
     review: "Finding a great dentist is hard, but MediCare made it easy!",
     rating: 5,
     img: "https://randomuser.me/api/portraits/women/49.jpg",
-    bgColor: "bg-pink-100",
+    bgColor: "",
   },
 ];
 
