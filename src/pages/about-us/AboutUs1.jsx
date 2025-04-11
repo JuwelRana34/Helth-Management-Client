@@ -13,7 +13,7 @@ const AboutUs1 = () => {
                 
                 {/* Text Content */}
                 <div className="flex-1">
-                  <p className="text-yellow-500 font-medium tracking-wide uppercase">
+                  <p className="text-[#2F7A55] font-bold tracking-wide uppercase">
                     Our Journey & Success
                   </p>
                   <h2 className="text-3xl md:text-4xl font-bold text-gray-800 py-5 leading-snug">
