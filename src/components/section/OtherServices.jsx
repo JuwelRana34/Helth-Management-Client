@@ -223,7 +223,7 @@ const OtherServices = () => {
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
           onClick={togglePopup}
-          className="mt-4 bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary"
+          className="mt-4 bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-green-300"
         >
           Contact Us
         </motion.button>
