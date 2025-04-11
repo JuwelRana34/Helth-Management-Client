@@ -22,7 +22,19 @@ const serviceData = [
         title: "Mental Health Services",
         description: "Providing support for individuals dealing with mental health challenges such as anxiety, depression, and stress, through counseling, therapy, and tailored treatment plans for overall well-being.",
         icon: ""
-    }
+    },
+    {
+        id: 4,
+        title: "Mental Health Services",
+        description: "Providing support for individuals dealing with mental health challenges such as anxiety, depression, and stress, through counseling, therapy, and tailored treatment plans for overall well-being.",
+        icon: ""
+    },
+    {
+        id: 4,
+        title: "Mental Health Services",
+        description: "Providing support for individuals dealing with mental health challenges such as anxiety, depression, and stress, through counseling, therapy, and tailored treatment plans for overall well-being.",
+        icon: ""
+    },
 ];
 
 
