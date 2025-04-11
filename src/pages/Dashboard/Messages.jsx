@@ -59,7 +59,7 @@ function Messages() {
 
   return (
 
-    <div className="p-4">
+    <div className="">
       <form onSubmit={handleNotification} className="space-y-4 p-4 border rounded-lg shadow-md">
         <label htmlFor="notification" className="block text-sm font-medium text-gray-700">
           Notification Message
