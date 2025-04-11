@@ -1,8 +1,11 @@
 import React from 'react'
+import BookSchedule from '../../components/BookSchedule'
 
 function Schedule() {
   return (
-    <div>Schedule</div>
+    <div>
+      <BookSchedule/>
+    </div>
   )
 }
 

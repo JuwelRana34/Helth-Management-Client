@@ -65,18 +65,23 @@ function AiChatBox() {
   return (
     <>
       {/* Chat Toggle Button */}
-      <div onClick={toggleChatBox} className="fixed bottom-2  right-2 cursor-pointer group z-[500]">
-        <div className="relative w-24">
-          <Player
-            src="https://lottie.host/e7819edb-b329-4d03-8993-37fea417d89c/jOi4iKKqHn.json"
-            className="player group-hover:scale-110 transition-all rounded-full"
+      <div onClick={toggleChatBox} className="fixed bottom-5  right-5 cursor-pointer group z-[500]">
+         
+        <div className="relative w-16 ">
+            <Player          
+            src="https://lottie.host/27382917-f47a-4331-92aa-9dbd194d0c75/hYtHP7bmvF.json"          
+            className="player group-hover:scale-110 transition-all rounded-full "
             loop
             autoplay
           />
-          <p className="absolute inset-0 flex items-center justify-center text-black font-semibold text-xl z-10 group-hover:scale-110 transition-all">
+          
+          
+          {/* <p className="absolute inset-0 flex items-center justify-center text-black font-semibold text-xl z-10 group-hover:scale-110 transition-all">
             AI
-          </p>
+          </p> */}
+        
         </div>
+
       </div>
 
       {/* Chat Box */}

@@ -18,8 +18,11 @@ export default {
         },
       },
       colors: {
-        primary: '#1C5CBB',
-        secondary: '#39B5A4',
+        primary: 'oklch(50.8% 0.118 165.612)',
+        secondary: 'oklch(70.4% 0.04 256.788)',
+        btnBg:"oklch(90.5% 0.093 164.15)",
+        textcolor:"oklch(58.8% 0.158 241.966)"
+
       },
       fontFamily: {
         lato: ['Lato', 'sans-serif'],

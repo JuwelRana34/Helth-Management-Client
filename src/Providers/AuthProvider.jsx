@@ -40,10 +40,10 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateUserProfile = (name, photo) => {
+  const updateUserProfile = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
+  
     });
   };
 
@@ -72,40 +72,39 @@ const AuthProvider = ({ children }) => {
     userinfoGet();
   }, [user?.email]);
 
-    useEffect(() => {
-        const unsubsribe = onAuthStateChanged(auth, currentUser => {
-
-            setUser(currentUser);
-            if(currentUser){
-                setLoading(false)
-            }
-         
-            // console.log(currentUser);
-            if(currentUser){
-                // get token and store client
-                const userInfo = {
-                    email : currentUser.email
-                }
-               
-                .then(res => {
-                    if(res.data.token){
-                        localStorage.setItem('access-token',res.data.token)
-                        setLoading(false)
-                    }
-                })
-            }
-            else{
-                // do something
-                localStorage.removeItem('access-token')
-            }
-            
-            setLoading(false);
-        })
-
-    return () => {
-      return unsubsribe();
-    };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setLoading(true);
+  
+      try {
+        if (currentUser) {
+           await axios.post(
+            `${import.meta.env.VITE_Url}/jwt`,
+            { email: currentUser.email },
+            { withCredentials: true }
+          );
+          setUser(currentUser);
+          console.log(currentUser,'from test')
+        } else {
+          await axios.post(
+           ` ${import.meta.env.VITE_Url}/logout`,
+            {},
+            { withCredentials: true }
+          );
+          setUser(null);
+        }
+      } catch (error) {
+        console.error('Error in auth state change handler:', error);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    });
+  
+    // Cleanup on component unmount
+    return () => unsubscribe();
   }, []);
+  
 
   const info = {
     user,

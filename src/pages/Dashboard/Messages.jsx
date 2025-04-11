@@ -9,12 +9,15 @@ import toast from 'react-hot-toast';
 
 
 
+
 function Messages() {
   const {setNotifi} = useContext(AuthContext)
   const queryClient = useQueryClient();
   const [notificationText, setNotificationText] = useState('');
 
   const { data: notifications, refetch, isLoading, isError } = useFetchData('getNotifications', 'notifications');
+  
+  const { data: Contacts, refetch:contactRefetch , isLoading:ContactLoading } = useFetchData('getContact', 'contact');
   
   useEffect(() => {
     setNotifi(notifications)
@@ -96,12 +99,20 @@ function Messages() {
         </ul>
       )}
 
-      {/* <p className="font-semibold text-4xl capitalize text-red-500">
-        Added later <span className="text-green-500">thank you. ⚠</span>
-      </p> */}
-
       <Chat/>
-      {/* <AdminChat/> */}
+
+      {/* contact messages  */}
+       
+      <div className="space-y-4">
+  {Contacts?.map((contact) => (
+    <div key={contact._id} className="p-4 border rounded-md shadow-sm bg-gradient-to-r from-blue-200 via-violet-100 to-pink-50 ">
+      <h2 className="text-lg font-semibold">Name: {contact.name}</h2>
+      <p className="text-sm text-gray-700">Email: {contact.email}</p>
+      <p className="text-sm text-gray-700">Message: {contact.message}</p>
+    </div>
+  ))}
+      </div>
+
     </div>   
   );
 }
