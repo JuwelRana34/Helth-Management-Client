@@ -48,7 +48,8 @@ const BookAppointment = () => {
 
   const { userDatabaseInfo, user } = useContext(AuthContext);
   const [loadingButtons, setLoadingButtons] = useState({});
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+
   const handlePayments = async (plan) => {
     setLoadingButtons((prev) => ({ ...prev, [plan]: true }));
 
@@ -85,67 +86,52 @@ const BookAppointment = () => {
           Simple, <span className="text-primary">Transparent</span> Pricing
         </h2>
         <p className="mt-2 text-gray-500">No contract. No surprise fees.</p>
-
-        {/* <div className="flex justify-center items-center gap-4 mt-4">
-          <span className="text-sm font-medium text-gray-700">
-            20% Discount – Yearly Plan
-          </span>
-          <input type="checkbox" className="toggle toggle-primary" />
-          <span className="text-sm font-medium text-gray-700">Pay Monthly</span>
-        </div> */}
       </div>
 
       <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan, index) => (
           <div
             key={index}
-            className="group relative p-8 bg-white rounded-2xl border border-gray-200 shadow-md transition hover:shadow-lg"
-          >
-            {/* Hover Background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-[#39B5A4] opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl"></div>
-
-            <div className="relative z-10 text-gray-800 group-hover:text-white">
-              {/* Plan Title */}
-              <h3 className="text-xl text-center mb-5 font-semibold mb-2 uppercase">
+            className="relative flex flex-col  justify-between p-8 bg-white rounded-2xl border border-gray-200 shadow-md h-[500px]"
+          >   
+            <div>
+              <h3 className="text-xl text-center font-semibold uppercase text-gray-800 mb-5">
                 {plan.name}
               </h3>
 
-              {/* Price */}
               <div className="flex justify-center items-center mb-4">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className="ml-2 text-lg font-medium opacity-80">
+                <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                <span className="ml-2 text-lg font-medium text-gray-500">
                   / {plan.duration}
                 </span>
               </div>
 
-              {/* Features */}
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-3 text-sm mt-10 text-gray-700 mb-0">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     ✅ {feature}
                   </li>
                 ))}
               </ul>
-
-              {/* Subscribe Button */}
-              <button
-                onClick={() => handlePayments(plan.plan)}
-                disabled={loadingButtons[plan.plan]}
-                className={`mt-6 w-full py-3 rounded-lg text-sm font-semibold transition-all duration-300 shadow-md ${
-                  loadingButtons[plan.plan]
-                    ? "bg-gray-400 text-white cursor-not-allowed"
-                    : "bg-primary text-white group-hover:bg-white group-hover:text-primary"
-                }`}
-              >
-                {loadingButtons[plan.plan] ? (
-                  <div className="flex justify-center items-center gap-2 animate-pulse">
-                    Processing <Loader className="animate-spin" size={18} />
-                  </div>
-                ) : (
-                  plan.button
-                )}
-              </button>
             </div>
+
+            <button
+              onClick={() => handlePayments(plan.plan)}
+              disabled={loadingButtons[plan.plan]}
+              className={`w-full mt-auto py-3 rounded-lg text-sm font-semibold shadow-md transition-all duration-300 ${
+                loadingButtons[plan.plan]
+                  ? "bg-gray-400 text-white cursor-not-allowed"
+                  : "bg-primary text-white hover:bg-primary/90"
+              }`}
+            >
+              {loadingButtons[plan.plan] ? (
+                <div className="flex justify-center items-center gap-2 animate-pulse">
+                  Processing <Loader className="animate-spin" size={18} />
+                </div>
+              ) : (
+                plan.button
+              )}
+            </button>
           </div>
         ))}
       </div>
