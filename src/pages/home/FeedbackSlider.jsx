@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
+import { FaStar } from "react-icons/fa";
 import "swiper/css";
-import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
@@ -10,7 +10,7 @@ const testimonials = [
     name: "Ronald Richards",
     role: "Patient",
     feedback:
-      "I couldn’t be happier with the results of my rhinoplasty procedure at Mavis. Dr. Ryan Taylor and the entire team were incredibly supportive throughout the entire process.My physiotherapy sessions at Mavis helped me regain mobility faster than I expected. Highly skilled professionals with a patient-first approach.",
+      "I couldn’t be happier with the results of my rhinoplasty procedure at Mavis. Dr. Ryan Taylor and the entire team were incredibly supportive throughout. My physiotherapy sessions helped me regain mobility faster than I expected.",
     avatar: "https://randomuser.me/api/portraits/men/10.jpg",
     rating: 5,
   },
@@ -18,7 +18,7 @@ const testimonials = [
     name: "Wade Warren",
     role: "Doctor",
     feedback:
-      "After years of struggling with stubborn fat pockets, I finally decided to try liposuction at Mavis. The results exceeded my expectations! Dr. Isabella and his team were professional, caring, and attentive to my needs.",
+      "After years of struggling with stubborn fat, I tried liposuction at Mavis. The results were amazing! Dr. Isabella and team were professional, caring, and attentive to my needs.",
     avatar: "https://randomuser.me/api/portraits/men/20.jpg",
     rating: 5,
   },
@@ -26,7 +26,7 @@ const testimonials = [
     name: "Ralph Edwards",
     role: "Eye Patient",
     feedback:
-      "The team at Mavis provided exceptional service. My cataract surgery was smooth, and I now have perfect vision. I’m so grateful for the amazing care I received. Highly recommend!",
+      "The Mavis team was exceptional. My cataract surgery was smooth and now I have perfect vision. I'm so grateful for the amazing care I received!",
     avatar: "https://randomuser.me/api/portraits/men/30.jpg",
     rating: 5,
   },
@@ -34,7 +34,7 @@ const testimonials = [
     name: "Kathryn Murphy",
     role: "Heart Patient",
     feedback:
-      "Mavis saved my life with their advanced cardiac care. The doctors were knowledgeable, and the staff was compassionate throughout my recovery process.",
+      "Mavis saved my life with advanced cardiac care. The doctors were skilled and the staff was incredibly compassionate during my recovery.",
     avatar: "https://randomuser.me/api/portraits/women/40.jpg",
     rating: 5,
   },
@@ -42,59 +42,60 @@ const testimonials = [
 
 const FeedbackSlider = () => {
   return (
-    <div className="py-16  rounded-xl w-11/12 mx-auto text-center">
-      {/* Heading Section */}
-      <div className="mb-12">
-        <p className="text-md font-semibold text-cyan-600 uppercase tracking-widest">Client Feedback</p>
-        <h2 className="text-4xl font-bold text-gray-800 leading-snug mt-2">
-          Words of Satisfaction:{" "}
-          <span className="italic text-primary">Life-Changing Experiences</span>  
+    <section className="py-20 ">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold text-gray-800">
+          What Our Patients Say
         </h2>
-        <p className="text-gray-500 mt-3 text-lg">
-          Hear what our esteemed patients have to say about their experiences.
+        <p className="text-gray-500 text-lg mt-3">
+          Trusted experiences. Real feedback.
         </p>
       </div>
 
-      {/* Swiper Slider */}
       <Swiper
-        effect="coverflow"
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={2}
+        spaceBetween={30}
         loop={true}
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        coverflowEffect={{
-          rotate: 30,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
+        autoplay={{ delay: 5000, disableOnInteraction: false }}
         pagination={{ clickable: true }}
-        modules={[EffectCoverflow, Pagination, Autoplay]}
-        className="w-full"
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        modules={[Autoplay, Pagination]}
+        className="max-w-7xl mx-auto px-4"
       >
         {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={index} className="flex justify-center">
-            <div className="py-20 px-4 bg-white rounded-xl  shadow-lg h-96 flex flex-col">
-              <p className="text-gray-600 text-md italic line-clamp-4 flex-grow">“{testimonial.feedback}”</p>
-              <div className="flex items-center justify-center mt-2">
+          <SwiperSlide key={index}>
+            <div className="bg-white border border-gray-100 p-6 rounded-xl shadow-sm h-[360px] flex flex-col justify-between transition hover:shadow-md">
+              <p className="text-gray-600 text-base line-clamp-5">
+                “{testimonial.feedback}”
+              </p>
+              <div className="flex items-center gap-4 mt-6">
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-14 h-14 rounded-full border-2 border-purple-500"
+                  className="w-14 h-14 rounded-full object-cover border border-gray-200"
                 />
-                <div className="ml-4 text-left">
-                  <h4 className="font-bold text-gray-800">{testimonial.name}</h4>
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-800">
+                    {testimonial.name}
+                  </h4>
                   <p className="text-sm text-gray-500">{testimonial.role}</p>
-                  <p className="text-yellow-500 mt-1">{"⭐".repeat(testimonial.rating)}</p>
+                  <div className="flex text-yellow-400 mt-1">
+                    {Array(testimonial.rating)
+                      .fill(0)
+                      .map((_, i) => (
+                        <FaStar key={i} size={14} />
+                      ))}
+                  </div>
                 </div>
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 
