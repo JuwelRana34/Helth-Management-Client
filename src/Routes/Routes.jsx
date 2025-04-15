@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import Layout from '../layout/Layout';
 import Home from '../pages/Home';
@@ -18,9 +18,11 @@ import PrivateRoute from './PrivateRoute';
 import AddDoctor from '../pages/Dashboard/AddDoctor';
 import PaymentFail from '../pages/payments/PaymentFail';
 import PaymentSuccess from '../pages/payments/PaymentSuccess';
-
+import AdminRoute from './AdminRoute';
 
 const Routes = () => {
+
+    
     const route = createBrowserRouter([
         {
             path : '/',
@@ -58,14 +60,7 @@ const Routes = () => {
                     path : '/paymentFailure',
                     element : <PaymentFail/>
                 },
-                {
-                    path : '/paymentSuccess',
-                    element : <PaymentSuccess/>
-                },
-                {
-                    path : '/paymentFailure',
-                    element : <PaymentFail/>
-                },
+
             ]
         },
         {
@@ -74,18 +69,18 @@ const Routes = () => {
                 <Dashboard/>
             </PrivateRoute>,
             children : [
+                {  index : true,
+                    element : <Patients/>
+                },
                 {
-                    index : true,
-                    element : <UserDashboard/>
+                    path:"AdminDashboard",
+                    element : <AdminRoute> <UserDashboard/> </AdminRoute> 
                 },
                 {
                     path:"schedule",
                     element : <Schedule/>
                 },
-                {
-                    path :"patient",
-                    element : <Patients/>
-                },
+                
                 {
                     path :"doctor",
                     element : <Doctor/>
@@ -100,7 +95,7 @@ const Routes = () => {
                 },
                 {
                     path :"add-doctor",
-                    element : <AddDoctor/>
+                    element :<AdminRoute> <AddDoctor/> </AdminRoute>  
                 },
                 
             ]
