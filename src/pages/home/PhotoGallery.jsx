@@ -25,19 +25,19 @@ const images = [
 
 const PhotoGallery = () => {
   return (
-    <div className="pb-20 w-11/12 mx-auto px-5 rounded-xl">
-      <div className="flex justify-between items-center mb-6">
-        <div>
+    <div className="pb-10 w-11/12 mx-auto px-0 rounded-xl">
+      <div className=" md:flex justify-between items-center mb-6">
+        <div className="text-center md:text-start">
           <p className="text-sm font-semibold text-gray-500">Photo Gallery</p>
           <h2 className="text-3xl font-bold text-gray-800">
             Explore Our Extensive Photo Gallery <br />
             Showcasing Stunning{" "}
-            <span className="italic text-[#1C5CBB]">Before-and-After</span>{" "}
+            <span className="italic text-primary">Before-and-After</span>{" "}
             Transformations
           </h2>
         </div>
         <button
-          className="text-gray-600 hover:text-purple-700 transition-all text-sm font-semibold flex items-center gap-1"
+          className="text-gray-600 hover:text-primary transition-all text-sm font-semibold flex items-center gap-1"
         >
           View All From Gallery →
         </button>

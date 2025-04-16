@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { otherServiceData, serviceData } from "../../utils/serviceData";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
+import axios from "axios"
 
 const OtherServices = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
@@ -22,12 +23,17 @@ const OtherServices = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+    try {
+        await axios.post(`${import.meta.env.VITE_Url}/api/Contact`,formData)
     setIsPopupOpen(false);
     setFormData({ name: "", email: "", message: "" });
     toast.success("Form Data Submit Success");
+    } catch (error) {
+       console.log(error)
+    }
+   
   };
   const Faq = [
     {
@@ -46,9 +52,9 @@ const OtherServices = () => {
 
   return (
     <div className="w-11/12 mx-auto py-10">
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
+      <div className="">
         <div className="lg:col-span-2">
-          <p className="text-3xl font-bold text-blue-900">
+          <p className="text-3xl font-bold text-primary">
             Senior Care Services
           </p>
           <p className="py-5 text-gray-700 leading-relaxed">
@@ -59,7 +65,7 @@ const OtherServices = () => {
             activities. Our team is dedicated to making life easier, more
             enjoyable, and comfortable for your loved ones.
           </p>
-          <p className="font-bold mb-5 text-blue-800">
+          <p className="font-bold mb-5 text-primary">
             Experience the best senior care services with us.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
@@ -73,11 +79,11 @@ const OtherServices = () => {
                   alt="Service Icon"
                   className="w-12 h-12 mb-3"
                 /> */}
-                <p className="text-xl font-semibold text-blue-900">
+                <p className="text-xl font-semibold text-primary">
                   {item?.title}
                 </p>
                 <p className="text-gray-600 py-3">{item?.description}</p>
-                <p className="flex items-center gap-2 text-blue-700 font-medium cursor-pointer hover:underline">
+                <p className="flex items-center gap-2 text-primary font-medium cursor-pointer hover:underline">
                   Learn More{" "}
                   <img
                     className="w-8 ml-2 rounded-full"
@@ -89,9 +95,9 @@ const OtherServices = () => {
             ))}
           </div>
         </div>
-        <div className="flex  mt-10 flex-col gap-6">
+        {/* <div className="flex  mt-10 flex-col gap-6">
           <div className="bg-blue-100 py-5 px-5 rounded-xl shadow-md border h-full border-gray-200 flex flex-col gap-3">
-            <p className="text-xl font-bold text-blue-900 mb-5">
+            <p className="text-xl font-bold text-primary mb-5">
               Other Services
             </p>
             {otherServiceData?.map((item) => (
@@ -113,11 +119,11 @@ const OtherServices = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
       {/* FAQ Section */}
       <div className="mt-12 bg-gray-50 p-2 md:p-4 rounded-xl shadow-sm">
-        <p className="text-3xl font-bold text-blue-900 text-center">
+        <p className="text-3xl font-bold text-primary text-center">
           <img
             className="w-10 inline"
             src="https://cdn-icons-png.flaticon.com/128/2608/2608208.png"
@@ -159,8 +165,8 @@ const OtherServices = () => {
         </div>
       </div>
       {/*  Our Process */}
-      <div className="mt-12 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 py-10 rounded-xl shadow-lg">
-        <p className="text-3xl font-bold text-blue-900 text-center">
+      <div className="mt-12 bg-white py-10 rounded-xl shadow-lg">
+        <p className="text-3xl font-bold text-primary text-center">
           Our Process
         </p>
         <div className="flex flex-col md:flex-row justify-center items-center gap-6 mt-6">
@@ -186,22 +192,22 @@ const OtherServices = () => {
           ].map((item) => (
             <div
               key={item.id}
-              className={`${item.bg} p-6 rounded-xl shadow-md border border-gray-300 text-center transform transition duration-300 hover:scale-105`}
+              className={`bg-[#F7F9F8] p-6 rounded-xl shadow-md border border-gray-300 text-center transform transition duration-300 hover:scale-105`}
             >
-              <p className="text-xl font-semibold text-blue-900">{item.step}</p>
+              <p className="text-xl font-semibold text-primary">{item.step}</p>
               <p className="text-gray-700 mt-2">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
       {/* get in tuch  */}
-      <section className="mt-10 bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 p-6 rounded-xl shadow-md text-center">
+      <section className="mt-10 bg-white p-6 rounded-xl shadow-md text-center">
         <motion.p
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-blue-900 flex justify-center items-center"
+          className="text-3xl font-bold text-primary flex justify-center items-center"
         >
           <img
             className="w-10 mx-2"
@@ -217,7 +223,7 @@ const OtherServices = () => {
           whileTap={{ scale: 0.9 }}
           whileHover={{ scale: 1.1 }}
           onClick={togglePopup}
-          className="mt-4 bg-blue-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800"
+          className="mt-4 bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-green-300"
         >
           Contact Us
         </motion.button>
@@ -228,11 +234,11 @@ const OtherServices = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4"
+            className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[599] p-4"
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md text-center"
+              className="bg-white p-2 rounded-xl shadow-lg w-full md:max-w-md text-center"
             >
               <h2 className="text-2xl font-bold text-blue-900">Contact Us</h2>
               <p className="text-gray-600 mt-2">

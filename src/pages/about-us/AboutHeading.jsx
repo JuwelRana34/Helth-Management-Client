@@ -4,13 +4,16 @@ const AboutHeading = () => {
   return (
     <div
       className="relative w-full h-[300px] md:h-[400px] flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('https://i.ibb.co.com/rfsmVNZ4/image-2022-01-04-T09-35-54-562-Z.png')" }}
+      style={{
+        backgroundImage:
+          "url('https://i.ibb.co.com/MkHXZCT3/portrait-smiling-young-doctors-standing-together-portrait-medical-staff-inside-modern-hospital-smili.jpg')",
+      }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+      {/* Overlay: Soft gradient + dark layer for better contrast */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60"></div>
 
       {/* Heading */}
-      <h1 className="relative text-white text-3xl md:text-5xl font-bold tracking-wide underline">
+      <h1 className="relative text-white text-4xl md:text-6xl font-extrabold tracking-wide drop-shadow-md">
         About Us
       </h1>
     </div>
