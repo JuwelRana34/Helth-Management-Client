@@ -1,9 +1,9 @@
-import axios from "axios";
-import { Loader } from "lucide-react";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import PricingCard from "../../components/PricingCard";
+import Swal from "sweetalert2";
 
 const BookAppointment = () => {
   const plans = [
@@ -51,8 +51,7 @@ const BookAppointment = () => {
   const axiosSecure = useAxiosSecure();
 
   const handlePayments = async (plan) => {
-    setLoadingButtons((prev) => ({ ...prev, [plan]: true }));
-
+  
     const paymentData = {
       plan,
       cus_name: user?.displayName,
@@ -64,75 +63,60 @@ const BookAppointment = () => {
       cancel_url: "https://healthcarebd2.netlify.app/paymentFailure",
     };
 
-    try {
-      const { data } = await axiosSecure.post(
-        `${import.meta.env.VITE_Url}/api/payment`,
-        paymentData
-      );
-      window.location.href = data?.payment_url;
-      toast.success("Redirecting to the payment page...");
-    } catch (error) {
-      console.error(error);
-      toast.error("Payment failed. Please try again.");
-    } finally {
-      setLoadingButtons((prev) => ({ ...prev, [plan]: false }));
-    }
+    Swal.fire({
+      title: `Are you sure to Subscribe ${plan} ?`,
+      text: "",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Subscribe!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setLoadingButtons((prev) => ({ ...prev, [plan]: true }));
+
+        try {
+          const { data } = await axiosSecure.post(
+            `${import.meta.env.VITE_Url}/api/payment`,
+            paymentData
+          );
+          window.location.href = data?.payment_url;
+          toast.success("Redirecting to the payment page...");
+        } catch (error) {
+          console.error(error);
+          toast.error("Payment failed. Please try again.");
+        } finally {
+          setLoadingButtons((prev) => ({ ...prev, [plan]: false }));
+        }
+      }
+    });
+
   };
 
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-16">
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-          Simple, <span className="text-primary">Transparent</span> Pricing
+          Simple,{" "}
+          <span className=" bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500">
+            Transparent
+          </span>{" "}
+          Pricing
         </h2>
         <p className="mt-2 text-gray-500">No contract. No surprise fees.</p>
       </div>
 
       <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan, index) => (
-          <div
+          <PricingCard
+            loadingButtons={loadingButtons}
+            handlePayments={handlePayments}
             key={index}
-            className="relative flex flex-col  justify-between p-8 bg-white rounded-2xl border border-gray-200 shadow-md h-[500px]"
-          >   
-            <div>
-              <h3 className="text-xl text-center font-semibold uppercase text-gray-800 mb-5">
-                {plan.name}
-              </h3>
-
-              <div className="flex justify-center items-center mb-4">
-                <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                <span className="ml-2 text-lg font-medium text-gray-500">
-                  / {plan.duration}
-                </span>
-              </div>
-
-              <ul className="space-y-3 text-sm mt-10 text-gray-700 mb-0">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    ✅ {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <button
-              onClick={() => handlePayments(plan.plan)}
-              disabled={loadingButtons[plan.plan]}
-              className={`w-full mt-auto py-3 rounded-lg text-sm font-semibold shadow-md transition-all duration-300 ${
-                loadingButtons[plan.plan]
-                  ? "bg-gray-400 text-white cursor-not-allowed"
-                  : "bg-primary text-white hover:bg-primary/90"
-              }`}
-            >
-              {loadingButtons[plan.plan] ? (
-                <div className="flex justify-center items-center gap-2 animate-pulse">
-                  Processing <Loader className="animate-spin" size={18} />
-                </div>
-              ) : (
-                plan.button
-              )}
-            </button>
-          </div>
+            type={plan.plan}
+            title={plan.name}
+            price={plan.price}
+            features={plan.features}
+          />
         ))}
       </div>
     </section>
