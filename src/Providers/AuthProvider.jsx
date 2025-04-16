@@ -24,6 +24,19 @@ const AuthProvider = ({ children }) => {
   const [userDatabaseInfo, setUserDatabaseInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notifi, setNotifi] = useState([]);
+  const [isAdmin , setIsAdmin]= useState(false)
+  useEffect(()=>{
+    if(userDatabaseInfo?.role === "admin"){
+      
+      setIsAdmin(true)
+    }else{
+      setIsAdmin(false)
+    }
+    
+  },[userDatabaseInfo, userDatabaseInfo?.role])
+
+
+
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -118,7 +131,8 @@ const AuthProvider = ({ children }) => {
     setDarkMode,
     notifi,
     setNotifi,
-    userDatabaseInfo
+    userDatabaseInfo,
+    isAdmin
   };
 
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;

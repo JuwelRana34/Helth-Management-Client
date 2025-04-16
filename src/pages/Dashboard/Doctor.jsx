@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import useFetchData from "../../utils/fetchGetFunction";
 import { DeleteIcon, Mail, PhoneCall, Stethoscope, X } from "lucide-react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 function Doctor() {
+  const {isAdmin} = useContext(AuthContext)
   const { data, isLoading, isError, refetch } = useFetchData("getDoctors", "doctor");
 
   if (isLoading) return <p className="text-center text-lg font-semibold">Loading...</p>;
@@ -52,9 +54,11 @@ function Doctor() {
             whileTap={{ scale: 0.98 }}
             className="bg-white relative shadow-xl rounded-2xl overflow-hidden border p-5 hover:shadow-2xl transition duration-300 flex flex-col"
           >
+            { isAdmin && 
             <button onClick={()=>handelDoctorDelete(doctor._id)} className="absolute top-0 right-2">
             <DeleteIcon size={24} className=" text-red-600"/>
             </button>
+            }
             <img
               src={doctor.image}
               alt={doctor.name}

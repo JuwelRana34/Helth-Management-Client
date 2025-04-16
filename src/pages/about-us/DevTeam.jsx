@@ -25,7 +25,7 @@ const teamMembers = [
     ]
   },
   {
-    name: "MD.Juwel Rana ",
+    name: "MD. Juwel Rana ",
     role: "Full Stack Developer",
     description: "Responsible for managing both client-side and server-side operations,also functionality between the frontend and backend",
     avatar: "https://avatars.githubusercontent.com/u/91797864?v=4",
@@ -34,7 +34,19 @@ const teamMembers = [
       { href: "https://www.linkedin.com/in/md-juwel-rana-14b563204/", icon: <Linkedin /> },
       { href: "https://github.com/JuwelRana34", icon: <Github />}
     ]
-  }
+  },
+  {
+    name: "MD. Ruhul Amin Rahat",
+    role: "MERN Stack Developer",
+    description: "Focused on crafting beautiful, responsive UI designs and implementing secure private routes to ensure user access control, contributing to both aesthetics and functionality of the website.",
+    avatar: "https://i.ibb.co.com/3RJ4XKZ/profile.jpg",
+    socialLinks: [
+      { href: "https://rahat-dev.surge.sh/", icon: <Unlink /> },
+      { href: "https://www.linkedin.com/in/ruhul-amin-rahat17/", icon: <Linkedin /> },
+      { href: "https://github.com/rahat0078", icon: <Github />}
+    ]
+  },
+
 ];
 
 const DevTeam = () => {
