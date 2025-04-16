@@ -228,7 +228,7 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           </>
         )}
         <NavItem
-          to="/"
+           to="/Dashboard"
           icon={<Users size={28} />}
           label="Profile"
           collapsed={isCollapsed}

@@ -68,13 +68,13 @@ function AiChatBox() {
       <div onClick={toggleChatBox} className="fixed bottom-5  right-5 cursor-pointer group z-[500]">
          
         <div className="relative w-16 ">
-            <Player          
+            {/* <Player          
             src="https://lottie.host/27382917-f47a-4331-92aa-9dbd194d0c75/hYtHP7bmvF.json"          
             className="player group-hover:scale-110 transition-all rounded-full "
             loop
             autoplay
-          />
-          
+          /> */}
+           <img className=' rounded-full' src="https://i.ibb.co.com/mrcCy1Yn/Screenshot-66.png" alt="AI" />
           
           {/* <p className="absolute inset-0 flex items-center justify-center text-black font-semibold text-xl z-10 group-hover:scale-110 transition-all">
             AI
