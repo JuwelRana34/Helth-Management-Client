@@ -51,7 +51,7 @@ const Dashboard = () => {
   
 
   return (
-    <section className="min-h-screen">
+    <section className="p-6 bg-gray-100 min-h-screen">
       {/* Header */}
       <h1 className="text-3xl font-bold text-gray-700 mb-6">Welcome to Eres!</h1>
       <p className="text-gray-500 mb-6">Hospital Admin Dashboard Template</p>
