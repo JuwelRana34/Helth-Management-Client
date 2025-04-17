@@ -77,13 +77,26 @@ const Patients = () => {
           <div className="grid grid-cols-2 mt-4">
             <div className="p-2 border text-center">
               <p className="text-gray-600 text-sm">Tickets</p>
-              <p className={`text-lg font-bold ${userDatabaseInfo?.ticket <= 10 ? "text-red-500":'text-gray-600'}`}>{userDatabaseInfo?.ticket}</p>
+              <p
+                className={`text-lg font-bold ${
+                  (userDatabaseInfo?.subscriptionPlan === "basic" &&
+                    userDatabaseInfo?.ticket <= 10) ||
+                  userDatabaseInfo?.subscriptionPlan === ""
+                    ? "text-red-500"
+                    : "text-green-600"
+                }`}
+              >
+                {userDatabaseInfo?.subscriptionPlan === "basic" ||
+                userDatabaseInfo?.subscriptionPlan === ""
+                  ? userDatabaseInfo?.ticket
+                  : "Unlimited"}
+              </p>
             </div>
             <div className="p-2 border text-center">
               <p className="text-gray-600 text-sm">subscriptionPlan</p>
               <p className="text-lg font-bold text-primary">
                 {userDatabaseInfo?.subscriptionPlan === "" ? (
-                  <p>😢</p>
+                  <p>N/A</p>
                 ) : (
                   userDatabaseInfo?.subscriptionPlan
                 )}

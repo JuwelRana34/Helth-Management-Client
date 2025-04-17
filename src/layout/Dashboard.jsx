@@ -13,6 +13,7 @@ import {
   LogOut,
   CircleFadingPlus,
   X,
+  UserCog,
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
 import { AuthContext } from "../Providers/AuthProvider";
@@ -202,7 +203,7 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           <>
             <NavItem
               to="/Dashboard/AdminDashboard"
-              icon={<User size={28} />}
+              icon={<UserCog size={28} />}
               label="Admin Dashboard"
               collapsed={isCollapsed}
               active={location.pathname === "/Dashboard/AdminDashboard"}
@@ -215,22 +216,41 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
               collapsed={isCollapsed}
               active={location.pathname === "/Dashboard/add-doctor"}
             />
+            <NavItem
+              to="/Dashboard/Users"
+              icon={<Users size={28} />}
+              label="All-User"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/Users"}
+            />
+          </>
+        )}
+
+        {!isAdmin && (
+          <>
+            <NavItem
+              to="/Dashboard/schedule"
+              icon={<Calendar size={28} />}
+              label="Schedule"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/schedule"}
+            />
           </>
         )}
         <NavItem
-           to="/Dashboard"
-          icon={<Users size={28} />}
+          to="/Dashboard"
+          icon={<User size={28} />}
           label="Profile"
           collapsed={isCollapsed}
           active={location.pathname === "/Dashboard"}
         />
 
         <NavItem
-          to="/Dashboard/schedule"
-          icon={<Calendar size={28} />}
-          label="Schedule"
+          to="/Dashboard/payments"
+          icon={<CreditCard size={28} />}
+          label="Payments"
           collapsed={isCollapsed}
-          active={location.pathname === "/Dashboard/schedule"}
+          active={location.pathname === "/Dashboard/payments"}
         />
 
         <NavItem
@@ -246,13 +266,6 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           label="Messages"
           collapsed={isCollapsed}
           active={location.pathname === "/Dashboard/messages"}
-        />
-        <NavItem
-          to="/Dashboard/payments"
-          icon={<CreditCard size={28} />}
-          label="Payments"
-          collapsed={isCollapsed}
-          active={location.pathname === "/Dashboard/payments"}
         />
       </ul>
     </nav>
