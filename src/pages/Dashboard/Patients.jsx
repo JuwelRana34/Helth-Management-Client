@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Bar, Radar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -12,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 ChartJS.register(
   CategoryScale,
@@ -26,6 +27,7 @@ ChartJS.register(
 );
 
 const Patients = () => {
+  const { userDatabaseInfo, user } = useContext(AuthContext);
   const bloodLevelsData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -54,34 +56,38 @@ const Patients = () => {
       },
     ],
   };
-
+  console.log(user);
   return (
     <div className="p-6 min-h-screen">
       {/* Header */}
-      <h2 className="text-3xl font-bold text-gray-800">Patient Profile</h2>
+      <h2 className="text-3xl font-bold text-primary">Your Profile</h2>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {/* Patient Card */}
         <div className="bg-white shadow-lg rounded-lg p-6">
           <div className="text-center">
             <img
-              src="https://medash.netlify.app/data/profile/avatar-5.png"
+              src={userDatabaseInfo?.img}
               alt="Patient"
-              className="w-24 h-24 mx-auto rounded-full border-4 border-primary"
+              className="w-24 h-24 mx-auto rounded-full ring ring-emerald-400 border-primary"
             />
-            <h3 className="text-xl font-bold mt-2">Smith Wright</h3>
-            <p className="text-gray-600 text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
+            <h3 className="text-xl font-bold mt-2">{userDatabaseInfo?.name}</h3>
+            <p className="text-gray-600 text-sm">{userDatabaseInfo?.email}</p>
           </div>
           <div className="grid grid-cols-2 mt-4">
             <div className="p-2 border text-center">
-              <p className="text-gray-600 text-sm">Gender</p>
-              <p className="text-lg font-bold">Male</p>
+              <p className="text-gray-600 text-sm">Tickets</p>
+              <p className={`text-lg font-bold ${userDatabaseInfo?.ticket <= 10 ? "text-red-500":'text-gray-600'}`}>{userDatabaseInfo?.ticket}</p>
             </div>
             <div className="p-2 border text-center">
-              <p className="text-gray-600 text-sm">Age</p>
-              <p className="text-lg font-bold">23</p>
+              <p className="text-gray-600 text-sm">subscriptionPlan</p>
+              <p className="text-lg font-bold text-primary">
+                {userDatabaseInfo?.subscriptionPlan === "" ? (
+                  <p>😢</p>
+                ) : (
+                  userDatabaseInfo?.subscriptionPlan
+                )}
+              </p>
             </div>
           </div>
         </div>
@@ -113,11 +119,21 @@ const Patients = () => {
       <div className="grid md:grid-cols-2 gap-6 mt-6">
         <div className="bg-blue-500 text-white p-6 rounded-lg">
           <h3 className="text-lg font-semibold">Medical Details</h3>
-          <p>Blood Type: <span className="font-bold">AB+</span></p>
-          <p>Allergies: <span className="font-bold">Peanuts</span></p>
-          <p>Diseases: <span className="font-bold">Diabetes</span></p>
-          <p>Pressure: <span className="font-bold">130/89 mmHg</span></p>
-          <p>Temperature: <span className="font-bold">36.8°C</span></p>
+          <p>
+            Blood Type: <span className="font-bold">AB+</span>
+          </p>
+          <p>
+            Allergies: <span className="font-bold">Peanuts</span>
+          </p>
+          <p>
+            Diseases: <span className="font-bold">Diabetes</span>
+          </p>
+          <p>
+            Pressure: <span className="font-bold">130/89 mmHg</span>
+          </p>
+          <p>
+            Temperature: <span className="font-bold">36.8°C</span>
+          </p>
         </div>
 
         <div className="bg-red-500 text-white p-6 rounded-lg">
@@ -153,7 +169,9 @@ const Patients = () => {
 
       {/* Patient Activities Chart */}
       <div className="bg-white shadow-lg rounded-lg p-6 mt-6">
-        <h3 className="text-lg font-semibold text-gray-700">Patient Activities</h3>
+        <h3 className="text-lg font-semibold text-gray-700">
+          Patient Activities
+        </h3>
         <Radar data={activitiesData} />
       </div>
     </div>

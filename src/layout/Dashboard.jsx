@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   Menu,
@@ -18,6 +18,10 @@ import useAuth from "../Hooks/useAuth";
 import { AuthContext } from "../Providers/AuthProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import AiChatBox from "../components/AiChatBox";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { QueryClient } from "@tanstack/react-query";
+import useFetchData from "../utils/fetchGetFunction";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -25,23 +29,28 @@ function Dashboard() {
   const [showNotifications, setShowNotifications] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth();
-  const { notifi, user } = useContext(AuthContext);
+  const { notifi, user, isAdmin ,setNotifi} = useContext(AuthContext);
+  const { data: notifications, refetch} = useFetchData('getNotifications', 'notifications');
+ 
+  useEffect(() => {
+      setNotifi(notifications)
+    }, [notifications, setNotifi])
 
   const handelLogout = () => logOut();
   const handleBellClick = () => setShowNotifications(!showNotifications);
   const toggleSidebar = () => setShowSidebar(!showSidebar);
-
+  
+  const handelDelete = async (id) => {
+        await axios.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
+        refetch();
+        toast.error('Notification deleted successfully!');
+        QueryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
+         // Fetch latest notifications
+      }
+      
   return (
-    <div className="flex min-h-screen">
-      {/* Overlay for mobile when sidebar is open */}
-      {showSidebar && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
-          onClick={() => setShowSidebar(false)}
-        />
-      )}
-
-      {/* Sidebar for md+ */}
+    <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
       <div
         className={`bg-primary text-white h-full p-4 hidden md:flex flex-col transition-all duration-300  ${
           isCollapsed ? "w-20" : "w-64"
@@ -51,6 +60,7 @@ function Dashboard() {
           isCollapsed={isCollapsed}
           toggleCollapse={() => setIsCollapsed(!isCollapsed)}
           location={location}
+          isAdmin={isAdmin}
         />
       </div>
 
@@ -60,7 +70,10 @@ function Dashboard() {
           showSidebar ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <button onClick={() => setShowSidebar(false)} className="mb-4 text-white">
+        <button
+          onClick={() => setShowSidebar(false)}
+          className="mb-4 text-white"
+        >
           <X size={28} />
         </button>
         <SidebarContent
@@ -71,9 +84,10 @@ function Dashboard() {
       </div>
 
       {/* Main Content */}
-      <div 
-       style={{scrollbarWidth: 'none', msOverflowStyle: 'none'}}
-      className="flex-1 flex flex-col h-screen  overflow-y-scroll">
+      <div
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="flex-1 flex flex-col h-screen  overflow-y-scroll"
+      >
         {/* Top Navbar */}
         <div className="p-4 shadow-md flex justify-between items-center md:pr-16">
           {/* Mobile Sidebar Toggle Button */}
@@ -117,15 +131,26 @@ function Dashboard() {
                       notifi.map((notification, index) => (
                         <div
                           key={notification._id}
-                          className={`p-2 border-b last:border-none ${
+                          className={`p-2 border-b last:border-none overflow-y-scroll h-56 ${
                             index % 2 === 0 ? " bg-slate-50" : ""
                           }`}
                         >
-                          {notification.message}
+                          <p className="flex justify-between text-justify">
+                            {notification.message}
+                           {isAdmin&&  <button
+                              onClick={() => handelDelete(notification._id)}
+                              className=" rounded-md py-2 px-3 bg-red-300 text-rose-600 h-fit"
+                            >
+                              Delete
+                            </button>
+                            }
+                          </p>
                         </div>
                       ))
                     ) : (
-                      <p className="text-rose-500 bg-rose-100 font-semibold p-2">No notifications</p>
+                      <p className="text-rose-500 bg-rose-100 font-semibold p-2">
+                        No notifications
+                      </p>
                     )}
                   </motion.div>
                 )}
@@ -150,7 +175,7 @@ function Dashboard() {
         </div>
 
         {/* Page Content */}
-         <div className="p-4 flex-1 ">
+        <div className="p-4 flex-1 ">
           <Outlet />
           <AiChatBox />
         </div>
@@ -159,7 +184,7 @@ function Dashboard() {
   );
 }
 
-const SidebarContent = ({ isCollapsed, toggleCollapse, location }) => (
+const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
   <>
     {/* Collapse Button */}
     <button
@@ -173,18 +198,72 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location }) => (
     {/* Navigation */}
     <nav className="mt-5 flex-1">
       <ul className="space-y-3">
-        <NavItem to="/Dashboard" icon={<User size={28} />} label="User Dashboard" collapsed={isCollapsed} active={location.pathname === "/Dashboard"} />
-        <NavItem to="/Dashboard/schedule" icon={<Calendar size={28} />} label="Schedule" collapsed={isCollapsed} active={location.pathname === "/Dashboard/schedule"} />
-        <NavItem to="/Dashboard/patient" icon={<Users size={28} />} label="Patients" collapsed={isCollapsed} active={location.pathname === "/Dashboard/patient"} />
-        <NavItem to="/Dashboard/add-doctor" icon={<CircleFadingPlus size={28} />} label="Add Doctor" collapsed={isCollapsed} active={location.pathname === "/Dashboard/add-doctor"} />
-        <NavItem to="/Dashboard/doctor" icon={<Stethoscope size={28} />} label="Doctors" collapsed={isCollapsed} active={location.pathname === "/Dashboard/doctor"} />
-        <NavItem to="/Dashboard/messages" icon={<MessageSquare size={28} />} label="Messages" collapsed={isCollapsed} active={location.pathname === "/Dashboard/messages"} />
-        <NavItem to="/Dashboard/payments" icon={<CreditCard size={28} />} label="Payments" collapsed={isCollapsed} active={location.pathname === "/Dashboard/payments"} />
+        {isAdmin && (
+          <>
+            <NavItem
+              to="/Dashboard/AdminDashboard"
+              icon={<User size={28} />}
+              label="Admin Dashboard"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/AdminDashboard"}
+            />
+
+            <NavItem
+              to="/Dashboard/add-doctor"
+              icon={<CircleFadingPlus size={28} />}
+              label="Add Doctor"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/add-doctor"}
+            />
+          </>
+        )}
+        <NavItem
+           to="/Dashboard"
+          icon={<Users size={28} />}
+          label="Profile"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard"}
+        />
+
+        <NavItem
+          to="/Dashboard/schedule"
+          icon={<Calendar size={28} />}
+          label="Schedule"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard/schedule"}
+        />
+
+        <NavItem
+          to="/Dashboard/doctor"
+          icon={<Stethoscope size={28} />}
+          label="Doctors"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard/doctor"}
+        />
+        <NavItem
+          to="/Dashboard/messages"
+          icon={<MessageSquare size={28} />}
+          label="Messages"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard/messages"}
+        />
+        <NavItem
+          to="/Dashboard/payments"
+          icon={<CreditCard size={28} />}
+          label="Payments"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard/payments"}
+        />
       </ul>
     </nav>
 
     <div className="mt-auto">
-      <NavItem to="/" icon={<Home size={28} />} label="Back to Home" collapsed={isCollapsed} />
+      <NavItem
+        to="/"
+        icon={<Home size={28} />}
+        label="Back to Home"
+        collapsed={isCollapsed}
+      />
     </div>
   </>
 );
@@ -197,7 +276,9 @@ const NavItem = ({ to, icon, label, collapsed, active }) => (
         active ? "bg-emerald-500" : "hover:bg-emerald-400"
       }`}
     >
-      <span className="text-white flex justify-center items-center">{icon}</span>
+      <span className="text-white flex justify-center items-center">
+        {icon}
+      </span>
       {!collapsed && <span className="text-white">{label}</span>}
     </Link>
     {collapsed && (
