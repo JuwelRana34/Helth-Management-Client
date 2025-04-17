@@ -10,31 +10,31 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const { theme, setTheme } = useContext(ThemeContext)
-  
+console.log(user,'user from nav')  
   return (
     <>
       {/* Nav Top */}
-      <div className="flex justify-between px-5 bg-secondary text-white">
-        <div className="flex items-center">
+      <div className="flex text-xs  flex-col md:text-base md:flex-row justify-between  p-2 md:px-4 bg-primary text-white">
+        <div className="flex items-center justify-center">
           <h1 className="py-2">We understand that each patient is unique</h1>
-          <button className="ml-3 underline">Learn More</button>
+          <button className="ml-2 underline">Learn More</button>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-3 items-center justify-center">
           <h1 className="flex gap-1 items-center">
             <FaPhone /> 880 0000 00000
           </h1>
           <h1 className="flex gap-1 items-center">
             <CiLocationOn /> Find Location
           </h1>
-          <h1 className="flex gap-1 items-center">Pay Your Bill</h1>
+          <Link to="/Subscription" className="flex gap-1 items-center">Pay Your Bill</Link>
         </div>
       </div>
 
       {/* Main Navbar */}
-      <nav className="bg-base-200 shadow-md sticky top-0 w-full z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-16 py-4">
+      <nav className=" bg-base-100 shadow-md sticky top-0 w-full z-50">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
           {/* Logo */}
-          <NavLink to="/" className="text-2xl font-bold text-[#1C5CBB]">
+          <NavLink to="/" className=" text-lg md:text-2xl font-bold text-primary">
             MediCare
           </NavLink>
 
@@ -43,7 +43,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-black hover:text-primary transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
@@ -70,13 +70,13 @@ const Navbar = () => {
               Services
             </NavLink>
             <NavLink
-              to="/book-appoinment"
+              to="/Subscription"
               className={({ isActive }) =>
                 `text-gray-600 hover:text-[#1C5CBB] transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
-              Book Appoinment
+              Subscription
             </NavLink>
             <NavLink
               to="/Dashboard"
@@ -99,8 +99,8 @@ const Navbar = () => {
             </button>
           ) : (
             <div className="flex space-x-3">
-              <Link to={'/login'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Login</Link>
-              <Link to={'/register'} className="btn bg-secondary px-6 py-1 rounded-md text-white">Register</Link>
+              <Link to={'/login'} className="btn bg-primary px-3 md:px-6 py-1 rounded-md text-white">Login</Link>
+              <Link to={'/register'} className="btn bg-lime-600 px-3 md:px-6 py-1 rounded-md text-white">Register</Link>
             </div>
           )}
           {/* Mobile Menu Button */}
@@ -120,7 +120,7 @@ const Navbar = () => {
             } md:hidden bg-white shadow-md`}
         >
           <ul className="flex flex-col items-center py-4 space-y-4">
-            {["Home", "About Us", "Contact Us"].map((item, index) => (
+            {[ "About", "services","Subscription","Dashboard"].map((item, index) => (
               <li key={index}>
                 <NavLink
                   to={`/${item.toLowerCase().replace(/\s/g, "")}`}
