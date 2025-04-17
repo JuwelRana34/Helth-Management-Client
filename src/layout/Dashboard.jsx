@@ -49,18 +49,8 @@ function Dashboard() {
       }
       
   return (
-
-  
-    <div className="flex h-screen overflow-y-scroll">
-      {/* Overlay for mobile when sidebar is open */}
-      {showSidebar && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40 md:hidden"
-          onClick={() => setShowSidebar(false)}
-        />
-      )}
-
-      {/* Sidebar for md+ */}
+    <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
       <div
         className={`bg-primary text-white h-full p-4 hidden md:flex flex-col transition-all duration-300  ${
           isCollapsed ? "w-20" : "w-64"
@@ -228,7 +218,7 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           </>
         )}
         <NavItem
-          to="/"
+           to="/Dashboard"
           icon={<Users size={28} />}
           label="Profile"
           collapsed={isCollapsed}
