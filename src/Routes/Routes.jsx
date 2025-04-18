@@ -2,9 +2,9 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
+import Home from '../pages/Home';
 const Loading = lazy(()=> import('../components/Loading')) ;
 const Layout = lazy(() => import('../layout/Layout'));
-const Home = lazy(() => import('../pages/Home'));
 const About = lazy(() => import('../pages/about-us/About'));
 const Services = lazy(() => import('../pages/services/Services'));
 const Login = lazy(() => import('../pages/Login/Login'));
@@ -25,7 +25,6 @@ const SingleDoctor = lazy(() => import('../pages/home/SingleDoctor'));
 
 const Routes = () => {
 
-    
     const route = createBrowserRouter([
         {
             path : '/',
