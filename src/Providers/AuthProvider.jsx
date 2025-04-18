@@ -72,7 +72,7 @@ const AuthProvider = ({ children }) => {
     async function userinfoGet() {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_Url}/api/user/${user?.email}`
+          `${import.meta.env.VITE_Url}/api/user/${user?.email}`, {withCredentials: true}
         );
         setUserDatabaseInfo(data?.user);
       } catch (e) {
