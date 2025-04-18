@@ -97,7 +97,7 @@ const AuthProvider = ({ children }) => {
             { withCredentials: true }
           );
           setUser(currentUser);
-          console.log(currentUser,'from test')
+          // console.log(currentUser,'from test')
         } else {
           await axios.post(
            ` ${import.meta.env.VITE_Url}/logout`,

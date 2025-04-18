@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const { theme, setTheme } = useContext(ThemeContext)
-console.log(user,'user from nav')  
+// console.log(user,'user from nav')  
   return (
     <>
       {/* Nav Top */}
