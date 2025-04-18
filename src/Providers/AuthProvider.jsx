@@ -68,22 +68,22 @@ const AuthProvider = ({ children }) => {
   };
 
   // mongodb userID 
-  useEffect(() => {
-    async function userinfoGet() {
-      try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_Url}/api/user/${user?.email}`
-        );
-        setUserDatabaseInfo(data?.user);
-      } catch (e) {
-        console.error(e);
-        setLoading(false);
-        return;
-      }
-    }
+  // useEffect(() => {
+  //   async function userinfoGet() {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `${import.meta.env.VITE_Url}/api/user/${user?.email}`, {withCredentials: true}
+  //       );
+  //       setUserDatabaseInfo(data?.user);
+  //     } catch (e) {
+  //       console.error(e);
+  //       setLoading(false);
+  //       return;
+  //     }
+  //   }
 
-    userinfoGet();
-  }, [user?.email]);
+  //   userinfoGet();
+  // }, [user?.email]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -97,6 +97,10 @@ const AuthProvider = ({ children }) => {
             { withCredentials: true }
           );
           setUser(currentUser);
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_Url}/api/user/${currentUser.email}`, {withCredentials: true}
+          );
+          setUserDatabaseInfo(data?.user);
           console.log(currentUser,'from test')
         } else {
           await axios.post(

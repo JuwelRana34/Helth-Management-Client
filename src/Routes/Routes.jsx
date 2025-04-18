@@ -19,6 +19,8 @@ import AddDoctor from '../pages/Dashboard/AddDoctor';
 import PaymentFail from '../pages/payments/PaymentFail';
 import PaymentSuccess from '../pages/payments/PaymentSuccess';
 import AdminRoute from './AdminRoute';
+import Users from '../pages/Dashboard/Users';
+import SingleDoctor from '../pages/home/SingleDoctor';
 
 const Routes = () => {
 
@@ -31,6 +33,10 @@ const Routes = () => {
                 {
                     path : '/',
                     element : <Home/>
+                },
+                {
+                    path: "/doctor/:id",
+                    element: <SingleDoctor/>
                 },
                 {
                     path : '/about',
@@ -96,6 +102,10 @@ const Routes = () => {
                 {
                     path :"add-doctor",
                     element :<AdminRoute> <AddDoctor/> </AdminRoute>  
+                },
+                {
+                    path :"Users",
+                    element :<AdminRoute> <Users/> </AdminRoute>  
                 },
                 
             ]

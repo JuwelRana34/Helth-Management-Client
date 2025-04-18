@@ -1,17 +1,18 @@
 import React from "react";
+import { Link } from "react-router";
 
 const Card = ({ item }) => {
-  const { name, img, department } = item;
+  const { name, image, specialty, _id } = item;
   return (
-    <div className="card bg-emerald-200 shadow-lg rounded-lg p-5 mx-auto">
+    <Link to={`/doctor/${_id}`}  className="p-4 space-y-3 rounded-lg bg-slate-100 shadow-md hover:scale-105 duration-300 ease-in-out hover:cursor-pointer">
       <figure className="">
-        <img src={img} alt="Doctor" className="h-60 object-cover rounded-lg" />
+        <img src={image} alt="Doctor" className="md:h-48 h-36 lg:h-64 w-full max-w-72 object-cover rounded-lg" />
       </figure>
-      <div className="card-body text-center">
-        <h2 className="text-xl font-semibold mt-3 text-primary">{name}</h2>
-        <p className="text-primary"> {department} </p>
+      <div className="">
+        <h2 className="text-xl font-semibold">Dr. {name}</h2>
+        <p className="text-gray-600"> {specialty} </p>
       </div>
-    </div>
+    </Link>
   );
 };
 
