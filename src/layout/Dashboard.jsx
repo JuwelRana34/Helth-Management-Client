@@ -53,7 +53,7 @@ function Dashboard() {
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div
-        className={`bg-primary text-white h-full p-4 hidden md:flex flex-col transition-all duration-300  ${
+        className={`bg-primary text-white h-screen overflow-y-scroll p-4 hidden md:flex flex-col transition-all duration-300  ${
           isCollapsed ? "w-20" : "w-64"
         }`}
       >
@@ -81,6 +81,7 @@ function Dashboard() {
           isCollapsed={false}
           toggleCollapse={() => {}}
           location={location}
+          isAdmin={isAdmin}
         />
       </div>
 
@@ -176,7 +177,7 @@ function Dashboard() {
         </div>
 
         {/* Page Content */}
-        <div className="p-4 flex-1 ">
+        <div className="p-4 flex-1">
           <Outlet />
           <AiChatBox />
         </div>
@@ -228,13 +229,7 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
 
         {!isAdmin && (
           <>
-            <NavItem
-              to="/Dashboard/schedule"
-              icon={<Calendar size={28} />}
-              label="Schedule"
-              collapsed={isCollapsed}
-              active={location.pathname === "/Dashboard/schedule"}
-            />
+            
           </>
         )}
         <NavItem
@@ -267,6 +262,13 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           collapsed={isCollapsed}
           active={location.pathname === "/Dashboard/messages"}
         />
+        <NavItem
+              to="/Dashboard/schedule"
+              icon={<Calendar size={28} />}
+              label="Schedule"
+              collapsed={isCollapsed}
+              active={location.pathname === "/Dashboard/schedule"}
+            />
       </ul>
     </nav>
 
