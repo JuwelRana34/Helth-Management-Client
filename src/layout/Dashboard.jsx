@@ -11,7 +11,6 @@ import {
   Home,
   Bell,
   LogOut,
-  CircleFadingPlus,
   X,
   UserCog,
 } from "lucide-react";
@@ -19,10 +18,10 @@ import useAuth from "../Hooks/useAuth";
 import { AuthContext } from "../Providers/AuthProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import AiChatBox from "../components/AiChatBox";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { QueryClient } from "@tanstack/react-query";
 import useFetchData from "../utils/fetchGetFunction";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -32,7 +31,7 @@ function Dashboard() {
   const { logOut } = useAuth();
   const { notifi, user, isAdmin ,setNotifi} = useContext(AuthContext);
   const { data: notifications, refetch} = useFetchData('getNotifications', 'notifications');
- 
+ const axiosSecure = useAxiosSecure()
   useEffect(() => {
       setNotifi(notifications)
     }, [notifications, setNotifi])
@@ -42,7 +41,7 @@ function Dashboard() {
   const toggleSidebar = () => setShowSidebar(!showSidebar);
   
   const handelDelete = async (id) => {
-        await axios.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
+        await axiosSecure.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
         refetch();
         toast.error('Notification deleted successfully!');
         QueryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
