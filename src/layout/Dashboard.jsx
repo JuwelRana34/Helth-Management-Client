@@ -211,13 +211,6 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
             />
 
             <NavItem
-              to="/Dashboard/add-doctor"
-              icon={<CircleFadingPlus size={28} />}
-              label="Add Doctor"
-              collapsed={isCollapsed}
-              active={location.pathname === "/Dashboard/add-doctor"}
-            />
-            <NavItem
               to="/Dashboard/Users"
               icon={<Users size={28} />}
               label="All-User"

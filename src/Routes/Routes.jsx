@@ -17,7 +17,6 @@ const Doctor = lazy(() => import('../pages/Dashboard/Doctor'));
 const Patients = lazy(() => import('../pages/Dashboard/Patients'));
 const Messages = lazy(() => import('../pages/Dashboard/Messages'));
 const Payments = lazy(() => import('../pages/Dashboard/Payments'));
-const AddDoctor = lazy(() => import('../pages/Dashboard/AddDoctor'));
 const PaymentFail = lazy(() => import('../pages/payments/PaymentFail'));
 const PaymentSuccess = lazy(() => import('../pages/payments/PaymentSuccess'));
 const Users = lazy(() => import('../pages/Dashboard/Users'));
@@ -98,10 +97,6 @@ const Routes = () => {
                 {
                     path :"payments",
                     element : <Payments/>
-                },
-                {
-                    path :"add-doctor",
-                    element :<AdminRoute> <AddDoctor/> </AdminRoute>  
                 },
                 {
                     path :"Users",
