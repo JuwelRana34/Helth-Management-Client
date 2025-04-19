@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../Providers/AuthProvider";
 import useFetchData from "../utils/fetchGetFunction";
@@ -34,23 +34,23 @@ const BookSchedule = () => {
       .catch(() => toast.error("Failed to load doctors. Please try again later."));
   }, [axiosSecure]);
 
-  const fetchSchedule = async () => {
+  const fetchSchedule = useCallback(async () => {
     if (!selectedDate || !doctorId) return;
-
+  
     try {
       const res = await axiosSecure.get(
         `${import.meta.env.VITE_Url}/api/schedule?doctorId=${doctorId}&date=${selectedDate}`
       );
       setSlots(res.data.slots);
-    } catch {
+    } catch (err) {
       setSlots([]);
       toast.error("Schedule not available. Please try again later.");
     }
-  };
+  }, [axiosSecure, doctorId, selectedDate]);
 
   useEffect(() => {
     fetchSchedule();
-  }, [doctorId, selectedDate]);
+  }, [fetchSchedule]);
 
   const handleBooking = async (time) => {
     Swal.fire({
