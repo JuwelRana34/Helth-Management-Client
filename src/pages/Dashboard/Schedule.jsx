@@ -6,7 +6,7 @@ import useFetchData from '../../utils/fetchGetFunction'
 function Schedule() {
   const {isAdmin} =useContext(AuthContext)
   const { data: bookedSchedules= [], refetch, isLoading } = useFetchData("All-bookedSchedules", "AllSchedule");
- console.log(bookedSchedules)
+
   return (
     <div>
       {isAdmin ?
