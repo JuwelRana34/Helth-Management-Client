@@ -51,9 +51,95 @@ const Dashboard = () => {
   
 
   return (
-    <section>
-      <div>
-        UserDashboard
+    <section className="p-6 bg-gray-100 min-h-screen">
+      {/* Header */}
+      <h1 className="text-3xl font-bold text-gray-700 mb-6">Welcome to Eres!</h1>
+      <p className="text-gray-500 mb-6">Hospital Admin Dashboard Template</p>
+
+      {/* Statistics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="bg-red-100 shadow-lg p-6 rounded-lg text-center">
+          <FaHeart className="text-red-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">Total Patient</h2>
+          <p className="text-3xl font-bold text-red-500">783k</p>
+        </div>
+
+        <div className="bg-green-100 shadow-lg p-6 rounded-lg text-center">
+          <FaUserMd className="text-green-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">Doctor</h2>
+          <p className="text-3xl font-bold text-green-500">76</p>
+        </div>
+
+        <div className="bg-blue-100 shadow-lg p-6 rounded-lg text-center">
+          <FaCalendarCheck className="text-blue-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">Appointment</h2>
+          <p className="text-3xl font-bold text-blue-500">76</p>
+        </div>
+
+        <div className="bg-purple-100 shadow-lg p-6 rounded-lg text-center">
+          <FaDollarSign className="text-purple-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">Hospital Earning</h2>
+          <p className="text-3xl font-bold text-purple-500">$56k</p>
+        </div>
+      </div>
+
+      {/* Revenue & Patient Statistics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        {/* Revenue Chart */}
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <h2 className="text-xl font-bold text-gray-700">Revenue</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={revenueData}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="income" fill="#8884d8" />
+              <Bar dataKey="expenses" fill="#82ca9d" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Patient Statistics */}
+        <div className="bg-white shadow-lg rounded-lg p-2">
+          <h2 className="text-xl font-bold text-gray-700">Patient Statistics</h2>
+          <div className="flex space-x-2 mb-4">
+            <button className="bg-green-500 text-white px-4 py-2 rounded-lg">Monthly</button>
+            <button className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg">Weekly</button>
+            <button className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg">Today</button>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={patientData}>
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="recovered" stroke="#ff6384" />
+              <Line type="monotone" dataKey="newPatient" stroke="#36a2eb" />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* New Section from Second Image */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <div className="bg-yellow-100 shadow-lg p-6 rounded-lg text-center">
+          <FaUserCheck className="text-yellow-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">New Registrations</h2>
+          <p className="text-3xl font-bold text-yellow-500">320</p>
+        </div>
+
+        <div className="bg-cyan-100 shadow-lg p-6 rounded-lg text-center">
+          <FaFileMedicalAlt className="text-cyan-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">Medical Reports</h2>
+          <p className="text-3xl font-bold text-cyan-500">1,245</p>
+        </div>
+
+        <div className="bg-indigo-100 shadow-lg p-6 rounded-lg text-center">
+          <FaClinicMedical className="text-indigo-500 text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 mt-2">Clinics</h2>
+          <p className="text-3xl font-bold text-indigo-500">24</p>
+        </div>
       </div>
     </section>
   );
