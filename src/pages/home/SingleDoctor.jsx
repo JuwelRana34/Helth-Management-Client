@@ -6,13 +6,14 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { AiTwotoneMail } from "react-icons/ai";
 import { FaRegCalendarCheck } from "react-icons/fa6";
 import DatePicker from "react-datepicker";
+import useAxiosSecure from './../../Hooks/useAxiosSecure';
 
 
 const SingleDoctor = () => {
     const { id } = useParams()
     const [doctor, setDoctor] = useState(null);
     const [selectedDate, setSelectedDate] = useState("");
-    const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosSecure()
 
     console.log(selectedDate);
 
