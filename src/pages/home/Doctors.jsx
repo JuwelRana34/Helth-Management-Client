@@ -15,14 +15,15 @@ const departments = [
 
 const Doctors = () => {
   const axiosPublic = useAxiosPublic()
-  const [selectedDept, setSelectedDept] = useState("All");
+  const [selectedDept, setSelectedDept] = useState([]);
   const [doctors, setDoctors] = useState([])
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await axiosPublic.get("/api/doctor");
-        setDoctors(res.data);
+        const data = await axiosPublic.get("/api/doctor");
+        // setDoctors(data);
+        console.log(data);
       } catch (error) {
         console.error("Failed to fetch doctors:", error);
       }
@@ -32,8 +33,8 @@ const Doctors = () => {
   }, [axiosPublic]);
 
 
-  const filteredDoctors =
-    selectedDept === "All" ? doctors : doctors.filter((doc) => doc.specialty.toLowerCase() === selectedDept.toLowerCase());
+  // const filteredDoctors =
+  //   selectedDept === "All" ? doctors : doctors?.filter((doc) => doc.specialty.toLowerCase() === selectedDept.toLowerCase());
 
   return (
     <div className="pb-10 w-[80%] mx-auto">
@@ -43,7 +44,7 @@ const Doctors = () => {
 
       {/* Department Filter Buttons */}
       <div className="flex flex-wrap justify-center gap-4 mb-10">
-        {departments.map((dept) => (
+        {selectedDept?.map((dept) => (
           <button
             key={dept}
             onClick={() => setSelectedDept(dept)}
@@ -57,9 +58,9 @@ const Doctors = () => {
 
       {/* Doctors List */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        {filteredDoctors.map((doctor) => (
+        {/* {filteredDoctors?.map((doctor) => (
           <Card key={doctor._id} item={doctor} />
-        ))}
+        ))} */}
       </div>
     </div>
   );

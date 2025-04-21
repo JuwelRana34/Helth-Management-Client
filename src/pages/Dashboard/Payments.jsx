@@ -2,10 +2,11 @@ import { useContext, useEffect } from "react";
 import PaymentTable from "../payments/PaymentTable";
 import { AuthContext } from "../../Providers/AuthProvider";
 import useFetchData from "../../utils/fetchGetFunction";
+import TableLoader from "../../components/loaders/TableLoader";
 function Payments() {
   const {isAdmin} = useContext(AuthContext)
 
-  const { data:AllPayment =[] , isLoading  }=useFetchData("AllPayments","payments")
+  const { data:AllPayment =[] , isLoading  }= useFetchData("AllPayments","payments")
 
   return (
     <div>
@@ -13,6 +14,7 @@ function Payments() {
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         Payment Transactions
       </h2>
+      {isLoading ?<TableLoader/>:
       <table className="min-w-full text-sm text-left text-gray-700">
         <thead className="text-xs text-gray-600 uppercase bg-gray-100">
           <tr>
@@ -25,7 +27,7 @@ function Payments() {
             <th className="px-4 py-3">Method</th>
             <th className="px-4 py-3">Date</th>
           </tr>
-        </thead>
+        </thead> 
         <tbody>
           {AllPayment.map((item, index) => (
             <tr
@@ -63,7 +65,7 @@ function Payments() {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table>}
     </div> :<PaymentTable /> } 
        
     </div>
