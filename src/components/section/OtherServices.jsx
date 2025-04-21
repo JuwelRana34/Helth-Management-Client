@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { otherServiceData, serviceData } from "../../utils/serviceData";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
-import axios from "axios"
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const OtherServices = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const axiosSecure = useAxiosSecure()
+  const [loading , setLoading]=useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,13 +27,16 @@ const OtherServices = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
-        await axios.post(`${import.meta.env.VITE_Url}/api/Contact`,formData)
+        await axiosSecure.post(`${import.meta.env.VITE_Url}/api/Contact`,formData)
     setIsPopupOpen(false);
     setFormData({ name: "", email: "", message: "" });
-    toast.success("Form Data Submit Success");
+    toast.success("Submit Successfully! we will contact with you. Thank You.");
     } catch (error) {
        console.log(error)
+    } finally{
+      setLoading(false)
     }
    
   };
@@ -69,9 +74,9 @@ const OtherServices = () => {
             Experience the best senior care services with us.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
-            {serviceData?.map((item) => (
+            {serviceData?.map((item , index) => (
               <div
-                key={item?.id}
+                key={index}
                 className="p-6 rounded-xl shadow-md border border-gray-200 bg-white"
               >
                 {/* <img
@@ -95,31 +100,7 @@ const OtherServices = () => {
             ))}
           </div>
         </div>
-        {/* <div className="flex  mt-10 flex-col gap-6">
-          <div className="bg-blue-100 py-5 px-5 rounded-xl shadow-md border h-full border-gray-200 flex flex-col gap-3">
-            <p className="text-xl font-bold text-primary mb-5">
-              Other Services
-            </p>
-            {otherServiceData?.map((item) => (
-              <div
-                key={item?.id}
-                className="px-4 py-3 rounded-xl bg-white shadow border border-gray-200 flex items-center justify-between"
-              >
-                <img
-                  className="w-8 h-8 bg-orange-300 p-2 rounded-full"
-                  src={item?.icon}
-                  alt="Service Icon"
-                />
-                <p className="text-gray-700 font-medium">{item?.title}</p>
-                <img
-                  className="w-8 ml-2 rounded-full bg-fuchsia-200 p-2"
-                  src="https://cdn-icons-png.flaticon.com/128/1536/1536475.png"
-                  alt="Arrow"
-                />
-              </div>
-            ))}
-          </div>
-        </div> */}
+       
       </div>
       {/* FAQ Section */}
       <div className="mt-12 bg-gray-50 p-2 md:p-4 rounded-xl shadow-sm">
@@ -272,9 +253,10 @@ const OtherServices = () => {
               ></textarea>
               <button
                 type="submit"
+                disabled={loading}
                 className="mt-4 bg-blue-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-800 w-full"
               >
-                Send
+               {loading? "Sending..." :"Send" } 
               </button>
               <button
                 type="button"

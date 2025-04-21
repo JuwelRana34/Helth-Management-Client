@@ -1,36 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../../components/Card';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
-const doctors = [
-  {
-    name: "Dr. Aisha Rahman",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOZNAA0l6H1rYwGvL1M2O_oLwtcoHbfeQfg&s",
-    department: "Cardiology",
-  },
-  {
-    name: "Dr. David Smith",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOZNAA0l6H1rYwGvL1M2O_oLwtcoHbfeQfg&s",
-    department: "Neurology",
-  },
-  {
-    name: "Dr. Emily Johnson",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOZNAA0l6H1rYwGvL1M2O_oLwtcoHbfeQfg&s",
-    department: "Pediatrics",
-  },
-  {
-    name: "Dr. Rajesh Kumar",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaOZNAA0l6H1rYwGvL1M2O_oLwtcoHbfeQfg&s",
-    department: "Orthopedics",
-  },
+
+const departments = [
+  "All",
+  "Orthopedics",
+  "Pediatrics",
+  "Neurology",
+  "Cardiology",
+  "Dermatology",
+  "Psychiatry"
 ];
 
-const departments = ["All", "Orthopedics", "Pediatrics", "Neurology", "Cardiology"];
-
 const Doctors = () => {
-  const [selectedDept, setSelectedDept] = useState("All");
+  const axiosPublic = useAxiosPublic()
+  const [selectedDept, setSelectedDept] = useState([]);
+  const [doctors, setDoctors] = useState([])
 
-  const filteredDoctors =
-    selectedDept === "All" ? doctors : doctors.filter((doc) => doc.department === selectedDept);
+  useEffect(() => {
+    const fetchDoctors = async () => {
+      try {
+        const data = await axiosPublic.get("/api/doctor");
+        // setDoctors(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Failed to fetch doctors:", error);
+      }
+    };
+
+    fetchDoctors();
+  }, [axiosPublic]);
+
+
+  // const filteredDoctors =
+  //   selectedDept === "All" ? doctors : doctors?.filter((doc) => doc.specialty.toLowerCase() === selectedDept.toLowerCase());
 
   return (
     <div className="pb-10 w-[80%] mx-auto">
@@ -40,11 +44,11 @@ const Doctors = () => {
 
       {/* Department Filter Buttons */}
       <div className="flex flex-wrap justify-center gap-4 mb-10">
-        {departments.map((dept) => (
+        {selectedDept?.map((dept) => (
           <button
             key={dept}
             onClick={() => setSelectedDept(dept)}
-            className={`px-5 py-2 rounded-md text-primary border border-emerald-200 transition-all duration-300
+            className={`px-3 py-1 rounded-md text-primary border border-emerald-200 transition-all duration-300
             ${selectedDept === dept ? "bg-primary text-white shadow-md" : "bg-emerald-100 hover:bg-primary text-primary hover:text-white"}`}
           >
             {dept}
@@ -53,10 +57,10 @@ const Doctors = () => {
       </div>
 
       {/* Doctors List */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {filteredDoctors.map((doctor, idx) => (
-          <Card key={idx} item={doctor} />
-        ))}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        {/* {filteredDoctors?.map((doctor) => (
+          <Card key={doctor._id} item={doctor} />
+        ))} */}
       </div>
     </div>
   );

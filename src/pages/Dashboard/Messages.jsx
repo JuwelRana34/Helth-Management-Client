@@ -5,6 +5,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Chat from '../../components/messagecomponents/Chat';
 import useFetchData from '../../utils/fetchGetFunction';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 
 
@@ -14,14 +15,14 @@ function Messages() {
   const {isAdmin} = useContext(AuthContext)
   const queryClient = useQueryClient();
   const [notificationText, setNotificationText] = useState('');
-
+  const axiosSecure = useAxiosSecure()
 
   const { data: Contacts, refetch, isLoading} = useFetchData('getContact', 'contact');
  
   // Mutation for adding a new notification
   const notificationMutation = useMutation({
     mutationFn: async (notification) => {
-      const response = await axios.post(`${import.meta.env.VITE_Url}/api/notification`, { notification });
+      const response = await axiosSecure.post(`${import.meta.env.VITE_Url}/api/notification`, { notification });
       return response.data;
     },
     onSuccess: () => {

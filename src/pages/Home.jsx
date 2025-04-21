@@ -1,30 +1,27 @@
-import React from 'react';
-import HealthNeeds from '../components/section/HealthNeeds';
-import ServiceSection from '../components/section/ServiceSection';
-import WellnessOfferings from '../components/section/WellnessOfferings';
-import Doctors from './home/Doctors';
+import React, { lazy, Suspense } from 'react';
 import Hero from './home/Hero';
 import HomeCard from './home/HomeCard';
 import IconCard from './home/IconCard';
 import MarqueeSection from './home/MarqueeSection';
-import PhotoGallery from './home/PhotoGallery';
-import FeedbackSlider from './home/FeedbackSlider';
 import About_us from './home/About_us';
-
+import Loading from '../components/Loading';
+const Doctors = lazy(() => import('./home/Doctors'));
+const PhotoGallery = lazy(() => import('./home/PhotoGallery'));
+const FeedbackSlider = lazy(() => import('./home/FeedbackSlider'));
 const Home = () => {
     return (
-        <div>
-            <Hero />
-            <IconCard />
-            <MarqueeSection/>
-            <About_us/>
-            <HomeCard />
-            <Doctors />
-            <PhotoGallery/>
-            {/* <HealthNeeds /> */}
-            {/* <WellnessOfferings /> */}
-            <FeedbackSlider/>
-        </div>
+      <div>
+        <Hero />
+        <IconCard />
+        <MarqueeSection />
+        <About_us />
+        <HomeCard />
+        <Suspense fallback={<Loading />}>
+          <Doctors />
+          <PhotoGallery />
+          <FeedbackSlider />
+        </Suspense>
+      </div>
     );
 };
 
