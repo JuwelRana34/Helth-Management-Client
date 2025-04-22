@@ -1,8 +1,14 @@
 import React from "react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { FaUserMd, FaCalendarCheck, FaDollarSign, FaHeart, FaUserInjured, FaNotesMedical, FaHospital, FaUserCheck, FaFileMedicalAlt, FaClinicMedical } from "react-icons/fa";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useFetchData from "../../utils/fetchGetFunction";
 
 const Dashboard = () => {
+  const { data: bookedSchedules= [] } = useFetchData("All-bookedSchedules", "AllSchedule");
+
+  const {data:allData =[] , isLoading , error} = useFetchData("allDetailsAboutWebiste" , "allDetailsAboutWebiste")
+  console.log("allData", allData)
   const revenueData = [
     { month: "06", income: 400, expenses: 240 },
     { month: "07", income: 800, expenses: 500 },
@@ -27,33 +33,17 @@ const Dashboard = () => {
     { month: "November", recovered: 400, newPatient: 350 },
     { month: "December", recovered: 200, newPatient: 800 },
   ];
-
-  const doctors = [
-    {
-      name: "Dr. Aliandro M",
-      specialty: "Nursing",
-      rating: "4.2",
-      image: "https://via.placeholder.com/100",
-    },
-    {
-      name: "Dr. Samuel",
-      specialty: "Gynecologist",
-      rating: "4.2",
-      image: "https://via.placeholder.com/100",
-    },
-    {
-      name: "Dr. Alexandro Jr.",
-      specialty: "Dentist",
-      rating: "4.2",
-      image: "https://via.placeholder.com/100",
-    },
-  ];
+  const formatNumber = (num) => {
+    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+    return num;
+  };
   
 
   return (
     <section className="p-6 bg-gray-100 min-h-screen">
       {/* Header */}
-      <h1 className="text-3xl font-bold text-gray-700 mb-6">Welcome to Eres!</h1>
+      <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500 mb-6">Admin Dashboard!</h1>
       <p className="text-gray-500 mb-6">Hospital Admin Dashboard Template</p>
 
       {/* Statistics Cards */}
@@ -61,25 +51,25 @@ const Dashboard = () => {
         <div className="bg-red-100 shadow-lg p-6 rounded-lg text-center">
           <FaHeart className="text-red-500 text-4xl mx-auto" />
           <h2 className="text-xl text-gray-600 mt-2">Total Patient</h2>
-          <p className="text-3xl font-bold text-red-500">783k</p>
+          <p className="text-3xl font-bold text-red-500">{allData?.userStats?.patient}</p>
         </div>
 
         <div className="bg-green-100 shadow-lg p-6 rounded-lg text-center">
           <FaUserMd className="text-green-500 text-4xl mx-auto" />
           <h2 className="text-xl text-gray-600 mt-2">Doctor</h2>
-          <p className="text-3xl font-bold text-green-500">76</p>
+          <p className="text-3xl font-bold text-green-500">{allData?.userStats?.doctor}</p>
         </div>
 
         <div className="bg-blue-100 shadow-lg p-6 rounded-lg text-center">
           <FaCalendarCheck className="text-blue-500 text-4xl mx-auto" />
           <h2 className="text-xl text-gray-600 mt-2">Appointment</h2>
-          <p className="text-3xl font-bold text-blue-500">76</p>
+          <p className="text-3xl font-bold text-blue-500">{bookedSchedules?.length}</p>
         </div>
 
         <div className="bg-purple-100 shadow-lg p-6 rounded-lg text-center">
           <FaDollarSign className="text-purple-500 text-4xl mx-auto" />
           <h2 className="text-xl text-gray-600 mt-2">Hospital Earning</h2>
-          <p className="text-3xl font-bold text-purple-500">$56k</p>
+          <p className="text-3xl font-bold text-purple-500">$ {formatNumber(allData?.totalPayments || 0)}</p>
         </div>
       </div>
 
@@ -125,8 +115,8 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
         <div className="bg-yellow-100 shadow-lg p-6 rounded-lg text-center">
           <FaUserCheck className="text-yellow-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">New Registrations</h2>
-          <p className="text-3xl font-bold text-yellow-500">320</p>
+          <h2 className="text-xl text-gray-600 mt-2">Total Admin </h2>
+          <p className="text-3xl font-bold text-yellow-500">{allData?.userStats?.admin}</p>
         </div>
 
         <div className="bg-cyan-100 shadow-lg p-6 rounded-lg text-center">

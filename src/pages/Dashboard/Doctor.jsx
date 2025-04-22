@@ -1,17 +1,8 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import useFetchData from "../../utils/fetchGetFunction";
 
 function Doctor() {
-  const { data: doctors = [], isLoading, isError, error } = useQuery({
-    queryKey: ["allDoctors"],
-    queryFn: async () => {
-      const res = await axios.get(
-        "https://hospital-management-server-seven.vercel.app/api/doctor"
-      );
-      return res.data;
-    },
-  });
+  const { data: doctors = [], isLoading, isError, error } = useFetchData("allDoctors" ,"doctor")
 
   if (isLoading)
     return (

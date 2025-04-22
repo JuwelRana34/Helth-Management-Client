@@ -3,6 +3,7 @@ import axios from 'axios';
 import { RefreshCcw, SendHorizontal, X } from 'lucide-react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion, AnimatePresence } from 'framer-motion';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 function AiChatBox() {
   const [AiMessage, setAiMessage] = useState([]);
@@ -10,7 +11,7 @@ function AiChatBox() {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [gradientClass, setGradientClass] = useState(getRandomGradient());
-
+  const axiosSecure = useAxiosSecure()
   const chatEndRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function AiChatBox() {
     setInputText('');
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_Url}/api/ai`, { Text: inputText });
+      const response = await axiosSecure.post(`${import.meta.env.VITE_Url}/api/ai`, { Text: inputText });
       const aiResponse = response.data.response;
       setAiMessage((prev) => [...prev, { role: 'ai', content: aiResponse }]);
     } catch (error) {

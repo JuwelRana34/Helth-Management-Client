@@ -1,28 +1,29 @@
-import React, { useContext } from 'react';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import Layout from '../layout/Layout';
-import Home from '../pages/Home';
-import About from '../pages/about-us/About';
-import Services from '../pages/services/Services';
-import Login from '../pages/Login/Login';
-import Register from '../pages/Register/Register';
-import BookAppoinment from '../pages/book-appoinment/BookAppoinment';
-import Dashboard from '../layout/Dashboard';
-import UserDashboard from '../pages/Dashboard/UserDashboard';
-import Schedule from '../pages/Dashboard/Schedule';
-import Doctor from '../pages/Dashboard/Doctor';
-import Patients from '../pages/Dashboard/Patients';
-import Messages from '../pages/Dashboard/Messages';
-import Payments from '../pages/Dashboard/Payments';
 import PrivateRoute from './PrivateRoute';
-import AddDoctor from '../pages/Dashboard/AddDoctor';
-import PaymentFail from '../pages/payments/PaymentFail';
-import PaymentSuccess from '../pages/payments/PaymentSuccess';
 import AdminRoute from './AdminRoute';
+import Home from '../pages/Home';
+import Dashboard from'../layout/Dashboard';
+const Loading = lazy(()=> import('../components/Loading')) ;
+const Layout = lazy(() => import('../layout/Layout'));
+const About = lazy(() => import('../pages/about-us/About'));
+const Services = lazy(() => import('../pages/services/Services'));
+const Login = lazy(() => import('../pages/Login/Login'));
+const Register = lazy(() => import('../pages/Register/Register'));
+const BookAppoinment = lazy(() => import('../pages/book-appoinment/BookAppoinment'));
+const UserDashboard = lazy(() => import('../pages/Dashboard/UserDashboard'));
+const Schedule = lazy(() => import('../pages/Dashboard/Schedule'));
+const Doctor = lazy(() => import('../pages/Dashboard/Doctor'));
+const Patients = lazy(() => import('../pages/Dashboard/Patients'));
+const Messages = lazy(() => import('../pages/Dashboard/Messages'));
+const Payments = lazy(() => import('../pages/Dashboard/Payments'));
+const PaymentFail = lazy(() => import('../pages/payments/PaymentFail'));
+const PaymentSuccess = lazy(() => import('../pages/payments/PaymentSuccess'));
+const Users = lazy(() => import('../pages/Dashboard/Users'));
+const SingleDoctor = lazy(() => import('../pages/home/SingleDoctor'));
 
 const Routes = () => {
 
-    
     const route = createBrowserRouter([
         {
             path : '/',
@@ -31,6 +32,10 @@ const Routes = () => {
                 {
                     path : '/',
                     element : <Home/>
+                },
+                {
+                    path: "/doctor/:id",
+                    element: <SingleDoctor/>
                 },
                 {
                     path : '/about',
@@ -94,8 +99,8 @@ const Routes = () => {
                     element : <Payments/>
                 },
                 {
-                    path :"add-doctor",
-                    element :<AdminRoute> <AddDoctor/> </AdminRoute>  
+                    path :"Users",
+                    element :<AdminRoute> <Users/> </AdminRoute>  
                 },
                 
             ]
@@ -107,7 +112,11 @@ const Routes = () => {
         }
        
     ])
-    return <RouterProvider router={route} />
+    return (
+      <Suspense fallback={<Loading/>}>
+        <RouterProvider router={route} />
+      </Suspense>
+    );
 };
 
 export default Routes;
