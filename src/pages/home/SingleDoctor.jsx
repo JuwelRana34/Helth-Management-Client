@@ -11,11 +11,12 @@ import toast from "react-hot-toast";
 import { Loader } from "lucide-react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import "react-datepicker/dist/react-datepicker.css";
 
 const SingleDoctor = () => {
   const { id } = useParams();
   const [doctor, setDoctor] = useState(null);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const axiosPublic = useAxiosSecure();
   const axiosSecure = useAxiosSecure();
   const [slots, setSlots] = useState([]);
@@ -166,6 +167,7 @@ const SingleDoctor = () => {
               placeholderText="Pick a date"
               className="w-full p-4 bg-gray-100 text-primary rounded-lg shadow-sm outline-primary border border-emerald-500 hover:border-gray-400"
             />
+
             <div>
               <button className="btn btn-lg text-base rounded-lg bg-primary text-white">
                 select

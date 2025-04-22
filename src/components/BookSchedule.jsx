@@ -32,7 +32,7 @@ const BookSchedule = () => {
         {!isLoading ? (
           <div className="mt-6 space-y-4">
             {BookedSlots.map((item, index) => (
-              <div key={index} className="border p-4 rounded-lg bg-emerald-50 shadow-md">
+              <div key={index} className={`border p-4 rounded-lg  shadow-md ${new Date() > new Date(item.date) ? "bg-red-100 cursor-not-allowed text-red-500":"bg-emerald-50"}` }>
                 <p className="text-sm text-primary">
                   <span className="font-medium">ID:</span> {item.user}
                 </p>
@@ -42,6 +42,7 @@ const BookSchedule = () => {
                 <p className="text-sm text-primary">Time: {item.time}</p>
                 <p className="text-sm text-primary">
                   Date: {new Date(item.date).toDateString()}
+                  {new Date() > new Date(item.date) && <p className="text-red-400 capitalize font-semibold">expired</p>}
                 </p>
               </div>
             ))}
