@@ -35,15 +35,14 @@ const Hero = () => {
       {sliders.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out${
-            index === currentSlider ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
-        >
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out${index === currentSlider ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`} >
           <div
-            className="w-full h-full bg-cover bg-center scale-105 transition-transform duration-1000"
-            style={{ backgroundImage: `url(${slide.img})` }}
+            className="w-full h-full bg-cover bg-center scale-105 transition-transform duration-1000 bg-no-repeat"
+            style={{
+              backgroundImage: `linear-gradient(45deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.50) 50%, rgba(0, 0, 0, 0.6) 100%), url(${slide.img})`
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
             {/* Bottom Left Content */}
             <div className="absolute bottom-16 left-10 md:left-20 max-w-2xl text-white z-20">
@@ -67,9 +66,8 @@ const Hero = () => {
           <button
             key={i}
             onClick={() => setCurrentSlider(i)}
-            className={`w-3 h-3 rounded-full ${
-              i === currentSlider ? "bg-white" : "bg-white/40"
-            } transition duration-300`}
+            className={`w-3 h-3 rounded-full ${i === currentSlider ? "bg-white" : "bg-white/40"
+              } transition duration-300`}
           />
         ))}
       </div>
