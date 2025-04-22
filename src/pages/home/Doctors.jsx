@@ -20,7 +20,7 @@ const Doctors = () => {
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await axiosPublic.get(`https://hospital-management-server-seven.vercel.app/api/doctor`);
+        const res = await axiosPublic.get(`${import.meta.env.VITE_Url}/api/doctor`);
         setDoctors(res.data);
       } catch (error) {
         console.error("Failed to fetch doctors:", error);
@@ -56,7 +56,7 @@ const Doctors = () => {
       </div>
 
       {/* Doctors List */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center ">
         {filteredDoctors.map((doctor) => (
           <Card key={doctor._id} item={doctor} />
         ))}
