@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
 
-const socket = io(`${import.meta.env.VITE_Url}`);
+const socket = io(`${import.meta.env.VITE_Sms_URL}`);
 
 const Chat = () => {
     const auth = getAuth(app);

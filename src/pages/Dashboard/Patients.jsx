@@ -58,7 +58,7 @@ const Patients = () => {
   };
   console.log(user);
   return (
-    <div className="p-6 min-h-screen">
+    <div className=" min-h-screen">
       {/* Header */}
       <h2 className="text-3xl font-bold text-primary">Your Profile</h2>
 
@@ -106,13 +106,13 @@ const Patients = () => {
         </div>
 
         {/* Blood Levels Chart */}
-        <div className="bg-white shadow-lg rounded-lg p-6">
+        {/* <div className="bg-white shadow-lg rounded-lg p-6">
           <h3 className="text-lg font-semibold text-gray-700">Blood Levels</h3>
           <Bar data={bloodLevelsData} />
-        </div>
+        </div> */}
 
         {/* Notifications */}
-        <div className="bg-white shadow-lg rounded-lg p-6">
+        {/* <div className="bg-white shadow-lg rounded-lg p-6">
           <h3 className="text-lg font-semibold text-gray-700">Notifications</h3>
           <ul className="mt-2 text-sm">
             <li className="border-l-4 border-blue-500 pl-2">
@@ -125,7 +125,7 @@ const Patients = () => {
               Visit canceled - <span className="font-bold">Nov 17</span>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
 
       {/* Medical Details */}
