@@ -27,6 +27,12 @@ function Messages() {
     setReplyText('');
     document.getElementById('msgBox').close();
   };
+  const sendContactReply = async (userContact, replyText) => {
+    const id = userContact?._id;
+    await axiosSecure.delete(`${import.meta.env.VITE_Url}/api/contactDelete/${id}`);
+    refetch()
+    closeModal();
+  }
 
   // Mutation for adding a new notification
   const notificationMutation = useMutation({
@@ -88,7 +94,7 @@ function Messages() {
       }
 
 
-      <Chat />
+      {/* <Chat /> */}
 
       {/* contact messages  */}
 
@@ -131,7 +137,7 @@ function Messages() {
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <span className="btn btn-success mr-2" onClick={closeModal}>Send</span>
+              <span className="btn btn-success mr-2" onClick={() => sendContactReply(selectedContact, replyText)} >Send</span>
               <span className="btn btn-error" onClick={closeModal}>Cancel</span>
             </form>
           </div>
