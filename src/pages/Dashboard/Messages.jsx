@@ -12,13 +12,22 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 
 function Messages() {
-  const {isAdmin} = useContext(AuthContext)
+  const { isAdmin } = useContext(AuthContext)
   const queryClient = useQueryClient();
   const [notificationText, setNotificationText] = useState('');
+  const [selectedContact, setSelectedContact] = useState(null)
+  const [replyText, setReplyText] = useState('')
   const axiosSecure = useAxiosSecure()
 
-  const { data: Contacts, refetch, isLoading} = useFetchData('getContact', 'contact');
- 
+  const { data: Contacts, refetch, isLoading } = useFetchData('getContact', 'contact');
+
+
+  // message reply modal 
+  const closeModal = () => {
+    setReplyText('');
+    document.getElementById('msgBox').close();
+  };
+
   // Mutation for adding a new notification
   const notificationMutation = useMutation({
     mutationFn: async (notification) => {
@@ -27,9 +36,9 @@ function Messages() {
     },
     onSuccess: () => {
       toast.success('Notification saved successfully!');
-      queryClient.invalidateQueries(['notifications']); 
+      queryClient.invalidateQueries(['notifications']);
       refetch();
-      
+
     },
     onError: (error) => {
       console.error('Error saving notification:', error);
@@ -45,10 +54,10 @@ function Messages() {
     setNotificationText('');
   };
 
- 
+
   return (
     <div className="">
-    {isAdmin &&   <form
+      {isAdmin && <form
         onSubmit={handleNotification}
         className="space-y-4 p-4 border rounded-lg shadow-md"
       >
@@ -76,27 +85,60 @@ function Messages() {
           {notificationMutation.isLoading ? "Saving..." : "Save"}
         </button>
       </form>
-}
-      
+      }
 
-     
+
       <Chat />
 
       {/* contact messages  */}
 
-    {isAdmin&& <div className="space-y-4">
+      {isAdmin && <div className="space-y-4">
         {Contacts?.map((contact) => (
-          <div
-            key={contact._id}
-            className="p-4 border rounded-md shadow-sm bg-gradient-to-r from-blue-200 via-violet-100 to-pink-50 "
-          >
-            <h2 className="text-lg font-semibold">Name: {contact.name}</h2>
-            <p className="text-sm text-gray-700">Email: {contact.email}</p>
-            <p className="text-sm text-gray-700">Message: {contact.message}</p>
+          <div key={contact._id} className="p-4 mt-4 rounded-md shadow-md bg-gradient-to-r from-blue-200 via-violet-100 to-pink-50 flex justify-between items-center gap-4">
+            <div>
+              <h2 className="text-lg font-semibold">Name: {contact.name}</h2>
+              <p className="text-sm text-gray-700">Email: {contact.email}</p>
+              <p className="text-sm text-gray-700">Message: {contact.message}</p>
+            </div>
+            <button
+              className='btn lg:btn-lg'
+              onClick={() => {
+                setSelectedContact(contact);
+                document.getElementById('msgBox').showModal();
+              }}>Reply Now!</button>
           </div>
+
         ))}
-      </div> 
-      } 
+      </div>
+      }
+
+
+
+      {/* message box modal  */}
+      <dialog id="msgBox" className="modal">
+        <div className="modal-box">
+          <div className='space-y-2'>
+            <h3 className="font-semibold text-lg">Reply to: {selectedContact?.name}</h3>
+            <p className="text-sm text-gray-600 mb-2">Email: {selectedContact?.email}</p>
+            <textarea
+              className="textarea w-full min-h-28 text-[16px]"
+              placeholder="Your reply"
+              value={replyText}
+              onChange={(e) => setReplyText(e.target.value)}
+            ></textarea>
+
+          </div>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <span className="btn btn-success mr-2" onClick={closeModal}>Send</span>
+              <span className="btn btn-error" onClick={closeModal}>Cancel</span>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+
     </div>
   );
 }
