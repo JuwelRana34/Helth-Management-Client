@@ -4,6 +4,7 @@ import PrivateRoute from './PrivateRoute';
 import AdminRoute from './AdminRoute';
 import Home from '../pages/Home';
 import Dashboard from'../layout/Dashboard';
+import RequestedToBeDoctor from '../pages/Dashboard/RequestedToBeDoctor';
 const Loading = lazy(()=> import('../components/Loading')) ;
 const Layout = lazy(() => import('../layout/Layout'));
 const About = lazy(() => import('../pages/about-us/About'));
@@ -101,6 +102,10 @@ const Routes = () => {
                 {
                     path :"Users",
                     element :<AdminRoute> <Users/> </AdminRoute>  
+                },
+                {
+                    path :"requested",
+                    element :<AdminRoute> <RequestedToBeDoctor/> </AdminRoute>  
                 },
                 
             ]

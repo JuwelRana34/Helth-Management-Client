@@ -13,6 +13,10 @@ import {
   Legend,
 } from "chart.js";
 import { AuthContext } from "../../Providers/AuthProvider";
+import useIsDoctor from "../../Hooks/useIsDoctor";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
 
 ChartJS.register(
   CategoryScale,
@@ -28,6 +32,34 @@ ChartJS.register(
 
 const Patients = () => {
   const { userDatabaseInfo, user } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure()
+  const { isPatient } = useIsDoctor();
+
+
+  const { data : status, isLoading, isError, error,refetch } = useQuery({
+    queryKey: ['users'],
+    queryFn:  async () => {
+      const res = await axiosSecure.get(`/api/user/${user.email}`);
+      const result = res.data.user.status
+      return result;
+    },
+  });
+  // console.log("test is doctor", isPatient);
+
+  console.log(status,'status tanstack')
+
+  const handleDoctorRequest = async () => {
+    try {
+      const { data } = await axiosSecure.patch(`/api/users/status/${user.email}`);
+      console.log('success data',data);
+      toast.success('Request sent')
+      refetch()
+      console.log("success");
+    } catch (err) {
+      console.log("Error:", err.response?.data || err.message);
+    }
+  };
+
   const bloodLevelsData = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -56,9 +88,9 @@ const Patients = () => {
       },
     ],
   };
-  console.log(user);
+
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen">
       {/* Header */}
       <h2 className="text-3xl font-bold text-primary">Your Profile</h2>
 
@@ -78,54 +110,36 @@ const Patients = () => {
             <div className="p-2 border text-center">
               <p className="text-gray-600 text-sm">Tickets</p>
               <p
-                className={`text-lg font-bold ${
-                  (userDatabaseInfo?.subscriptionPlan === "basic" &&
+                className={`text-lg font-bold ${(userDatabaseInfo?.subscriptionPlan === "basic" &&
                     userDatabaseInfo?.ticket <= 10) ||
-                  userDatabaseInfo?.subscriptionPlan === ""
+                    userDatabaseInfo?.subscriptionPlan === ""
                     ? "text-red-500"
                     : "text-green-600"
-                }`}
+                  }`}
               >
                 {userDatabaseInfo?.subscriptionPlan === "basic" ||
-                userDatabaseInfo?.subscriptionPlan === ""
+                  userDatabaseInfo?.subscriptionPlan === ""
                   ? userDatabaseInfo?.ticket
                   : "Unlimited"}
               </p>
             </div>
             <div className="p-2 border text-center">
-              <p className="text-gray-600 text-sm">subscriptionPlan</p>
+              <p className="text-gray-600 text-sm">Subscription Plan</p>
               <p className="text-lg font-bold text-primary">
-                {userDatabaseInfo?.subscriptionPlan === "" ? (
-                  <p>N/A</p>
-                ) : (
-                  userDatabaseInfo?.subscriptionPlan
-                )}
+                {userDatabaseInfo?.subscriptionPlan === "" ? "N/A" : userDatabaseInfo?.subscriptionPlan}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Blood Levels Chart */}
-        {/* <div className="bg-white shadow-lg rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700">Blood Levels</h3>
-          <Bar data={bloodLevelsData} />
-        </div> */}
-
-        {/* Notifications */}
-        {/* <div className="bg-white shadow-lg rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-700">Notifications</h3>
-          <ul className="mt-2 text-sm">
-            <li className="border-l-4 border-blue-500 pl-2">
-              Appointment confirmed - <span className="font-bold">July 27</span>
-            </li>
-            <li className="border-l-4 border-green-500 pl-2 mt-2">
-              Treatment reminder - <span className="font-bold">July 25</span>
-            </li>
-            <li className="border-l-4 border-red-500 pl-2 mt-2">
-              Visit canceled - <span className="font-bold">Nov 17</span>
-            </li>
-          </ul>
-        </div> */}
+        {/* "Be a Doctor" Button (only for patients) */}
+        {isPatient && (
+          <div className={`bg-white shadow-lg rounded-lg p-6 flex items-center justify-center`}>
+            <button disabled={status === 'pending'} onClick={handleDoctorRequest} className={`bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded  ${status == 'pending' && `bg-slate-400 hover:bg-slate-300`}`}>
+              Be a Doctor
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Medical Details */}
