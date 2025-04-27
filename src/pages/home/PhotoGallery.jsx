@@ -29,7 +29,7 @@ const PhotoGallery = () => {
       <div className=" md:flex justify-between items-center mb-6">
         <div className="text-center md:text-start">
           <p className="text-sm font-semibold text-gray-500">Photo Gallery</p>
-          <h2 className="text-3xl font-bold text-gray-800">
+          <h2 className="text-3xl font-bold text-gray-500">
             Explore Our Extensive Photo Gallery <br />
             Showcasing Stunning{" "}
             <span className="italic text-primary">Before-and-After</span>{" "}

@@ -18,18 +18,18 @@ const PricingCard = ({loadingButtons,handlePayments, type, title, price, feature
   const getBgColor = () => {
     switch (type) {
       case 'basic':
-        return 'bg-white'
+        return 'bg-base-300'
       case 'premium':
         return 'bg-gradient-to-r from-[#33ccff] to-[#3366ff] '
       case 'family':
-        return 'bg-white'
+        return 'bg-base-300'
       default:
         return ''
     }
   }
 
   const getTextColor = () => {
-    return type === 'premium' ? 'text-white' : 'text-gray-800'
+    return type === 'premium' ? 'text-white' : 'text-gray-500'
   }
 
   const getButtonClass = () => {
@@ -53,7 +53,7 @@ const PricingCard = ({loadingButtons,handlePayments, type, title, price, feature
 
   return (
     <div
-      className={`rounded-lg p-6 border transition-all duration-300 shadow-xl flex flex-col ${getBgColor()} ${getHoverClasses()}`}
+      className={`rounded-lg p-6 transition-all duration-300 shadow-xl flex flex-col ${getBgColor()} ${getHoverClasses()}`}
     >
       <div
         className={`rounded-full w-10 h-10 flex items-center justify-center mb-4 ${

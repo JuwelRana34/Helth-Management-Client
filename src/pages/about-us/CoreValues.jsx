@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import ThemeContext from './../../Providers/ThemeContext';
 
 const CoreValues = () => {
+  const {theme} = useContext(ThemeContext)
   const values = [
     {
       title: 'Integrity',
@@ -24,26 +26,27 @@ const CoreValues = () => {
       gradient: 'from-green-400 to-emerald-500',
     },
   ];
+  
 
   return (
-    <div className="py-16 px-6 md:px-20 bg-gradient-to-r from-white via-blue-50 to-white">
-      <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-14">Our Core Values</h2>
+    <div className={`py-16 px-6 md:px-20 ${theme === "light" ? "bg-gradient-to-r from-white via-blue-50 to-white" : "bg-gradient-to-r from-gray-800 via-gray-600 to-black"}`}>
+
+      <h2 className="text-4xl font-extrabold text-center mb-14">Our Core Values</h2>
       <div className="grid gap-10 md:grid-cols-3">
         {values.map((value, idx) => (
           <div
             key={idx}
-            className="relative group bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl border hover:border-transparent transition duration-300 hover:scale-105"
+            className="relative group bg-base-300 p-8 rounded-3xl shadow-lg hover:shadow-lg transition duration-300 hover:scale-105"
           >
             <div className="flex justify-center mb-6">
               <div className={`bg-gradient-to-br ${value.gradient} p-5 rounded-full shadow-lg`}>
                 <img src={value.icon} alt={value.title} className="w-10 h-10" />
               </div>
             </div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">{value.title}</h3>
+            <h3 className="text-xl font-semibold text-gray-500 mb-4 text-center">{value.title}</h3>
             <p className="text-gray-600 text-sm text-center leading-relaxed">
               {value.description}
             </p>
-            <div className={`absolute top-0 left-0 w-full h-full rounded-3xl z-[-1] bg-white opacity-0 group-hover:opacity-100 transition duration-300`}></div>
           </div>
         ))}
       </div>
