@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import ThemeContext from "../../Providers/ThemeContext";
 
 const services = [
   {
@@ -60,6 +61,8 @@ const services = [
 ];
 
 const HomeCard = () => {
+  const {theme} = useContext(ThemeContext)
+
   return (
     <section className="py-12 font-lato w-[90%] mx-auto">
       <div className="mx-auto px-4">
@@ -74,22 +77,22 @@ const HomeCard = () => {
         </div>
 
         {/* Service Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-gray-800">
+        <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6  ${theme === "light"? "text-gray-800" : "text-gray-400"}`}>
           {services.map((service, index) => (
             <div
               key={index}
-              className="border bg-white shadow-lg rounded-lg p-5 transition transform hover:-translate-y-2 hover:shadow-xl hover:bg-emerald-100 hover:text-primary group"
+              className={`${theme === "light"? "hover:bg-emerald-100" : "hover:bg-[#233433]"} bg-base-300 shadow-lg rounded-lg p-5 transition transform hover:-translate-y-2 hover:shadow-xl hover:bg-emerald-100 hover:text-primary group duration-200 ease-in-out`}
             >
               <div className="flex justify-start">
                 <img className="w-16 h-16" src={service.img} alt={service.alt} />
               </div>
-              <h2 className="text-xl font-semibold mt-4 text-">{service.title}</h2>
+              <h2 className="text-xl font-semibold mt-4 ">{service.title}</h2>
               <ul className="list-disc list-inside mt-2 text-sm">
                 {service.items.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
               </ul>
-              <p className="text-gray-600 group-hover:text-primary mt-3 text-sm">{service.description}</p>
+              <p className=" group-hover:text-primary mt-3 text-sm">{service.description}</p>
             </div>
           ))}
         </div>

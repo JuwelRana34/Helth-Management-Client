@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaHeartbeat, FaStethoscope, FaShieldAlt } from 'react-icons/fa';
+import ThemeContext from './../../Providers/ThemeContext';
 
 const Card = ({ icon, title, description }) => {
+  const { theme } = useContext(ThemeContext);
+  console.log(theme);
   return (
-    <div className="bg-emerald-100 shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl mx-auto">
+    <div className={` ${theme === "light" ? "bg-emerald-100" : "bg-[#31694c3e]"} shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl mx-auto`}>
       <div className="flex items-center justify-start p-6  text-primary">
         <div className="text-7xl">{icon}</div>
       </div>
