@@ -13,6 +13,7 @@ import {
   LogOut,
   X,
   UserCog,
+  FilePlus,
 } from "lucide-react";
 import useAuth from "../Hooks/useAuth";
 import { AuthContext } from "../Providers/AuthProvider";
@@ -29,32 +30,31 @@ function Dashboard() {
   const [showNotifications, setShowNotifications] = useState(false);
   const location = useLocation();
   const { logOut } = useAuth();
-  const { notifi, user, isAdmin ,setNotifi} = useContext(AuthContext);
-  const { data: notifications, refetch} = useFetchData('getNotifications', 'notifications');
- const axiosSecure = useAxiosSecure()
+  const { notifi, user, isAdmin, setNotifi } = useContext(AuthContext);
+  const { data: notifications, refetch } = useFetchData('getNotifications', 'notifications');
+  const axiosSecure = useAxiosSecure()
   useEffect(() => {
-      setNotifi(notifications)
-    }, [notifications, setNotifi])
+    setNotifi(notifications)
+  }, [notifications, setNotifi])
 
   const handelLogout = () => logOut();
   const handleBellClick = () => setShowNotifications(!showNotifications);
   const toggleSidebar = () => setShowSidebar(!showSidebar);
-  
+
   const handelDelete = async (id) => {
-        await axiosSecure.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
-        refetch();
-        toast.error('Notification deleted successfully!');
-        QueryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
-         // Fetch latest notifications
-      }
-      
+    await axiosSecure.delete(`${import.meta.env.VITE_Url}/api/notification/${id}`);
+    refetch();
+    toast.error('Notification deleted successfully!');
+    QueryClient.invalidateQueries(['notifications']); // Invalidate cache to trigger refetch
+    // Fetch latest notifications
+  }
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div
-        className={`bg-primary text-white h-screen overflow-y-scroll p-4 hidden md:flex flex-col transition-all duration-300  ${
-          isCollapsed ? "w-20" : "w-64"
-        }`}
+        className={`bg-primary text-white h-screen overflow-y-scroll p-4 hidden md:flex flex-col transition-all duration-300  ${isCollapsed ? "w-20" : "w-64"
+          }`}
       >
         <SidebarContent
           isCollapsed={isCollapsed}
@@ -66,9 +66,8 @@ function Dashboard() {
 
       {/* Mobile Sidebar Drawer */}
       <div
-        className={`fixed overflow-y-scroll top-0 left-0 h-full w-64 bg-primary text-white z-50 p-4 transition-transform transform md:hidden ${
-          showSidebar ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed overflow-y-scroll top-0 left-0 h-full w-64 bg-primary text-white z-50 p-4 transition-transform transform md:hidden ${showSidebar ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <button
           onClick={() => setShowSidebar(false)}
@@ -78,7 +77,7 @@ function Dashboard() {
         </button>
         <SidebarContent
           isCollapsed={false}
-          toggleCollapse={() => {}}
+          toggleCollapse={() => { }}
           location={location}
           isAdmin={isAdmin}
         />
@@ -132,13 +131,12 @@ function Dashboard() {
                       notifi.map((notification, index) => (
                         <div
                           key={notification._id}
-                          className={`p-2 border-b last:border-none overflow-y-scroll h-56 ${
-                            index % 2 === 0 ? " bg-slate-50" : ""
-                          }`}
+                          className={`p-2 border-b last:border-none overflow-y-scroll h-56 ${index % 2 === 0 ? " bg-slate-50" : ""
+                            }`}
                         >
                           <p className="flex justify-between text-justify">
                             {notification.message}
-                           {isAdmin&&  <button
+                            {isAdmin && <button
                               onClick={() => handelDelete(notification._id)}
                               className=" rounded-md py-2 px-3 bg-red-300 text-rose-600 h-fit"
                             >
@@ -221,7 +219,7 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
 
         {!isAdmin && (
           <>
-            
+
           </>
         )}
         <NavItem
@@ -239,6 +237,13 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           collapsed={isCollapsed}
           active={location.pathname === "/Dashboard/payments"}
         />
+        <NavItem
+          to="/Dashboard/requested"
+          icon={<FilePlus size={28} size={28} />}
+          label="Requested"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard/requested"}
+        />
 
         <NavItem
           to="/Dashboard/doctor"
@@ -255,12 +260,12 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
           active={location.pathname === "/Dashboard/messages"}
         />
         <NavItem
-              to="/Dashboard/schedule"
-              icon={<Calendar size={28} />}
-              label="Schedule"
-              collapsed={isCollapsed}
-              active={location.pathname === "/Dashboard/schedule"}
-            />
+          to="/Dashboard/schedule"
+          icon={<Calendar size={28} />}
+          label="Schedule"
+          collapsed={isCollapsed}
+          active={location.pathname === "/Dashboard/schedule"}
+        />
       </ul>
     </nav>
 
@@ -279,9 +284,8 @@ const NavItem = ({ to, icon, label, collapsed, active }) => (
   <ol className="relative group">
     <Link
       to={to}
-      className={`flex items-center space-x-3 p-3 rounded-md transition-all ${
-        active ? "bg-emerald-500" : "hover:bg-emerald-400"
-      }`}
+      className={`flex items-center space-x-3 p-3 rounded-md transition-all ${active ? "bg-emerald-500" : "hover:bg-emerald-400"
+        }`}
     >
       <span className="text-white flex justify-center items-center">
         {icon}
