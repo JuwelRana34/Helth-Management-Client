@@ -30,6 +30,7 @@ export default {
       },
     },
   },
+  darkMode: ['attribute', 'data-theme'],
   plugins: [daisyui],
   daisyui: {
     themes: ["light", "dark"], 

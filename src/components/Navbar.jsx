@@ -5,12 +5,16 @@ import { CiLocationOn } from "react-icons/ci";
 import useAuth from "../Hooks/useAuth";
 import ThemeContext from "../Providers/ThemeContext";
 import { LuSunMedium } from "react-icons/lu";
+import { FaSun } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const { theme, setTheme } = useContext(ThemeContext)
-// console.log(user,'user from nav')  
+  console.log(theme);
+
+  // console.log(user,'user from nav')  
+
   return (
     <>
       {/* Nav Top */}
@@ -89,6 +93,21 @@ const Navbar = () => {
             </NavLink>
           </ul>
 
+          <label className="swap swap-rotate">
+            {/* Checkbox to toggle theme */}
+            <input
+              type="checkbox"
+              checked={theme === "dark"}
+              onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+            />
+            {/* Moon Icon */}
+            <FaMoon className="swap-on h-8 w-8 fill-current text-blue-500" />
+
+            {/* Sun Icon */}
+            <FaSun className="swap-off h-8 w-8 fill-current text-yellow-500" />
+
+
+          </label>
 
           {user ? (
             <button
@@ -120,7 +139,7 @@ const Navbar = () => {
             } md:hidden bg-white shadow-md`}
         >
           <ul className="flex flex-col items-center py-4 space-y-4">
-            {[ "About", "services","Subscription","Dashboard"].map((item, index) => (
+            {["About", "services", "Subscription", "Dashboard"].map((item, index) => (
               <li key={index}>
                 <NavLink
                   to={`/${item.toLowerCase().replace(/\s/g, "")}`}
