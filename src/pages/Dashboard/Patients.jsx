@@ -35,7 +35,7 @@ const Patients = () => {
   const axiosSecure = useAxiosSecure()
   const { isPatient } = useIsDoctor();
 
-
+ console.log(userDatabaseInfo, 'userDatabaseInfo')
   const { data : status, isLoading, isError, error,refetch } = useQuery({
     queryKey: ['users'],
     queryFn:  async () => {
@@ -118,7 +118,7 @@ const Patients = () => {
                   }`}
               >
                 {userDatabaseInfo?.subscriptionPlan === "basic" ||
-                  userDatabaseInfo?.subscriptionPlan === ""
+                  userDatabaseInfo?.subscriptionPlan === null
                   ? userDatabaseInfo?.ticket
                   : "Unlimited"}
               </p>

@@ -7,6 +7,7 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import app from "../../Firebase/firebase.config";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -17,7 +18,7 @@ const Register = () => {
   const facebookProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const axiosSecure = useAxiosSecure();
   // Password validation
   const validatePassword = (password) => {
     const hasUppercase = /[A-Z]/.test(password);
@@ -56,7 +57,7 @@ const Register = () => {
       await createUser(email, password);
       await updateUserProfile(name);
       toast.success("Registration successful!");
-      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       navigate(location.state?.from || "/");
     } catch (error) {
       toast.error(error.message);
@@ -77,7 +78,7 @@ const Register = () => {
         email: user.email,
         photo: user.photoURL,
       };
-      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {
@@ -99,7 +100,7 @@ const Register = () => {
         email: user.email,
         photo: user.photoURL,
       };
-      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {
