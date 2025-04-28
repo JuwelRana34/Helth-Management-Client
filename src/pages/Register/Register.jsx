@@ -18,7 +18,6 @@ const Register = () => {
   const facebookProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
-  const axiosSecure = useAxiosSecure();
   // Password validation
   const validatePassword = (password) => {
     const hasUppercase = /[A-Z]/.test(password);
@@ -79,7 +78,7 @@ const Register = () => {
         email: user.email,
         photo: user.photoURL,
       };
-      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {
@@ -101,7 +100,7 @@ const Register = () => {
         email: user.email,
         photo: user.photoURL,
       };
-      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {
