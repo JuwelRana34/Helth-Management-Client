@@ -7,6 +7,7 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import app from "../../Firebase/firebase.config";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -17,7 +18,6 @@ const Register = () => {
   const facebookProvider = new FacebookAuthProvider();
   const navigate = useNavigate();
   const location = useLocation();
-
   // Password validation
   const validatePassword = (password) => {
     const hasUppercase = /[A-Z]/.test(password);

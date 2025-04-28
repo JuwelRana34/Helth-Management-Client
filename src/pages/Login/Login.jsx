@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import app from "../../Firebase/firebase.config";
 import { useState } from "react";
-import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Login = () => {
   const { signIn } = useAuth();
@@ -25,7 +25,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [resetEmail, setResetEmail] = useState("");
   const [showResetModal, setShowResetModal] = useState(false);
-
+  const axiosSecure = useAxiosSecure();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (loading) return;
@@ -36,8 +36,9 @@ const Login = () => {
 
     setLoading(true);
     signIn(email, password)
-      .then(() => {
-        toast.success("Login successful");
+      .then((result) => {
+        const user = result.user;
+        toast.success(`${user.displayName}, Login successful`);
         navigate(location.state?.from || "/");
       })
       .catch((error) => toast.error(error.message))
@@ -56,7 +57,7 @@ const Login = () => {
         email: user.email,
         photo: user.photoURL,
       };
-      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {
@@ -79,7 +80,7 @@ const Login = () => {
         email: user.email,
         photo: user.photoURL,
       };
-      await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
       toast.success(`Welcome, ${user.displayName}!`);
       navigate(location.state?.from?.pathname || "/");
     } catch (error) {
