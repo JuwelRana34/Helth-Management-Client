@@ -4,6 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import PricingCard from "../../components/PricingCard";
 import Swal from "sweetalert2";
+import ThemeContext from "../../Providers/ThemeContext";
 
 const BookAppointment = () => {
   const plans = [
@@ -91,12 +92,14 @@ const BookAppointment = () => {
       }
     });
 
+
   };
+  const {theme} = useContext(ThemeContext)
 
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-16">
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-500">
           Simple,{" "}
           <span className=" bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500">
             Transparent

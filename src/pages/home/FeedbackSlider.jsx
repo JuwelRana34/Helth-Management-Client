@@ -44,7 +44,7 @@ const FeedbackSlider = () => {
   return (
     <section className="py-20 ">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-gray-800">
+        <h2 className="text-4xl font-bold text-primary">
           What Our Patients Say
         </h2>
         <p className="text-gray-500 text-lg mt-3">
@@ -67,7 +67,7 @@ const FeedbackSlider = () => {
       >
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-white border border-gray-100 p-6 rounded-xl shadow-sm h-[360px] flex flex-col justify-between transition hover:shadow-md">
+            <div className="bg-base-300 p-6 rounded-lg shadow-lg h-[360px] flex flex-col justify-between transition hover:shadow-md">
               <p className="text-gray-600 text-base line-clamp-5">
                 “{testimonial.feedback}”
               </p>

@@ -57,7 +57,8 @@ const Register = () => {
       await createUser(email, password);
       await updateUserProfile(name);
       toast.success("Registration successful!");
-      await axiosSecure.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      const theUserData = await axios.post(`${import.meta.env.VITE_Url}/api/auth/register`, userData);
+      console.log('response',theUserData)
       navigate(location.state?.from || "/");
     } catch (error) {
       toast.error(error.message);

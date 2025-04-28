@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import ThemeContext from "../Providers/ThemeContext";
 
 const Card = ({ item }) => {
   const { name, image, specialty, _id } = item;
+  const {theme} = useContext(ThemeContext)
+
   return (
-    <Link to={`/doctor/${_id}`}  className="p-4 space-y-3 rounded-lg bg-slate-100 shadow-md hover:scale-105 duration-300 ease-in-out hover:cursor-pointer hover:bg-emerald-50">
+    <Link to={`/doctor/${_id}`}  className={`${theme === "light"? "hover:bg-emerald-100" : "hover:bg-[#233433]"} p-4 space-y-3 rounded-lg bg-base-300 shadow-md hover:scale-105 duration-300 ease-in-out hover:cursor-pointer `}>
       <figure className="">
         <img src={image} alt="Doctor" className="md:h-48 h-36 lg:h-64 w-full max-w-72 object-cover rounded-lg" />
       </figure>

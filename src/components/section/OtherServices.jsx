@@ -62,7 +62,7 @@ const OtherServices = () => {
           <p className="text-3xl font-bold text-primary">
             Senior Care Services
           </p>
-          <p className="py-5 text-gray-700 leading-relaxed">
+          <p className="py-5 text-gray-500 leading-relaxed">
             We provide exceptional senior care services tailored to meet the
             needs of elderly individuals. Our compassionate approach ensures
             that seniors receive the highest quality of care, including
@@ -77,7 +77,7 @@ const OtherServices = () => {
             {serviceData?.map((item , index) => (
               <div
                 key={index}
-                className="p-6 rounded-xl shadow-md border border-gray-200 bg-white"
+                className="p-6 rounded-lg shadow-lg bg-base-300"
               >
                 {/* <img
                   src={item?.icon}
@@ -87,7 +87,7 @@ const OtherServices = () => {
                 <p className="text-xl font-semibold text-primary">
                   {item?.title}
                 </p>
-                <p className="text-gray-600 py-3">{item?.description}</p>
+                <p className="text-gray-500 py-3">{item?.description}</p>
                 <p className="flex items-center gap-2 text-primary font-medium cursor-pointer hover:underline">
                   Learn More{" "}
                   <img
@@ -103,7 +103,7 @@ const OtherServices = () => {
        
       </div>
       {/* FAQ Section */}
-      <div className="mt-12 bg-gray-50 p-2 md:p-4 rounded-xl shadow-sm">
+      <div className="mt-12 bg-base-300 p-2 md:p-4 rounded-xl shadow-sm">
         <p className="text-3xl font-bold text-primary text-center">
           <img
             className="w-10 inline"
@@ -116,7 +116,7 @@ const OtherServices = () => {
           {Faq.map((faq, index) => (
             <div
               key={index}
-              className="bg-white p-4 rounded-xl shadow-md border border-gray-200 cursor-pointer"
+              className="bg-base-200 p-4 rounded-xl shadow-md border-gray-200 cursor-pointer"
               onClick={() => toggleFAQ(index)}
             >
               <div className="flex justify-between items-center">
@@ -146,7 +146,7 @@ const OtherServices = () => {
         </div>
       </div>
       {/*  Our Process */}
-      <div className="mt-12 bg-white py-10 rounded-xl shadow-lg">
+      <div className="mt-12 bg-base-200 py-10 rounded-xl mb-8 shadow-sm">
         <p className="text-3xl font-bold text-primary text-center">
           Our Process
         </p>
@@ -173,16 +173,16 @@ const OtherServices = () => {
           ].map((item) => (
             <div
               key={item.id}
-              className={`bg-[#F7F9F8] p-6 rounded-xl shadow-md border border-gray-300 text-center transform transition duration-300 hover:scale-105`}
+              className={`bg-base-300 p-6 rounded-lg shadow-lg text-center transform transition duration-300 hover:scale-105`}
             >
               <p className="text-xl font-semibold text-primary">{item.step}</p>
-              <p className="text-gray-700 mt-2">{item.desc}</p>
+              <p className="text-gray-500 mt-2">{item.desc}</p>
             </div>
           ))}
         </div>
       </div>
       {/* get in tuch  */}
-      <section className="mt-10 bg-white p-6 rounded-xl shadow-md text-center">
+      <section className="mt-10 bg-base-200 p-6 rounded-lg shadow-sm text-center">
         <motion.p
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -197,7 +197,7 @@ const OtherServices = () => {
           />
           Get in Touch
         </motion.p>
-        <p className="text-gray-700 mt-4">
+        <p className="text-gray-500 mt-4">
           Need more information? Contact us today!
         </p>
         <motion.button

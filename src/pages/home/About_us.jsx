@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import photo from "../../../src/assets/aboutus/about1.jpg";
 import squre from "../../../src/assets/aboutus/about-shape1.png";
 import squre2 from "../../../src/assets/aboutus/about-shape2.png";
@@ -7,6 +7,7 @@ import videoThumbnail from "../../../src/assets/aboutus/wrap-video.jpg";
 import line from "../../../src/assets/aboutus/line.png";
 import { MdOutlineDone } from "react-icons/md";
 import { Link } from "react-router";
+import ThemeContext from "../../Providers/ThemeContext";
 
 
 const About_us = () => {
@@ -14,6 +15,7 @@ const About_us = () => {
     const features = [
         "Easy and user-friendly interface for staff and administrators", 'Efficient patient management and appointment scheduling', "Secure storage and access to medical records", "Real-time coordination between departments and staff"
     ]
+    const {theme} = useContext(ThemeContext)
 
     return (
         <div className="px-4 lg:px-0 mt-12 mb-8">
@@ -26,7 +28,7 @@ const About_us = () => {
                     <div className="aboutUs-img relative p-2">
                         <img
                             src={photo}
-                            className="mt-10 shadow-lg relative rounded-xl z-[5] md:w-72 mx-auto md:h-auto"
+                            className="mt-10  shadow-lg relative rounded-xl z-[5] md:w-72 mx-auto md:h-auto"
                             alt="Healthcare Logo"
                         />
                         <div className="absolute z-0 top-0 left-10">
@@ -38,17 +40,17 @@ const About_us = () => {
                         <div className="absolute -bottom-16 left-24">
                             <img src={squre3} alt="svg img" />
                         </div>
-                        <div className="absolute md:animate-move-right -bottom-10 right-0 z-[6] bg-white shadow-2xl rounded-3xl border p-2 mr-2 md:p-5">
+                        <div className="absolute md:animate-move-right -bottom-10 right-0 z-[6] bg-base-200 shadow-2xl rounded-3xl p-2 mr-2 md:p-5">
                             <div className="flex justify-center items-center gap-5">
                                 <div>
                                     <img
-                                        className="w-16 rounded-full bg-[#eebcff] p-2"
+                                        className="w-16 rounded-full bg-[#bcffbd] p-2"
                                         src="https://cdn-icons-png.flaticon.com/128/83/83654.png"
                                         alt="icon"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <h1 className="font-bold text-xl md:text-4xl text-gray-800">
+                                    <h1 className={` ${theme ==="light" ? "text-gray-800" : "text-gray-300"} font-bold text-xl md:text-4xl text-gray-800`}>
                                         45+
                                     </h1>
                                     <h3 className="text-[#767ab2]">Global Healthcare Awards</h3>

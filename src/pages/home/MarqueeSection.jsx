@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Marquee from 'react-fast-marquee';
 import { FaHospital, FaUserMd, FaHeartbeat, FaStethoscope, FaClinicMedical } from 'react-icons/fa';
+import ThemeContext from '../../Providers/ThemeContext';
 
 const MarqueeSection = () => {
   const sponsors = [
@@ -10,9 +11,10 @@ const MarqueeSection = () => {
     { logo: <FaStethoscope size={32} />, name: "Medical Specialists" },
     { logo: <FaClinicMedical size={32} />, name: "Global Health Center" },
   ];
+  const {theme} = useContext(ThemeContext)
 
   return (
-    <div className="py-6 bg-primary text-white">
+    <div className={`${theme === "light"? 'bg-primary': 'bg-[#0079558d]'} py-6  text-white`}>
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:space-x-4 space-y-4 lg:space-y-0 px-4">
         {/* "Our Medical Partners" Title */}
         <h1 className="text-2xl font-bold whitespace-nowrap border-r-2 pr-4 border-white">

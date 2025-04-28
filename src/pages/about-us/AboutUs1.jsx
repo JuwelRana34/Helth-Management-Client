@@ -13,19 +13,19 @@ const AboutUs1 = () => {
                 
                 {/* Text Content */}
                 <div className="flex-1">
-                  <p className="text-[#2F7A55] font-bold tracking-wide uppercase">
+                  <p className="text-primary font-bold tracking-wide uppercase">
                     Our Journey & Success
                   </p>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800 py-5 leading-snug">
+                  <h2 className="text-3xl md:text-4xl font-bold py-5 leading-snug">
                     Driven by Excellence, Proven by Results
                   </h2>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-500 leading-relaxed">
                     Our journey began with a vision to simplify and transform healthcare operations through 
                     cutting-edge technology. Over the years, <span className="font-semibold text-gray-700">Health Care</span> has evolved into 
                     a trusted name in digital hospital management. We have focused on innovation, efficiency, 
                     and impact—helping hospitals, clinics, and healthcare professionals deliver better patient care.
                   </p>
-                  <p className="mt-4 text-gray-600 leading-relaxed">
+                  <p className="mt-4 text-gray-500 leading-relaxed">
                     From prestigious awards to empowering thousands of medical professionals, our success 
                     is measured not just in numbers but in the real-life improvements we bring to healthcare 
                     systems worldwide. We continue to shape a smarter, more connected future in healthcare 
