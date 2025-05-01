@@ -18,7 +18,6 @@ function Messages() {
   const [selectedContact, setSelectedContact] = useState(null)
   const [replyText, setReplyText] = useState('')
   const axiosSecure = useAxiosSecure()
-
   const { data: Contacts, refetch, isLoading } = useFetchData('getContact', 'contact');
 
 
@@ -29,7 +28,8 @@ function Messages() {
   };
   const sendContactReply = async (userContact, replyText) => {
     const id = userContact?._id;
-    await axiosSecure.delete(`${import.meta.env.VITE_Url}/api/contactDelete/${id}`);
+    await axiosSecure.post(`${import.meta.env.VITE_Url}/api/contactDelete/${id}`,{reply: replyText, email:userContact?.email});
+    toast.success('Reply sent successfully!')
     refetch()
     closeModal();
   }
