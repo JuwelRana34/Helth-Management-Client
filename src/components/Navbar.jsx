@@ -17,6 +17,7 @@ const Navbar = () => {
     <>
       {/* Nav Top */}
       <div className="flex text-xs  flex-col md:text-base md:flex-row justify-between  p-2 md:px-4 bg-primary text-white dark:bg-gray-800">
+      <div className="flex text-xs  flex-col md:text-base md:flex-row justify-between  p-2 md:px-4 bg-primary text-white dark:bg-gray-800">
         <div className="flex items-center justify-center">
           <h1 className="py-2">We understand that each patient is unique</h1>
           <button className="ml-2 underline">Learn More</button>
@@ -35,6 +36,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
+      <nav className=" bg-base-100 dark:bg-slate-900 dark:text-white shadow-md sticky top-0 w-full z-50">
       <nav className=" bg-base-100 dark:bg-slate-900 dark:text-white shadow-md sticky top-0 w-full z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
           {/* Logo */}
