@@ -7,7 +7,6 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import app from "../../Firebase/firebase.config";
 import axios from "axios";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();

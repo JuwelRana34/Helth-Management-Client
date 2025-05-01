@@ -20,7 +20,7 @@ const About_us = () => {
     return (
         <div className="px-4 lg:px-0 mt-12 mb-8">
             <p className='flex justify-center pb-4'>
-                <span className="bg-btnBg text-primary rounded-full py-2 px-3 font-semibold text-center"> About Us </span>
+                <span className="bg-btnBg text-primary  rounded-full py-2 px-3 font-semibold text-center dark:bg-dark dark:text-darkText"> About Us </span>
             </p>
             <div className="grid  grid-cols-12 mt-5 justify-center container mx-auto">
 
@@ -40,8 +40,8 @@ const About_us = () => {
                         <div className="absolute -bottom-16 left-24">
                             <img src={squre3} alt="svg img" />
                         </div>
-                        <div className="absolute md:animate-move-right -bottom-10 right-0 z-[6] bg-base-200 shadow-2xl rounded-3xl p-2 mr-2 md:p-5">
-                            <div className="flex justify-center items-center gap-5">
+                        <div className="absolute dark:bg-dark dark:text-darkText md:animate-move-right -bottom-10 right-0 z-[6] bg-base-200 shadow-2xl rounded-3xl p-2 mr-2 md:p-5">
+                            <div className="flex justify-center items-center gap-5 ">
                                 <div>
                                     <img
                                         className="w-16 rounded-full bg-[#bcffbd] p-2"
@@ -49,11 +49,11 @@ const About_us = () => {
                                         alt="icon"
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <h1 className={` ${theme ==="light" ? "text-gray-800" : "text-gray-300"} font-bold text-xl md:text-4xl text-gray-800`}>
+                                <div className="space-y-2 ">
+                                    <h1 className={`  text-gray-800  font-bold text-xl md:text-4xl dark:text-darkText `}>
                                         45+
                                     </h1>
-                                    <h3 className="text-[#767ab2]">Global Healthcare Awards</h3>
+                                    <h3 className="text-[#767ab2] dark:text-darkText">Global Healthcare Awards</h3>
                                 </div>
                             </div>
                         </div>
@@ -78,25 +78,25 @@ const About_us = () => {
                     </div>
                 </div>
                 <div className="col-span-12 mt-16 lg:mt-0 lg:col-span-6 w-full">
-                    <div>
-                        <h1 className="font-semibold text-2xl text-primary md:text-4xl">
+                    <div className=" dark:text-darkText">
+                        <h1 className="font-semibold text-2xl text-primary dark:text-darkHeadingTxt md:text-4xl">
                             Transforming Healthcare, Simplifying Management
                         </h1>
                         <p className="py-5">
                             <span className='font-bold'>Health Care</span> is a modern hospital management system built to enhance efficiency, accuracy, and care quality within healthcare facilities. We aim to bring smart, digital solutions to hospitals, clinics, and medical centers for smoother daily operations and better patient experiences.
                         </p>
 
-                        <p className='font-semibold text-emerald-600 pb-2'>Why Choose Health Care?</p>
+                        <p className='font-semibold text-emerald-600 dark:text-darkText pb-2'>Why Choose Health Care?</p>
                         {
                             features.map((feature, idx) => <ul key={idx} className='pt-[2px]'>
-                                <li className='flex items-center gap-2 pl-2'> <MdOutlineDone className=' bg-emerald-500 text-white rounded text-md' />
+                                <li className='flex items-center gap-2 pl-2'> <MdOutlineDone className=' bg-emerald-500  text-white rounded text-md' />
                                     {feature}</li>
                             </ul>)
                         }
                         <p className='pt-5'>With Health Care, managing your hospital becomes easier, faster, and more reliable — so you can focus on what matters most: delivering better healthcare.</p>
 
 
-                        <p className="text-emerald-500">
+                        <p className="text-emerald-500 dark:text-cyan-500">
                             Our dedicated team of medical professionals is here to guide you on your health journey.
                         </p>
                     </div>
@@ -104,7 +104,7 @@ const About_us = () => {
             </div>
 
             <div className="flex justify-center mt-6  lg:mt-12 xl:mt-16">
-                <Link to={"/about"} className="flex items-center bg-btnBg text-primary font-semibold px-4 py-2 rounded-full hover:bg-emerald-300 transition">
+                <Link to={"/about"} className="flex items-center bg-btnBg text-primary font-semibold px-4 py-2 rounded-full hover:bg-emerald-300 transition dark:bg-dark dark:text-darkText">
                     More About Us
                     <img className="w-8 ml-4 rounded-full" src="https://cdn-icons-gif.flaticon.com/7740/7740503.gif" alt="Arrow" />
                 </Link>

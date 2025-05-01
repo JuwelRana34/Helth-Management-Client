@@ -29,14 +29,14 @@ const CoreValues = () => {
   
 
   return (
-    <div className={`py-16 px-6 md:px-20 ${theme === "light" ? "bg-gradient-to-r from-white via-blue-50 to-white" : "bg-gradient-to-r from-gray-800 via-gray-600 to-black"}`}>
+    <div className={`py-16 px-6 md:px-20  bg-gradient-to-r from-white via-blue-50 to-white dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-600 dark:to-black"}`}>
 
-      <h2 className="text-4xl font-extrabold text-center mb-14">Our Core Values</h2>
+      <h2 className="text-4xl font-extrabold text-center mb-14 dark:text-darkText">Our Core Values</h2>
       <div className="grid gap-10 md:grid-cols-3">
         {values.map((value, idx) => (
           <div
             key={idx}
-            className="relative group bg-base-300 p-8 rounded-3xl shadow-lg hover:shadow-lg transition duration-300 hover:scale-105"
+            className="relative group bg-base-300 dark:bg-gray-800 p-8 rounded-3xl shadow-lg hover:shadow-lg transition duration-300 hover:scale-105"
           >
             <div className="flex justify-center mb-6">
               <div className={`bg-gradient-to-br ${value.gradient} p-5 rounded-full shadow-lg`}>
@@ -44,7 +44,7 @@ const CoreValues = () => {
               </div>
             </div>
             <h3 className="text-xl font-semibold text-gray-500 mb-4 text-center">{value.title}</h3>
-            <p className="text-gray-600 text-sm text-center leading-relaxed">
+            <p className="text-gray-600 dark:text-darkText text-sm text-center leading-relaxed">
               {value.description}
             </p>
           </div>

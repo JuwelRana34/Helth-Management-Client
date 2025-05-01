@@ -41,7 +41,7 @@ const Doctors = () => {
 
   return (
     <div className="pb-10 w-[80%] mx-auto">
-      <h1 className="text-3xl md:text-5xl text-primary font-bold text-center py-10">
+      <h1 className="text-3xl md:text-5xl text-primary font-bold text-center py-10 dark:text-darkHeadingTxt">
         Meet Our Skilled Professionals Making a Difference at the Clinic
       </h1>
 
@@ -51,7 +51,7 @@ const Doctors = () => {
           <button
             key={dept}
             onClick={() => setSelectedDept(dept)}
-            className={`px-3 py-1 rounded-md text-primary border border-emerald-200 transition-all duration-300
+            className={`px-3 py-1 rounded-md text-primary border border-emerald-200 transition-all  dark:bg-dark dark:text-darkText dark:border-dark duration-300
             ${selectedDept === dept ? "bg-primary text-white shadow-md" : "bg-emerald-100 hover:bg-primary text-primary hover:text-white"}`}
           >
             {dept}
