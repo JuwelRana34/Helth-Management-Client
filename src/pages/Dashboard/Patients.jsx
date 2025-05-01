@@ -92,29 +92,29 @@ const Patients = () => {
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <h2 className="text-3xl font-bold text-primary">Your Profile</h2>
+      <h2 className="text-3xl font-bold text-primary dark:text-darkText">Your Profile</h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+      {/* <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"> */}
         {/* Patient Card */}
-        <div className="bg-white shadow-lg rounded-lg p-6">
+        <div className="bg-white shadow-lg mx-auto mt-5 md:w-2/6 rounded-lg p-6 dark:text-darkText dark:bg-dark ">
           <div className="text-center">
             <img
               src={userDatabaseInfo?.img}
               alt="Patient"
-              className="w-24 h-24 mx-auto rounded-full ring ring-emerald-400 border-primary"
+              className="w-24 h-24 mx-auto rounded-full ring ring-emerald-400 border-primary dark:ring-cyan-300"
             />
-            <h3 className="text-xl font-bold mt-2">{userDatabaseInfo?.name}</h3>
-            <p className="text-gray-600 text-sm">{userDatabaseInfo?.email}</p>
+            <h3 className="text-xl font-bold mt-2 dark:text-darkHeadingTxt">{userDatabaseInfo?.name}</h3>
+            <p className="text-gray-600 dark:text-darkText text-sm">{userDatabaseInfo?.email}</p>
           </div>
           <div className="grid grid-cols-2 mt-4">
             <div className="p-2 border text-center">
-              <p className="text-gray-600 text-sm">Tickets</p>
+              <p className="text-gray-600 text-sm dark:text-darkText">Tickets</p>
               <p
                 className={`text-lg font-bold ${(userDatabaseInfo?.subscriptionPlan === "basic" &&
                     userDatabaseInfo?.ticket <= 10) ||
                     userDatabaseInfo?.subscriptionPlan === ""
                     ? "text-red-500"
-                    : "text-green-600"
+                    : "text-green-600 dark:text-darkText"
                   }`}
               >
                 {userDatabaseInfo?.subscriptionPlan === "basic" ||
@@ -124,17 +124,17 @@ const Patients = () => {
               </p>
             </div>
             <div className="p-2 border text-center">
-              <p className="text-gray-600 text-sm">Subscription Plan</p>
-              <p className="text-lg font-bold text-primary">
+              <p className="text-gray-600 text-sm dark:text-darkText">Subscription Plan</p>
+              <p className="text-lg font-bold text-primary dark:text-darkText">
                 {userDatabaseInfo?.subscriptionPlan === "" ? "N/A" : userDatabaseInfo?.subscriptionPlan}
               </p>
             </div>
           </div>
-        </div>
+        {/* </div> */}
 
         {/* "Be a Doctor" Button (only for patients) */}
         {isPatient && (
-          <div className={`bg-white shadow-lg rounded-lg p-6 flex items-center justify-center`}>
+          <div className={`bg-white dark:text-darkText dark:bg-dark  shadow-lg rounded-lg p-6 flex items-center justify-center`}>
             <button disabled={status === 'pending'} onClick={handleDoctorRequest} className={`bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded  ${status == 'pending' && `bg-slate-400 hover:bg-slate-300`}`}>
               Be a Doctor
             </button>
@@ -142,65 +142,6 @@ const Patients = () => {
         )}
       </div>
 
-      {/* Medical Details */}
-      <div className="grid md:grid-cols-2 gap-6 mt-6">
-        <div className="bg-blue-500 text-white p-6 rounded-lg">
-          <h3 className="text-lg font-semibold">Medical Details</h3>
-          <p>
-            Blood Type: <span className="font-bold">AB+</span>
-          </p>
-          <p>
-            Allergies: <span className="font-bold">Peanuts</span>
-          </p>
-          <p>
-            Diseases: <span className="font-bold">Diabetes</span>
-          </p>
-          <p>
-            Pressure: <span className="font-bold">130/89 mmHg</span>
-          </p>
-          <p>
-            Temperature: <span className="font-bold">36.8°C</span>
-          </p>
-        </div>
-
-        <div className="bg-red-500 text-white p-6 rounded-lg">
-          <h3 className="text-lg font-semibold">Doctors</h3>
-          <ul>
-            <li>Dr. Anthony Wager - Dermatologist</li>
-            <li>Dr. Smith Wright - Clinical Doctor</li>
-            <li>Dr. Tom Humpton - Dentist</li>
-            <li>Dr. Riphat Jion - Surgeon</li>
-          </ul>
-        </div>
-      </div>
-
-      {/* Health Stats */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-        <div className="bg-white shadow-lg p-4 rounded-lg">
-          <h4 className="text-sm text-gray-600">Blood Pressure</h4>
-          <p className="text-xl font-bold text-purple-600">120/89 mmHg</p>
-        </div>
-        <div className="bg-white shadow-lg p-4 rounded-lg">
-          <h4 className="text-sm text-gray-600">Heart Rate</h4>
-          <p className="text-xl font-bold text-red-500">107 bpm</p>
-        </div>
-        <div className="bg-white shadow-lg p-4 rounded-lg">
-          <h4 className="text-sm text-gray-600">Glucose Rate</h4>
-          <p className="text-xl font-bold text-green-500">97 mg/dl</p>
-        </div>
-        <div className="bg-white shadow-lg p-4 rounded-lg">
-          <h4 className="text-sm text-gray-600">Cholesterol</h4>
-          <p className="text-xl font-bold text-blue-500">124 mg/dl</p>
-        </div>
-      </div>
-
-      {/* Patient Activities Chart */}
-      <div className="bg-white shadow-lg rounded-lg p-6 mt-6">
-        <h3 className="text-lg font-semibold text-gray-700">
-          Patient Activities
-        </h3>
-        <Radar data={activitiesData} />
-      </div>
     </div>
   );
 };

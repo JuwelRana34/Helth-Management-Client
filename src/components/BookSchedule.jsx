@@ -24,23 +24,23 @@ const BookSchedule = () => {
         />
       </div>
 
-      <div className="p-4 max-w-lg mx-auto space-y-6 bg-white shadow-xl rounded-xl">
-        <h2 className="text-3xl font-semibold text-center text-primary">
+      <div className="p-4 max-w-lg mx-auto space-y-6 bg-white shadow-xl rounded-xl dark:text-darkText dark:bg-dark ">
+        <h2 className="text-3xl font-semibold text-center text-primary dark:text-darkText">
           Booked Appointments
         </h2>
 
         {!isLoading ? (
           <div className="mt-6 space-y-4">
             {BookedSlots.map((item, index) => (
-              <div key={index} className={`border p-4 rounded-lg  shadow-md ${new Date() > new Date(item.date) ? "bg-red-100 cursor-not-allowed text-red-500":"bg-emerald-50"}` }>
-                <p className="text-sm text-primary">
+              <div key={index} className={`border p-4 rounded-lg  shadow-md ${new Date() > new Date(item.date) ? "bg-red-100 cursor-not-allowed text-red-500":"bg-emerald-50 dark:bg-slate-800 dark:border-slate-400"}` }>
+                <p className="text-sm text-primary dark:text-darkText ">
                   <span className="font-medium">ID:</span> {item.user}
                 </p>
-                <h3 className="text-lg font-semibold text-primary">
+                <h3 className="text-lg font-semibold text-primary dark:text-darkText">
                   Doctor: {item.doctorName}
                 </h3>
-                <p className="text-sm text-primary">Time: {item.time}</p>
-                <p className="text-sm text-primary">
+                <p className="text-sm text-primary dark:text-darkText">Time: {item.time}</p>
+                <p className="text-sm text-primary dark:text-darkText">
                   Date: {new Date(item.date).toDateString()}
                   {new Date() > new Date(item.date) && <p className="text-red-400 capitalize font-semibold">expired</p>}
                 </p>

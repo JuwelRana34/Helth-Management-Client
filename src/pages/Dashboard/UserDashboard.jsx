@@ -41,95 +41,67 @@ const Dashboard = () => {
   
 
   return (
-    <section className="p-6 bg-gray-100 min-h-screen">
+    <section className="p-6 bg-gray-100 dark:bg-gray-950 min-h-screen">
       {/* Header */}
-      <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500 mb-6">Admin Dashboard!</h1>
-      <p className="text-gray-500 mb-6">Hospital Admin Dashboard Template</p>
+      <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500 mb-6 text-center dark:text-darkHeadingTxt">Admin Dashboard!</h1>
+      <p className="text-gray-500 mb-6 dark:text-darkText">Hospital Admin Dashboard Template</p>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <div className="bg-red-100 shadow-lg p-6 rounded-lg text-center">
-          <FaHeart className="text-red-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Total Patient</h2>
-          <p className="text-3xl font-bold text-red-500">{allData?.userStats?.patient}</p>
+        <div className="bg-red-100 shadow-lg p-6 rounded-lg text-center dark:text-darkText dark:bg-dark ">
+          <FaHeart className="text-red-500 dark:text-darkText text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 dark:text-darkText mt-2">Total Patient</h2>
+          <p className="text-3xl font-bold dark:text-darkText text-red-500">{allData?.userStats?.patient}</p>
         </div>
 
-        <div className="bg-green-100 shadow-lg p-6 rounded-lg text-center">
-          <FaUserMd className="text-green-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Doctor</h2>
-          <p className="text-3xl font-bold text-green-500">{allData?.userStats?.doctor}</p>
+        <div className="bg-green-100 shadow-lg p-6 rounded-lg text-center dark:text-darkText dark:bg-dark ">
+          <FaUserMd className="text-green-500 dark:text-darkText text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 dark:text-darkText mt-2">Doctor</h2>
+          <p className="text-3xl font-bold text-green-500 dark:text-darkText">{allData?.userStats?.doctor}</p>
         </div>
 
-        <div className="bg-blue-100 shadow-lg p-6 rounded-lg text-center">
-          <FaCalendarCheck className="text-blue-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Appointment</h2>
-          <p className="text-3xl font-bold text-blue-500">{bookedSchedules?.length}</p>
+        <div className="bg-blue-100 shadow-lg p-6 rounded-lg text-center dark:text-darkText dark:bg-dark ">
+          <FaCalendarCheck className="text-blue-500 dark:text-darkText text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 dark:text-darkText mt-2">Appointment</h2>
+          <p className="text-3xl font-bold text-blue-500 dark:text-darkText">{bookedSchedules?.length}</p>
         </div>
 
-        <div className="bg-purple-100 shadow-lg p-6 rounded-lg text-center">
-          <FaDollarSign className="text-purple-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Hospital Earning</h2>
-          <p className="text-3xl font-bold text-purple-500">$ {formatNumber(allData?.totalPayments || 0)}</p>
+        <div className="bg-purple-100 shadow-lg p-6 rounded-lg text-center dark:text-darkText dark:bg-dark ">
+          <FaDollarSign className="text-purple-500 dark:text-darkText text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 dark:text-darkText mt-2">Hospital Earning</h2>
+          <p className="text-3xl font-bold text-purple-500 dark:text-darkText">$ {formatNumber(allData?.totalPayments || 0)}</p>
         </div>
       </div>
 
       {/* Revenue & Patient Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+     
         {/* Revenue Chart */}
-        <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-xl font-bold text-gray-700">Revenue</h2>
+        {/* <div className="bg-white mx-auto my-5 dark:text-darkText dark:bg-dark  shadow-lg rounded-lg p-6">
+          <h2 className="text-xl font-bold text-gray-700 dark:text-darkText">Revenue</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={revenueData}>
-              <XAxis dataKey="month" />
+            <BarChart data={allData}>
+              <XAxis dataKey="totalPayments" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="income" fill="#8884d8" />
-              <Bar dataKey="expenses" fill="#82ca9d" />
+              <Bar dataKey="totalPayments" fill="#8884d8" />
+              <Bar dataKey="total users" fill="#82ca9d" />
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </div> */}
 
-        {/* Patient Statistics */}
-        <div className="bg-white shadow-lg rounded-lg p-2">
-          <h2 className="text-xl font-bold text-gray-700">Patient Statistics</h2>
-          <div className="flex space-x-2 mb-4">
-            <button className="bg-green-500 text-white px-4 py-2 rounded-lg">Monthly</button>
-            <button className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg">Weekly</button>
-            <button className="bg-gray-200 text-gray-600 px-4 py-2 rounded-lg">Today</button>
-          </div>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={patientData}>
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="recovered" stroke="#ff6384" />
-              <Line type="monotone" dataKey="newPatient" stroke="#36a2eb" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      
+    
 
       {/* New Section from Second Image */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div className="bg-yellow-100 shadow-lg p-6 rounded-lg text-center">
-          <FaUserCheck className="text-yellow-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Total Admin </h2>
-          <p className="text-3xl font-bold text-yellow-500">{allData?.userStats?.admin}</p>
+      <div className="grid grid-cols-1  gap-6 mt-6">
+        <div className="bg-orange-100 shadow-lg p-6 rounded-lg text-center dark:text-darkText dark:bg-dark ">
+          <FaUserCheck className="text-orange-500 dark:text-darkText text-4xl mx-auto" />
+          <h2 className="text-xl text-gray-600 dark:text-darkText mt-2">Total Admin </h2>
+          <p className="text-3xl font-bold text-orange-500 dark:text-darkText">{allData?.userStats?.admin}</p>
         </div>
 
-        <div className="bg-cyan-100 shadow-lg p-6 rounded-lg text-center">
-          <FaFileMedicalAlt className="text-cyan-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Medical Reports</h2>
-          <p className="text-3xl font-bold text-cyan-500">1,245</p>
-        </div>
-
-        <div className="bg-indigo-100 shadow-lg p-6 rounded-lg text-center">
-          <FaClinicMedical className="text-indigo-500 text-4xl mx-auto" />
-          <h2 className="text-xl text-gray-600 mt-2">Clinics</h2>
-          <p className="text-3xl font-bold text-indigo-500">24</p>
-        </div>
+       
       </div>
     </section>
   );

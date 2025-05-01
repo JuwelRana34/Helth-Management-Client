@@ -65,27 +65,27 @@ function Messages() {
     <div className="">
       {isAdmin && <form
         onSubmit={handleNotification}
-        className="space-y-4 p-4 border rounded-lg shadow-md"
+        className="space-y-4 p-4 border rounded-lg shadow-md dark:text-darkText dark:bg-dark dark:border-gray-700 "
       >
         <label
           htmlFor="notification"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-sm font-medium text-gray-700 dark:text-darkText"
         >
           Notification Message
         </label>
-        <input
+        <textarea
           type="text"
           name="notification"
           id="notification"
           value={notificationText}
           onChange={(e) => setNotificationText(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-darkText dark:border-gray-600"
           placeholder="Enter notification message..."
           required
         />
         <button
           type="submit"
-          className="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full  px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-darkText dark:bg-slate-800 dark:hover:bg-slate-700"
           disabled={notificationMutation.isLoading}
         >
           {notificationMutation.isLoading ? "Saving..." : "Save"}
@@ -94,20 +94,20 @@ function Messages() {
       }
 
 
-      {/* <Chat /> */}
+      <Chat />
 
       {/* contact messages  */}
 
-      {isAdmin && <div className="space-y-4">
+      {isAdmin && <div className="space-y-4 dark:text-darkText  ">
         {Contacts?.map((contact) => (
-          <div key={contact._id} className="p-4 mt-4 rounded-md shadow-md bg-gradient-to-r from-blue-200 via-violet-100 to-pink-50 flex justify-between items-center gap-4">
+          <div key={contact._id} className="p-4 mt-4 rounded-md  dark:bg-slate-800 bg-white shadow-xl flex justify-between items-center gap-4  ">
             <div>
               <h2 className="text-lg font-semibold">Name: {contact.name}</h2>
-              <p className="text-sm text-gray-700">Email: {contact.email}</p>
-              <p className="text-sm text-gray-700">Message: {contact.message}</p>
+              <p className="text-sm text-gray-700 dark:text-darkText">Email: {contact.email}</p>
+              <p className="text-sm text-gray-700 dark:text-darkText">Message: {contact.message}</p>
             </div>
             <button
-              className='btn lg:btn-lg'
+              className='btn lg:btn-lg dark:text-darkText dark:bg-dark dark:shadow-none'
               onClick={() => {
                 setSelectedContact(contact);
                 document.getElementById('msgBox').showModal();

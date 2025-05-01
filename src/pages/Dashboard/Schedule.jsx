@@ -10,10 +10,10 @@ function Schedule() {
   return (
     <div>
       {isAdmin ?
-        <div className="p-6 overflow-x-auto">
+        <div className="p-6 overflow-x-auto dark:text-darkText dark:bg-dark ">
         <h2 className="text-2xl font-semibold mb-4">📋 All Booked Schedules</h2>
         <table className="min-w-full table-auto border border-gray-300 shadow-md rounded-lg">
-          <thead className="bg-gray-100 text-gray-700">
+          <thead className="bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-200">
             <tr>
               <th className="px-4 py-2 border">Doctor Name</th>
               <th className="px-4 py-2 border">Doctor Email</th>

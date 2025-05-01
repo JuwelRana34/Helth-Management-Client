@@ -55,12 +55,12 @@ function Users() {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">All Users</h2>
+    <div className="">
+      <h2 className="text-2xl font-semibold mb-4 dark:text-darkText ">All Users</h2>
       <div className="overflow-x-auto rounded-xl shadow h-screen overflow-y-scroll ">
       {isLoading ? <TableLoader/> : 
-        <table className="min-w-full bg-white border border-gray-200 text-sm">
-          <thead className="bg-gray-100 text-left sticky top-0 text-gray-600">
+        <table className="min-w-full bg-white border border-gray-200 text-sm dark:text-darkText dark:bg-dark ">
+          <thead className="bg-gray-100 dark:bg-slate-700 dark:text-darkText text-left sticky top-0 text-gray-600">
             <tr>
               <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Name</th>
@@ -73,17 +73,17 @@ function Users() {
          
             {users.length === 0 ? (
               <tr>
-                <td colSpan="5" className="text-center py-6 text-gray-500">No users found.</td>
+                <td colSpan="5" className="text-center py-6 text-gray-500 dark:text-darkText">No users found.</td>
               </tr>
             ) : (
               users.map((user, index) => (
-                <tr key={user._id} className="border-t hover:bg-gray-50">
+                <tr key={user._id} className="border-t hover:bg-gray-50 dark:hover:bg-slate-700 transition-colors duration-200">
                   <td className="px-4 py-3">{index + 1}</td>
                   <td className="px-4 py-3">{user.name}</td>
                   <td className="px-4 py-3">{user.email}</td>
                   <td className="px-4 py-3">
                     <select
-                      className="border border-gray-300 rounded px-2 py-1 text-sm"
+                      className="border border-gray-300 dark:bg-dark capitalize rounded px-2 py-1 text-sm"
                       value={user.role}
                       onChange={(e) => handleRoleChange(user._id, e.target.value)}
                     >
