@@ -4,15 +4,14 @@ import ThemeContext from './../../Providers/ThemeContext';
 
 const Card = ({ icon, title, description }) => {
   const { theme } = useContext(ThemeContext);
-  console.log(theme);
   return (
-    <div className={` ${theme === "light" ? "bg-emerald-100" : "bg-[#31694c3e]"} shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl mx-auto`}>
-      <div className="flex items-center justify-start p-6  text-primary">
+    <div className={` ${theme === "light" ? "bg-emerald-100" : "bg-gray-800 "} shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl mx-auto`}>
+      <div className="flex items-center justify-start p-6  text-primary dark:text-dark">
         <div className="text-7xl">{icon}</div>
       </div>
       <div className="px-6 pb-6">
-        <h3 className="text-xl font-semibold text-primary">{title}</h3>
-        <p className="text-primary mt-2">{description}</p>
+        <h3 className="text-xl font-semibold dark:text-dark text-primary ">{title}</h3>
+        <p className="text-primary dark:text-dark mt-2">{description}</p>
       </div>
     </div>
   );

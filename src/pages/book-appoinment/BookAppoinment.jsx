@@ -94,22 +94,22 @@ const BookAppointment = () => {
 
 
   };
-  const {theme} = useContext(ThemeContext)
+
 
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-500">
+      <div className="text-center ">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-500 dark:text-darkText">
           Simple,{" "}
-          <span className=" bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500">
+          <span className=" bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-blue-500 dark:bg-gradient-to-r dark:from-violet-300 dark:to-blue-300">
             Transparent
           </span>{" "}
           Pricing
         </h2>
-        <p className="mt-2 text-gray-500">No contract. No surprise fees.</p>
+        <p className="mt-2 text-gray-500 dark:text-darkText">No contract. No surprise fees.</p>
       </div>
 
-      <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 mt-12 md:grid-cols-2 lg:grid-cols-3 ">
         {plans.map((plan, index) => (
           <PricingCard
             loadingButtons={loadingButtons}

@@ -9,7 +9,7 @@ const Layout = () => {
 
 
     return (
-        <div className='font-roboto'>
+        <div className='font-roboto dark:bg-gray-900 bg-white' >
             <Navbar />
             <div>
                 <Outlet/> 

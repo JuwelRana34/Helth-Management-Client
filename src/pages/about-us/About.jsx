@@ -13,9 +13,7 @@ const About = () => {
       <AboutHeading />
       <AboutUs1 />
       <CoreValues />
-      {/* <DevTeam /> */}
       <Counter />
-      {/* <TestimonialSection /> */}
     </div>
   );
 };

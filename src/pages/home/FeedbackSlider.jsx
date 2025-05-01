@@ -44,7 +44,7 @@ const FeedbackSlider = () => {
   return (
     <section className="py-20 ">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-primary">
+        <h2 className="text-4xl font-bold text-primary dark:text-darkHeadingTxt">
           What Our Patients Say
         </h2>
         <p className="text-gray-500 text-lg mt-3">
@@ -67,8 +67,8 @@ const FeedbackSlider = () => {
       >
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index}>
-            <div className="bg-base-300 p-6 rounded-lg shadow-lg h-[360px] flex flex-col justify-between transition hover:shadow-md">
-              <p className="text-gray-600 text-base line-clamp-5">
+            <div className="bg-base-300 dark:bg-dark dark:text-darkText  p-6 rounded-lg shadow-lg h-[360px] flex flex-col justify-between transition text-gray-600 hover:shadow-md">
+              <p className=" text-base line-clamp-5">
                 “{testimonial.feedback}”
               </p>
               <div className="flex items-center gap-4 mt-6">
@@ -78,11 +78,11 @@ const FeedbackSlider = () => {
                   className="w-14 h-14 rounded-full object-cover border border-gray-200"
                 />
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-800">
+                  <h4 className="text-lg font-semibold text-gray-800 dark:text-darkText">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-gray-500">{testimonial.role}</p>
-                  <div className="flex text-yellow-400 mt-1">
+                  <p className="text-sm text-gray-500 dark:text-darkText">{testimonial.role}</p>
+                  <div className="flex text-yellow-400 dark:text-darkHeadingTxt mt-1">
                     {Array(testimonial.rating)
                       .fill(0)
                       .map((_, i) => (

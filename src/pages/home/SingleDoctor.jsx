@@ -105,7 +105,7 @@ const SingleDoctor = () => {
     );
 
   return (
-    <div className="grid md:grid-cols-2 lg:gap-4 p-6 bg-slate-200 w-11/12 md:w-3/4 lg:w-3/5 my-12 mx-auto rounded-lg">
+    <div className="grid md:grid-cols-2 lg:gap-4 p-6 dark:bg-dark dark:text-darkText bg-slate-200 w-11/12 md:w-3/4 lg:w-3/5 my-12 mx-auto rounded-lg">
       <div className="flex justify-center">
         <img
           src={doctor.image}

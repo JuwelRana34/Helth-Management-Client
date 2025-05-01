@@ -20,7 +20,7 @@ const PricingCard = ({loadingButtons,handlePayments, type, title, price, feature
       case 'basic':
         return 'bg-base-300'
       case 'premium':
-        return 'bg-gradient-to-r from-[#33ccff] to-[#3366ff] '
+        return 'bg-gradient-to-r from-[#33ccff] to-[#3366ff] dark:from-[#1f1f5e] dark:to-[#1a3a5d]'
       case 'family':
         return 'bg-base-300'
       default:
@@ -53,7 +53,7 @@ const PricingCard = ({loadingButtons,handlePayments, type, title, price, feature
 
   return (
     <div
-      className={`rounded-lg p-6 transition-all duration-300 shadow-xl flex flex-col ${getBgColor()} ${getHoverClasses()}`}
+      className={`rounded-lg p-6 transition-all duration-300 dark:bg-dark  shadow-xl flex flex-col ${getBgColor()} ${getHoverClasses()}`}
     >
       <div
         className={`rounded-full w-10 h-10 flex items-center justify-center mb-4 ${
@@ -62,18 +62,18 @@ const PricingCard = ({loadingButtons,handlePayments, type, title, price, feature
       >
         {getIcon()}
       </div>
-      <h3 className={`text-sm font-medium mb-1 ${getTextColor()}`}>{title}</h3>
-      <h2 className={`text-5xl font-bold mb-6 ${getTextColor()}`}>{price}</h2>
+      <h3 className={`text-sm font-medium ${type == "premium" && "text-white"} dark:text-darkText mb-1 ${getTextColor()}`}>{title}</h3>
+      <h2 className={`text-5xl font-bold dark:text-darkText mb-6 ${getTextColor()}`}>{price}</h2>
       <div className={`border-t border-dashed ${type !== "premium"? "border-gray-400" :"border-gray-200" }  w-full mb-6`}></div>
       <div className="flex-grow">
         {features.map((feature, index) => (
-          <div key={index} className="flex items-start mb-3">
+          <div key={index} className="flex  items-start mb-3">
             <CheckCircleIcon
               className={`w-5 h-5 mr-2 mt-0.5 ${
                 type === 'premium' ? 'text-[#ccff33]' : 'text-gray-600'
               }`}
             />
-            <p className={`text-sm ${getTextColor()}`}>{feature}</p>
+            <p className={`text-sm dark:text-darkText ${getTextColor()}`}>{feature}</p>
           </div>
         ))}
       </div>

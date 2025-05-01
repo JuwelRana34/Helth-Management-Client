@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <>
       {/* Nav Top */}
-      <div className="flex text-xs  flex-col md:text-base md:flex-row justify-between  p-2 md:px-4 bg-primary text-white">
+      <div className="flex text-xs  flex-col md:text-base md:flex-row justify-between  p-2 md:px-4 bg-primary text-white dark:bg-gray-800">
         <div className="flex items-center justify-center">
           <h1 className="py-2">We understand that each patient is unique</h1>
           <button className="ml-2 underline">Learn More</button>
@@ -34,10 +34,10 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <nav className=" bg-base-100 shadow-md sticky top-0 w-full z-50">
+      <nav className=" bg-base-100 dark:bg-slate-900 dark:text-white shadow-md sticky top-0 w-full z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-4">
           {/* Logo */}
-          <NavLink to="/" className=" text-lg md:text-2xl font-bold text-primary">
+          <NavLink to="/" className=" text-lg md:text-2xl font-bold text-primary dark:text-dark">
             MediCare
           </NavLink>
 
@@ -46,7 +46,7 @@ const Navbar = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                `text-black hover:text-primary transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
+                `text-black dark:text-white hover:text-primary transition font-medium ${isActive ? "text-[#1C5CBB] font-bold" : ""
                 }`
               }
             >
@@ -92,21 +92,9 @@ const Navbar = () => {
             </NavLink>
           </ul>
 
-          <label className="swap swap-rotate">
-            {/* Checkbox to toggle theme */}
-            <input
-              type="checkbox"
-              checked={theme === "dark"}
-              onChange={() => setTheme(theme === "light" ? "dark" : "light")}
-            />
-            {/* Moon Icon */}
-            <FaMoon className="swap-on h-8 w-8 fill-current text-blue-500" />
-
-            {/* Sun Icon */}
-            <FaSun className="swap-off h-8 w-8 fill-current text-yellow-500" />
-
-
-          </label>
+          <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+  {theme === "dark" ? <LuSunMedium size={24} /> : <FaMoon size={24} />}
+</button>
 
           {user ? (
             <button
@@ -117,8 +105,8 @@ const Navbar = () => {
             </button>
           ) : (
             <div className="flex space-x-3">
-              <Link to={'/login'} className="btn bg-primary px-3 md:px-6 py-1 rounded-md text-white">Login</Link>
-              <Link to={'/register'} className="btn bg-lime-600 px-3 md:px-6 py-1 rounded-md text-white">Register</Link>
+              <Link to={'/login'} className="btn dark:bg-dark dark:border-gray-600 dark:shadow-none dark:text-gray-200 bg-primary px-3 md:px-6 py-1 rounded-md text-white">Login</Link>
+              <Link to={'/register'} className="btn dark:bg-dark dark:border-gray-600 dark:shadow-none dark:text-gray-200 bg-lime-600 px-3 md:px-6 py-1 rounded-md text-white">Register</Link>
             </div>
           )}
           {/* Mobile Menu Button */}

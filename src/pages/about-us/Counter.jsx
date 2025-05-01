@@ -55,32 +55,32 @@ const Counter = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center text-white">
           <div ref={ref1}>
-            <div className="flex justify-center text-5xl mb-2 text-cyan-300">
+            <div className="flex justify-center text-5xl mb-2 text-cyan-300 dark:text-darkText">
               <FaHeartbeat />
             </div>
-            <h3 className="text-3xl font-bold">{count1.toLocaleString()}</h3>
-            <p className="mt-2 text-sm">Happy Patients</p>
+            <h3 className="text-3xl font-bold dark:text-darkText">{count1.toLocaleString()}</h3>
+            <p className="mt-2 text-sm dark:text-darkText">Happy Patients</p>
           </div>
           <div ref={ref2}>
-            <div className="flex justify-center text-5xl mb-2 text-emerald-300">
+            <div className="flex justify-center text-5xl mb-2 text-emerald-300 dark:text-darkText">
               <FaUserMd />
             </div>
-            <h3 className="text-3xl font-bold">{count2.toLocaleString()}</h3>
-            <p className="mt-2 text-sm">Qualified Doctors</p>
+            <h3 className="text-3xl font-bold dark:text-darkText">{count2.toLocaleString()}</h3>
+            <p className="mt-2 text-sm dark:text-darkText">Qualified Doctors</p>
           </div>
           <div ref={ref3}>
-            <div className="flex justify-center text-5xl mb-2 text-yellow-300">
+            <div className="flex justify-center text-5xl mb-2 text-yellow-300 dark:text-darkText">
               <FaHospital />
             </div>
-            <h3 className="text-3xl font-bold">{count3.toLocaleString()}</h3>
-            <p className="mt-2 text-sm">Clinic Rooms</p>
+            <h3 className="text-3xl font-bold dark:text-darkText">{count3.toLocaleString()}</h3>
+            <p className="mt-2 text-sm dark:text-darkText">Clinic Rooms</p>
           </div>
           <div ref={ref4}>
-            <div className="flex justify-center text-5xl mb-2 text-pink-300">
+            <div className="flex justify-center text-5xl mb-2 text-pink-300 dark:text-darkText">
               <FaMapMarkedAlt />
             </div>
-            <h3 className="text-3xl font-bold">{count4.toLocaleString()}</h3>
-            <p className="mt-2 text-sm">Local Partners</p>
+            <h3 className="text-3xl font-bold dark:text-darkText">{count4.toLocaleString()}</h3>
+            <p className="mt-2 text-sm dark:text-darkText">Local Partners</p>
           </div>
         </div>
       </div>
