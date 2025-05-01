@@ -21,7 +21,6 @@ const Doctors = () => {
     const fetchDoctors = async () => {
       try {
         const res = await axiosPublic.get(`${import.meta.env.VITE_Url}/api/doctor`);
-        // const res = await axiosPublic.get(`${import.meta.env.VITE_Url}/api/users`);
         setDoctors(res.data);
       } catch (error) {
         console.error("Failed to fetch doctors:", error);
