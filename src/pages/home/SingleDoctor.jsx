@@ -117,15 +117,15 @@ const SingleDoctor = () => {
         {/* doctor details info */}
         <div className="space-y-3">
           <div className="space-y-1">
-            <h6 className="text-primary font-semibold text-md">Profile </h6>
+            <h6 className="text-primary dark:text-darkHeadingTxt font-semibold text-md">Profile </h6>
             <h2 className="text-2xl lg:text-4xl font-semibold">
               Dr. {doctor.name}
             </h2>
-            <p className="text-xl text-gray-700">{doctor.specialty}</p>
+            <p className="text-xl text-gray-700 dark:text-darkText">{doctor.specialty}</p>
           </div>
 
           <div className="space-y-1">
-            <h6 className="text-primary font-semibold text-md">Contact </h6>
+            <h6 className="text-primary font-semibold text-md dark:text-darkText">Contact </h6>
 
             <p className="flex items-center gap-2">
               <FaPhoneAlt className="" />
@@ -138,7 +138,7 @@ const SingleDoctor = () => {
           </div>
 
           <div>
-            <h6 className="text-primary font-semibold text-md">About </h6>
+            <h6 className="text-primary font-semibold text-md dark:text-darkText">About </h6>
             <p>{doctor.brief}</p>
           </div>
         </div>
@@ -147,7 +147,7 @@ const SingleDoctor = () => {
         <div>
           <h2 className="text-xl flex items-center gap-2 mb-4">
             <FaRegCalendarCheck />
-            Book a schedule with Dr. {doctor.name}
+            Book a schedule with  {doctor.name}
           </h2>
 
           <div className="flex gap-4 items-center mb-5">
@@ -168,17 +168,13 @@ const SingleDoctor = () => {
               className="w-full p-4 bg-gray-100 text-primary rounded-lg shadow-sm outline-primary border border-emerald-500 hover:border-gray-400"
             />
 
-            <div>
-              <button className="btn btn-lg text-base rounded-lg bg-primary text-white">
-                select
-              </button>
-            </div>
+            
           </div>
 
           {loading ? (
             <div className="flex justify-center items-center space-x-2">
               <Loader className="animate-spin" size={24} />
-              <span className="text-lg text-gray-600">
+              <span className="text-lg text-gray-600 dark:text-darkText">
                 Booking in progress...
               </span>
             </div>
@@ -188,12 +184,12 @@ const SingleDoctor = () => {
                 slots.map((slot) => (
                   <div
                     key={slot.time}
-                    className="flex justify-between items-center bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm hover:bg-emerald-50 transition duration-200"
+                    className="flex justify-between dark:text-darkText dark:bg-gray-800 dark:border-slate-400 items-center bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm hover:bg-emerald-50 transition duration-200"
                   >
-                    <span className="text-sm md:text-lg text-primary">
+                    <span className="text-sm md:text-lg text-primary dark:text-darkText">
                       {slot.time}
                     </span>
-                    <span className="text-sm text-primary">
+                    <span className="text-sm text-primary dark:text-darkText">
                       {slot.bookedUsers.length}/{slot.maxBookings}
                     </span>
                     <button
@@ -208,9 +204,9 @@ const SingleDoctor = () => {
                       }
                       className={`px-3 md:px-4 py-2 rounded-lg font-semibold ${
                         slot.bookedUsers.length >= slot.maxBookings
-                          ? "bg-rose-500 text-white"
+                          ? "bg-rose-500 text-white "
                           : "bg-btnBg text-primary hover:bg-emerald-300"
-                      } disabled:bg-gray-200 disabled:cursor-not-allowed disabled:text-gray-500`}
+                      } disabled:bg-gray-200 dark:text-darkText dark:bg-dark disabled:cursor-not-allowed disabled:text-gray-500`}
                     >
                       {slot.bookedUsers.length >= slot.maxBookings
                         ? "Full"
@@ -221,7 +217,7 @@ const SingleDoctor = () => {
               ) : (
                 <>
                   {!selectedDate && (
-                    <p className="text-gray-500">
+                    <p className="text-gray-500 dark:text-darkText">
                       Please select date to see available slots.{" "}
                     </p>
                   )}

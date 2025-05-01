@@ -1,21 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import toast from 'react-hot-toast';
-import useAuth from '../../Hooks/useAuth';
+import toast from 'react-hot-toast';;
 import useFetchData from '../../utils/fetchGetFunction';
 
 const RequestedToBeDoctor = () => {
     const axiosSecure = useAxiosSecure();
-    const { user } = useAuth()
 
-    //   const { data: users = [], isLoading, isError, error,refetch } = useQuery({
-    //     queryKey: ['requested'],
-    //     queryFn: async () => {
-    //       const { data } = await axiosSecure.get(`/api/users`);
-    //       return data;
-    //     },
-    //   });
     const { data: users = [], refetch, isLoading, isError } = useFetchData('getUser', 'users');
     console.log(users)
 
@@ -47,19 +38,19 @@ const RequestedToBeDoctor = () => {
 
 
     if (isLoading) return <p>Loading...</p>;
-    if (isError) return <p>Error: {error.message}</p>;
+    if (isError) return <p>something went wrong!</p>;
 
     return (
         <div className="p-4">
-            <h2 className="text-xl font-semibold mb-4">Requested Doctors</h2>
+            <h2 className="text-xl font-semibold mb-4 dark:text-darkText">Requested Doctors</h2>
 
             {pendingDoctors.length === 0 ? (
                 <p>No data</p>
             ) : (
                 <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-200 rounded">
+                    <table className="min-w-full bg-white border border-gray-200 rounded dark:text-darkText dark:bg-dark ">
                         <thead>
-                            <tr className="bg-gray-100 text-left">
+                            <tr className="bg-gray-100 dark:bg-slate-800 dark:text-darkText text-left">
                                 <th className="px-4 py-2 border">#</th>
                                 <th className="px-4 py-2 border">Name</th>
                                 <th className="px-4 py-2 border">Email</th>
@@ -77,7 +68,7 @@ const RequestedToBeDoctor = () => {
                                     <td className="px-4 py-2 border text-center">
                                         <button
                                             onClick={() => handleMakeDoctor(user._id, user.email)}
-                                            className="bg-[#2F7A55] hover:bg-green-600 text-white px-3 py-1 rounded"
+                                            className="bg-[#2F7A55] hover:bg-green-600 text-white px-3 py-1 rounded dark:text-darkText dark:bg-slate-800  "
                                         >
                                             Make Doctor
                                         </button>

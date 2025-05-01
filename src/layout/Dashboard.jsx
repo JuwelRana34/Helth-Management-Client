@@ -23,6 +23,9 @@ import toast from "react-hot-toast";
 import { QueryClient } from "@tanstack/react-query";
 import useFetchData from "../utils/fetchGetFunction";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import ThemeContext from "../Providers/ThemeContext";
+import { LuSunMedium } from "react-icons/lu";
+import { FaMoon } from "react-icons/fa";
 
 function Dashboard() {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -33,6 +36,7 @@ function Dashboard() {
   const { notifi, user, isAdmin, setNotifi } = useContext(AuthContext);
   const { data: notifications, refetch } = useFetchData('getNotifications', 'notifications');
   const axiosSecure = useAxiosSecure()
+  const { theme, setTheme } = useContext(ThemeContext);
   useEffect(() => {
     setNotifi(notifications)
   }, [notifications, setNotifi])
@@ -50,11 +54,12 @@ function Dashboard() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100 dark:bg-gray-950">
       {/* Sidebar */}
       <div
-        className={`bg-primary text-white h-screen overflow-y-scroll p-4 hidden md:flex flex-col transition-all duration-300  ${isCollapsed ? "w-20" : "w-64"
-          }`}
+        className={`bg-primary text-white dark:text-darkText dark:bg-dark   h-screen overflow-y-scroll overflow-x-hidden p-2 hidden md:flex flex-col transition-all duration-300  ${
+          isCollapsed ? "w-20" : "w-64"
+        }`}
       >
         <SidebarContent
           isCollapsed={isCollapsed}
@@ -66,8 +71,9 @@ function Dashboard() {
 
       {/* Mobile Sidebar Drawer */}
       <div
-        className={`fixed overflow-y-scroll top-0 left-0 h-full w-64 bg-primary text-white z-50 p-4 transition-transform transform md:hidden ${showSidebar ? "translate-x-0" : "-translate-x-full"
-          }`}
+        className={`fixed overflow-y-scroll top-0 left-0 h-full w-64 bg-primary text-white dark:text-darkText dark:bg-dark  z-50 p-4 transition-transform transform md:hidden ${
+          showSidebar ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <button
           onClick={() => setShowSidebar(false)}
@@ -77,7 +83,7 @@ function Dashboard() {
         </button>
         <SidebarContent
           isCollapsed={false}
-          toggleCollapse={() => { }}
+          toggleCollapse={() => {}}
           location={location}
           isAdmin={isAdmin}
         />
@@ -96,15 +102,20 @@ function Dashboard() {
           </button>
 
           {/* Page Title */}
-          <h1 className="text-xl hidden md:block font-semibold">
+          <h1 className="text-xl hidden md:block dark:text-darkText font-semibold">
             Welcome To{" "}
-            <span className="text-primary font-bold">{user?.displayName}</span>
+            <span className="text-primary dark:text-darkHeadingTxt font-bold">
+              {user?.displayName}
+            </span>
           </h1>
 
           {/* User Info */}
           <div className="flex items-center justify-around space-x-5">
             <button onClick={handleBellClick} className="relative">
-              <Bell size={24} className="text-gray-600 hover:text-gray-800" />
+              <Bell
+                size={24}
+                className="text-gray-600 hover:text-gray-800 dark:text-darkText"
+              />
               <AnimatePresence>
                 {notifi?.length > 0 && (
                   <motion.span
@@ -125,29 +136,33 @@ function Dashboard() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2, ease: "easeInOut" }}
-                    className="absolute -right-36 md:right-0 top-11 mt-2 w-64 bg-white text-slate-700 shadow-lg rounded-md p-2"
+                    className="absolute -right-36 md:right-0 top-11 mt-2 w-64 bg-white text-slate-700 shadow-lg rounded-md p-2 dark:text-darkText dark:bg-dark "
                   >
                     {notifi?.length > 0 ? (
                       notifi.map((notification, index) => (
                         <div
                           key={notification._id}
-                          className={`p-2 border-b last:border-none overflow-y-scroll h-56 ${index % 2 === 0 ? " bg-slate-50" : ""
-                            }`}
+                          className={`p-2 border-b last:border-none overflow-y-scroll h-56 ${
+                            index % 2 === 0
+                              ? " bg-slate-50 dark:text-darkText dark:bg-dark "
+                              : ""
+                          }`}
                         >
                           <p className="flex justify-between text-justify">
                             {notification.message}
-                            {isAdmin && <button
-                              onClick={() => handelDelete(notification._id)}
-                              className=" rounded-md py-2 px-3 bg-red-300 text-rose-600 h-fit"
-                            >
-                              Delete
-                            </button>
-                            }
+                            {isAdmin && (
+                              <button
+                                onClick={() => handelDelete(notification._id)}
+                                className=" rounded-md py-2 px-3 bg-red-300 text-rose-600 h-fit dark:text-darkText dark:bg-gray-800 "
+                              >
+                                Delete
+                              </button>
+                            )}
                           </p>
                         </div>
                       ))
                     ) : (
-                      <p className="text-rose-500 bg-rose-100 font-semibold p-2">
+                      <p className="text-rose-500 bg-rose-100 font-semibold p-2 dark:text-darkText dark:bg-dark ">
                         No notifications
                       </p>
                     )}
@@ -155,14 +170,22 @@ function Dashboard() {
                 )}
               </AnimatePresence>
             </button>
-
+            <button className="dark:text-darkText"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            >
+              {theme === "dark" ? (
+                <LuSunMedium size={24} />
+              ) : (
+                <FaMoon size={24} />
+              )}
+            </button>
             <div className="flex items-center space-x-3">
               <img
                 src={user?.photoURL}
                 alt={user?.displayName}
                 className="w-10 h-10 rounded-full border shadow-2xl hover:scale-110 transform transition-transform"
               />
-              <div className="text-primary md:hidden">
+              <div className="text-primary dark:text-darkText   md:hidden">
                 <p className="text-xs ">HI,</p>
                 <p className="text-sm font-medium ">{user?.displayName}</p>
               </div>
@@ -239,7 +262,7 @@ const SidebarContent = ({ isCollapsed, toggleCollapse, location, isAdmin }) => (
         />
         <NavItem
           to="/Dashboard/requested"
-          icon={<FilePlus size={28} size={28} />}
+          icon={<FilePlus size={28}  />}
           label="Requested"
           collapsed={isCollapsed}
           active={location.pathname === "/Dashboard/requested"}
@@ -284,7 +307,7 @@ const NavItem = ({ to, icon, label, collapsed, active }) => (
   <ol className="relative group">
     <Link
       to={to}
-      className={`flex items-center space-x-3 p-3 rounded-md transition-all ${active ? "bg-emerald-500" : "hover:bg-emerald-400"
+      className={`flex items-center space-x-3 p-3 rounded-md transition-all  ${active ? "bg-emerald-500 dark:bg-gray-800" : "hover:bg-emerald-400 dark:hover:bg-gray-800"
         }`}
     >
       <span className="text-white flex justify-center items-center">

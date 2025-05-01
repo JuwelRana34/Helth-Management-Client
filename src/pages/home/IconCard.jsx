@@ -5,13 +5,13 @@ import ThemeContext from './../../Providers/ThemeContext';
 const Card = ({ icon, title, description }) => {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className={` ${theme === "light" ? "bg-emerald-100" : "bg-gray-800 "} shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl mx-auto`}>
-      <div className="flex items-center justify-start p-6  text-primary dark:text-dark">
+    <div className={` ${theme === "light" ? "bg-emerald-100" : "bg-dark "} shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl mx-auto`}>
+      <div className="flex items-center justify-start p-6  text-primary dark:text-darkText">
         <div className="text-7xl">{icon}</div>
       </div>
       <div className="px-6 pb-6">
-        <h3 className="text-xl font-semibold dark:text-dark text-primary ">{title}</h3>
-        <p className="text-primary dark:text-dark mt-2">{description}</p>
+        <h3 className="text-xl font-semibold dark:text-darkText text-primary ">{title}</h3>
+        <p className="text-primary dark:text-darkText mt-2">{description}</p>
       </div>
     </div>
   );
